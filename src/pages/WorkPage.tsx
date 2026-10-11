@@ -1,0 +1,79 @@
+import React from 'react';
+import { projectsData } from '../data/projects';
+import { Container } from '../components/ui/Container';
+import { Section } from '../components/ui/Section';
+import { SectionHeading } from '../components/ui/SectionHeading';
+import { CaseStudyCard } from '../components/ui/CaseStudyCard';
+import { Button } from '../components/ui/Button';
+import { Reveal } from '../components/ui/Reveal';
+import { SEO } from '../components/ui/SEO';
+
+export const WorkPage: React.FC = () => {
+  return (
+    <>
+      <SEO
+        title="Selected Work & Case Studies | ExDevX"
+        description="Explore production case studies by ExDevX across agri-tech logistics, high-traffic institutional education, bespoke design engineering, and quantitative AI systems."
+      />
+
+      {/* Header */}
+      <section className="pt-16 pb-20 border-b border-[var(--text)]/10 bg-[var(--bg)]">
+        <Container>
+          <Reveal>
+            <div className="text-xs font-mono uppercase tracking-widest text-[var(--primary)] font-semibold mb-4">
+              Production Portfolio
+            </div>
+            <h1 className="font-display text-4xl sm:text-6xl font-medium tracking-tight text-[var(--dark)] max-w-4xl leading-tight">
+              Systems designed for durability, speed and scale.
+            </h1>
+            <p className="mt-6 text-lg text-[var(--text)]/80 max-w-2xl font-sans leading-relaxed">
+              Every client project represents a tangible business bottleneck solved through rigorous engineering, clean codebases, and measurable outcomes.
+            </p>
+          </Reveal>
+        </Container>
+      </section>
+
+      {/* Grid of Case Studies */}
+      <Section tone="surface">
+        <Container>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
+            {projectsData.map((project, idx) => (
+              <Reveal key={project.slug} delay={idx}>
+                <CaseStudyCard project={project} />
+              </Reveal>
+            ))}
+          </div>
+        </Container>
+      </Section>
+
+      {/* Single Dark Section Band per page */}
+      <Section tone="dark">
+        <Container>
+          <Reveal>
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+              <div className="lg:col-span-8">
+                <div className="text-xs font-mono uppercase tracking-widest text-[var(--accent)] font-semibold mb-2">
+                  Code Ownership
+                </div>
+                <h2 className="font-display text-2xl sm:text-3xl font-medium text-[var(--bg)] mb-3">
+                  All Intellectual Property & Source Code Belongs 100% to You
+                </h2>
+                <p className="text-sm text-[var(--bg)]/80 leading-relaxed font-sans max-w-2xl">
+                  We don't hold repos hostage or enforce recurring software lock-in fees. Every sprint commits directly to your private GitHub organization with full documentation and automated deployment scripts.
+                </p>
+              </div>
+
+              <div className="lg:col-span-4 lg:text-right">
+                <Button to="/contact" variant="primary" size="lg">
+                  Start Your Project
+                </Button>
+              </div>
+            </div>
+          </Reveal>
+        </Container>
+      </Section>
+    </>
+  );
+};
+
+export default WorkPage;

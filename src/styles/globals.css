@@ -1,0 +1,90 @@
+@import "tailwindcss";
+@import "./tokens.css";
+
+@theme {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-text: var(--text);
+  --color-primary: var(--primary);
+  --color-dark: var(--dark);
+  --color-accent: var(--accent);
+  --color-on-accent: var(--on-accent);
+
+  --font-display: var(--font-display);
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-mono);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    background-color: var(--bg);
+    color: var(--text);
+  }
+
+  body {
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: var(--font-sans);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  ::selection {
+    background-color: var(--accent);
+    color: var(--on-accent);
+  }
+}
+
+/* Outlined text stroke treatment for editorial poster aesthetic */
+.text-stroke-primary {
+  -webkit-text-stroke: 1.5px var(--primary);
+  color: transparent;
+}
+
+.text-stroke-accent {
+  -webkit-text-stroke: 1.5px var(--accent);
+  color: transparent;
+}
+
+.text-stroke-ivory {
+  -webkit-text-stroke: 1.5px rgba(234, 230, 222, 0.5);
+  color: transparent;
+}
+
+/* Custom accessible focus rings */
+.focus-ring {
+  outline: none;
+}
+.focus-ring:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 3px;
+}
+
+.focus-ring-dark {
+  outline: none;
+}
+.focus-ring-dark:focus-visible {
+  outline: 2px solid var(--bg);
+  outline-offset: 3px;
+}
+
+/* Card hover transitions */
+.editorial-card {
+  background-color: var(--surface);
+  border: 1px solid rgba(11, 26, 51, 0.08);
+  transition: border-color 200ms ease, transform 200ms ease, box-shadow 200ms ease;
+}
+
+.editorial-card:hover {
+  border-color: var(--primary);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px -10px rgba(2, 24, 97, 0.08);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .editorial-card:hover {
+    transform: none;
+  }
+}

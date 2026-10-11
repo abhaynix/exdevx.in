@@ -8,7 +8,8 @@ export default defineConfig(({mode}) => {
   const env = loadEnv(mode, '.', '');
   // Dev middleware runs in Node (never shipped to the browser), so the key
   // stays server-side. loadEnv doesn't touch process.env, so set it here.
-  process.env.GROQ_API_KEY = env.GROQ_API_KEY;
+  process.env.GEMINI_API_KEY = env.GEMINI_API_KEY || process.env.GEMINI_API_KEY;
+  process.env.GEMINI_MODEL = env.GEMINI_MODEL || process.env.GEMINI_MODEL || 'gemini-3.5-flash';
   return {
     plugins: [
       react(),
@@ -27,7 +28,7 @@ export default defineConfig(({mode}) => {
     },
     server: {
       host: '0.0.0.0',
-      port: 5000,
+      port: 3000,
       allowedHosts: true,
       hmr: process.env.DISABLE_HMR !== 'true',
     },

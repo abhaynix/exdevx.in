@@ -1,0 +1,13 @@
+:root {
+  --bg: #EAE6DE;          /* warm ivory, page background */
+  --surface: #F4F1EB;     /* cards, raised panels */
+  --text: #0B1A33;        /* body text */
+  --primary: #226192;     /* deep editorial blue: headings, links, borders */
+  --dark: #021861;        /* midnight navy: hero band, footer, dark sections */
+  --accent: #EF8557;      /* coral: CTA and highlights only */
+  --on-accent: #021861;   /* text on coral buttons */
+
+  --font-display: "Fraunces", Georgia, serif;
+  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+}

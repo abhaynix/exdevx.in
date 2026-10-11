@@ -17,8 +17,17 @@ const root = path.resolve(__dirname, '..');
 
 const routes: Array<{ url: string; file: string }> = [
   { url: '/', file: 'index.html' },
+  { url: '/services', file: 'services/index.html' },
+  { url: '/work', file: 'work/index.html' },
+  { url: '/work/kisanpool', file: 'work/kisanpool/index.html' },
+  { url: '/work/ssnlc-law-college', file: 'work/ssnlc-law-college/index.html' },
+  { url: '/work/sumit-ubale-portfolio', file: 'work/sumit-ubale-portfolio/index.html' },
+  { url: '/work/perpwise-ai', file: 'work/perpwise-ai/index.html' },
+  { url: '/about', file: 'about/index.html' },
+  { url: '/contact', file: 'contact/index.html' },
   { url: '/privacy-policy', file: 'privacy-policy/index.html' },
   { url: '/terms-of-service', file: 'terms-of-service/index.html' },
+  { url: '/404', file: '404.html' },
 ];
 
 // ── Step 1: Build client bundle ──────────────────────────────────────────────

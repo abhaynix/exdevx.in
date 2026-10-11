@@ -3,82 +3,62 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { lazy, Suspense, useEffect, useState } from 'react';
+import { lazy, Suspense } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { MotionConfig } from 'motion/react';
-import Navbar from './components/Navbar';
-import { Hero, Marquee, Services } from './components/Hero';
-import { Locations, FAQ } from './components/Locations';
-import Contact from './components/Contact';
-import Footer from './components/Footer';
-import SEO from './components/SEO';
-import PrivacyPolicy from './components/PrivacyPolicy';
-import TermsOfService from './components/TermsOfService';
+import { Navbar } from './components/ui/Navbar';
+import { Footer } from './components/ui/Footer';
 import ScrollToTop from './components/ScrollToTop';
 
-const Chatbot = lazy(() => import('./components/Chatbot'));
+// Lazy-loaded route-level splitting
+const HomePage = lazy(() => import('./pages/HomePage'));
+const ServicesPage = lazy(() => import('./pages/ServicesPage'));
+const WorkPage = lazy(() => import('./pages/WorkPage'));
+const CaseStudyPage = lazy(() => import('./pages/CaseStudyPage'));
+const AboutPage = lazy(() => import('./pages/AboutPage'));
+const ContactPage = lazy(() => import('./pages/ContactPage'));
+const PrivacyPolicyPage = lazy(() => import('./pages/PrivacyPolicyPage'));
+const TermsPage = lazy(() => import('./pages/TermsPage'));
+import NotFoundPage from './pages/NotFoundPage';
+const ChatWidget = lazy(() => import('./components/ui/ChatWidget'));
 
-/**
- * Mounts the chatbot in its own chunk after the browser is idle, so it never
- * competes with first paint. Renders nothing during SSR (useEffect doesn't run),
- * which also keeps hydration consistent.
- */
-function DeferredChatbot() {
-  const [ready, setReady] = useState(false);
-  useEffect(() => {
-    if ('requestIdleCallback' in window) {
-      const id = requestIdleCallback(() => setReady(true));
-      return () => cancelIdleCallback(id);
-    }
-    const id = setTimeout(() => setReady(true), 1500);
-    return () => clearTimeout(id);
-  }, []);
-  if (!ready) return null;
+function PageLoader() {
   return (
-    <Suspense fallback={null}>
-      <Chatbot />
-    </Suspense>
-  );
-}
-
-function Home() {
-  return (
-    <>
-      <SEO
-        title="ExDevX | Web & App Development Agency, Pune India"
-        description="ExDevX is a Pune-based web & app development agency in Maharashtra, India. We build React websites, mobile apps, AI integrations & SaaS platforms for startups. Get a free consultation."
-        keywords="web developer pune, app developer maharashtra, website development company pune, software company maharashtra, ExDevX, Abhay Jadhav, react native developer pune, saas development india, AI integration pune, web design shrigonda, web design ahilyanagar"
-        pageType="homepage"
-      />
-      <main>
-        <Hero />
-        <Marquee />
-        <Services />
-        <Locations />
-        <FAQ />
-        <Contact />
-      </main>
-    </>
+    <div className="min-h-[50vh] flex items-center justify-center bg-[var(--bg)]" aria-busy="true" aria-label="Loading page">
+      <div className="w-6 h-6 border-2 border-[var(--primary)] border-t-transparent rounded-full animate-spin" />
+    </div>
   );
 }
 
 /**
- * AppInner — router-agnostic layout used by both the client app (BrowserRouter)
- * and the SSR prerender entry (StaticRouter). Keep this export stable.
+ * AppInner — Router-agnostic shell used by client BrowserRouter and SSR prerender
  */
 export function AppInner() {
   return (
     <MotionConfig reducedMotion="user">
       <ScrollToTop />
-      <div className="min-h-screen">
+      <div className="min-h-screen flex flex-col bg-[var(--bg)] text-[var(--text)]">
         <Navbar />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-          <Route path="/terms-of-service" element={<TermsOfService />} />
-        </Routes>
+        <main id="main-content" className="flex-1">
+          <Suspense fallback={<PageLoader />}>
+            <Routes>
+              <Route path="/" element={<HomePage />} />
+              <Route path="/services" element={<ServicesPage />} />
+              <Route path="/work" element={<WorkPage />} />
+              <Route path="/work/:slug" element={<CaseStudyPage />} />
+              <Route path="/about" element={<AboutPage />} />
+              <Route path="/contact" element={<ContactPage />} />
+              <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
+              <Route path="/terms-of-service" element={<TermsPage />} />
+              <Route path="/404" element={<NotFoundPage />} />
+              <Route path="*" element={<NotFoundPage />} />
+            </Routes>
+          </Suspense>
+        </main>
         <Footer />
-        <DeferredChatbot />
+        <Suspense fallback={null}>
+          <ChatWidget />
+        </Suspense>
       </div>
     </MotionConfig>
   );

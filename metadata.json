@@ -2,5 +2,7 @@
   "name": "ExDevX | High-Performance Digital Solutions",
   "description": "ExDevX builds high-performance websites, mobile apps, AI systems, and SaaS products for businesses in Pune and across Maharashtra.",
   "requestFramePermissions": [],
-  "majorCapabilities": []
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
 }

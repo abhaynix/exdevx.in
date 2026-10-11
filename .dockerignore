@@ -1,0 +1,9 @@
+node_modules
+dist
+.git
+.github
+.agents
+.claude
+.env
+.env.local
+.DS_Store

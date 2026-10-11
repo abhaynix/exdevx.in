@@ -1,155 +1,156 @@
-<div align="center">
-  <img width="1200" height="475" alt="ExDevX Banner" src="https://ik.imagekit.io/exdev/file.jpg?updatedAt=1762525888800" />
+# ExDevX (exdevx.in)
 
-  <h1>ExDevX</h1>
-  <p><strong>High-performance web & app development agency — Pune, Maharashtra, India</strong></p>
-
-  <p>
-    <img src="https://img.shields.io/badge/React-19-61DAFB?style=flat-square&logo=react" alt="React 19" />
-    <img src="https://img.shields.io/badge/Vite-6-646CFF?style=flat-square&logo=vite" alt="Vite 6" />
-    <img src="https://img.shields.io/badge/TypeScript-5.8-3178C6?style=flat-square&logo=typescript" alt="TypeScript" />
-    <img src="https://img.shields.io/badge/Tailwind-v4-06B6D4?style=flat-square&logo=tailwindcss" alt="Tailwind CSS v4" />
-    <img src="https://img.shields.io/badge/SSG-Prerendered-brightgreen?style=flat-square" alt="SSG" />
-  </p>
-
-  <p>
-    <a href="https://exdevx.in">🌐 exdevx.in</a> ·
-    <a href="https://github.com/AbhiDevepl">GitHub</a> ·
-    <a href="https://www.linkedin.com/in/abhay-jadhav-56a623309/">LinkedIn</a>
-  </p>
-</div>
+> Production-ready agency website for **ExDevX** — Web, Mobile, Automation, and AI Integration Agency founded in 2022 in Maharashtra, India. Engineered for premium editorial design, technical credibility, sub-second load times, and Lighthouse 95+ performance.
 
 ---
 
-## About
+## Design System & Tokens
 
-**ExDevX** is the portfolio and agency website for Abhay Jadhav — a full-stack software engineer based in Maharashtra, India. The site showcases services, locations, and a contact form, and is fully optimised for SEO, GEO (AI search engines), and AEO (answer engines).
+Strict tokenized palette adhering to editorial color balance (ivory 60%, deep blue/navy 30%, coral highlight 10%):
 
-Built as a **React + Vite SPA** with **static site generation (SSG)** prerendering — meaning every page is server-rendered to full HTML at build time, so search engine crawlers and AI bots see complete content without executing JavaScript.
+```css
+:root {
+  --bg: #EAE6DE;          /* warm ivory, page background */
+  --surface: #F4F1EB;     /* cards, raised panels */
+  --text: #0B1A33;        /* body text */
+  --primary: #226192;     /* deep editorial blue: headings, links, borders */
+  --dark: #021861;        /* midnight navy: hero band, footer, dark sections */
+  --accent: #EF8557;      /* coral: CTA and highlights only */
+  --on-accent: #021861;   /* text on coral buttons */
+}
+```
+
+### Color Rules
+1. **Ratio**: Ivory 60%, Blue & Navy 30%, Coral 10% maximum.
+2. **Coral**: Never used for small body text on ivory (fails WCAG contrast). Reserved exclusively for primary CTA buttons, marks, and hero highlights.
+3. **Contrast**: Button text on coral uses `--on-accent` (`#021861`). Text on `--dark` bands uses `--bg` (`#EAE6DE`).
+4. **Editorial weight**: Each page features a single focused `--dark` section band for technical contrast.
+
+### Typography
+- **Display**: Fraunces (weights 500 to 600, tight tracking, fluid optical sizing).
+- **UI & Body**: Inter (16px base, 1.6 line height).
+- **Technical & Mono**: JetBrains Mono (tags, metadata, deliverable checklists).
+- **Outlined Text Treatment**: CSS stroke treatment for repeating hero motifs (`.text-stroke-primary`).
 
 ---
 
 ## Tech Stack
 
-| Layer | Technology |
-|---|---|
-| Framework | React 19 |
-| Build tool | Vite 6 |
-| Language | TypeScript 5.8 |
-| Styling | Tailwind CSS v4 |
-| Animations | Motion/React v12 |
-| Routing | React Router DOM v7 |
-| SEO | react-helmet-async |
-| AI Chatbot | Google Gemini AI |
-| SSG | Custom `renderToString` prerender pipeline |
+- **Framework**: Vite + React 19 + TypeScript (Strict mode)
+- **Styling**: Tailwind CSS v4 with CSS variables tokens (`src/styles/tokens.css` & `globals.css`)
+- **Routing**: React Router with route-level code splitting
+- **Motion**: Framer Motion (`motion/react`) with strict `prefers-reduced-motion` compliance
+- **SEO & Meta**: `react-helmet-async` with Open Graph, Twitter Cards, and Schema.org JSON-LD graphs
+- **Forms & Validation**: `react-hook-form` + `zod` with honeypot anti-spam defense
+- **Icons**: `lucide-react`
+- **SSG Prerendering**: Native Node/Vite `renderToString` build pipeline generating static HTML for every route
 
 ---
 
-## Features
+## Architecture & Directory Structure
 
-- **Static prerendering (SSG)** — all routes rendered to HTML at build time; fully crawlable by Google, Perplexity, ChatGPT Search, and AI bots
-- **Full SEO/GEO/AEO optimisation** — title tags, meta descriptions, Open Graph, Twitter Cards, canonical URLs, FAQPage schema, LocalBusiness schema, Organization schema, geo meta tags
-- **AI chatbot** powered by Gemini AI (`GEMINI_API_KEY`)
-- **Smooth section navigation** — hash-based scrolling for Services, Locations, FAQ, Contact
-- **Responsive design** — mobile-first with dark theme
-- **React hydration** — `hydrateRoot` in production, `createRoot` in development (no flicker)
+```
+src/
+  ├── app/                  # Router setup and lazy route boundaries
+  ├── components/
+  │   ├── ui/               # Modular primitives (Button, Container, Section, Reveal, SEO)
+  │   └── sections/         # Feature blocks (Navbar, Footer, ProcessStepper, TechStrip, ContactForm)
+  ├── data/                 # Strictly typed data constants (site.ts, services.ts, projects.ts, process.ts)
+  ├── lib/                  # Helpers (cn, validators, seo)
+  ├── pages/                # Route pages (Home, Services, Work, CaseStudy, About, Contact, 404, Legal)
+  ├── styles/               # tokens.css & globals.css
+  ├── entry-server.tsx      # SSR prerender entry point
+  └── main.tsx              # Client entry point
+```
 
 ---
 
 ## Local Development
 
-**Prerequisites:** Node.js 20+
-
 ```bash
 # 1. Install dependencies
 npm install
 
-# 2. Set your Gemini API key
-echo "GEMINI_API_KEY=your_key_here" > .env.local
-
-# 3. Start the dev server (http://localhost:5000)
+# 2. Start the development server (runs on port 3000)
 npm run dev
 ```
 
+Visit `http://localhost:3000`.
+
 ---
 
-## Build & Prerender
+## Production Build & Static Prerender (SSG)
 
-The production build runs a **two-stage SSG pipeline**:
-
-1. **Client build** — Vite bundles the React app to `dist/`
-2. **SSR bundle** — Vite compiles `src/entry-server.tsx` to `dist/server/`
-3. **Prerender** — each route is rendered via `renderToString` and injected into `dist/index.html`
+The build script compiles client assets and pre-renders static HTML for all routes into `dist/`:
 
 ```bash
 npm run build
 ```
 
-Output: fully pre-rendered static HTML files in `dist/` ready to deploy anywhere.
+Prerendered routes output:
+- `dist/index.html` (Homepage)
+- `dist/services/index.html` (Capabilities)
+- `dist/work/index.html` (Case Studies)
+- `dist/work/kisanpool/index.html`
+- `dist/work/ssnlc-law-college/index.html`
+- `dist/work/sumit-ubale-portfolio/index.html`
+- `dist/work/perpwise-ai/index.html`
+- `dist/about/index.html`
+- `dist/contact/index.html`
+- `dist/privacy-policy/index.html`
+- `dist/terms-of-service/index.html`
 
-| Route | Output file |
-|---|---|
-| `/` | `dist/index.html` |
-| `/privacy-policy` | `dist/privacy-policy/index.html` |
-| `/terms-of-service` | `dist/terms-of-service/index.html` |
-
----
-
-## Project Structure
-
-```
-├── public/
-│   ├── favicon.svg        # Brand favicon (lightning bolt, indigo)
-│   ├── robots.txt         # Crawler directives (allows GPTBot, PerplexityBot, etc.)
-│   └── sitemap.xml        # XML sitemap
-├── scripts/
-│   └── prerender.ts       # SSG prerender script (runs at build time)
-├── src/
-│   ├── components/        # UI components (Hero, Navbar, Services, FAQ, Footer…)
-│   ├── entry-server.tsx   # SSR render entry (used by prerender script)
-│   ├── App.tsx            # App shell — exports AppInner (router-agnostic)
-│   └── main.tsx           # Client entry — hydrateRoot or createRoot
-└── index.html             # HTML shell with all SEO meta tags + JSON-LD schemas
+Test the static build locally:
+```bash
+npm run preview
 ```
 
 ---
 
 ## Deployment
 
-Deployed on **Vercel** (Vite preset). The prerendered site is served as static
-files from `dist/`, and `POST /api/chat` runs as a Vercel Serverless Function
-(`api/chat.js`). Config lives in `vercel.json`.
+### 1. Vercel Deployment
 
-- **Build command:** `npm run build`
-- **Output directory:** `dist`
-- **Env vars:** set `GEMINI_API_KEY` in Project Settings → Environment Variables (Production + Preview + Development). No `VITE_` prefix — it must stay server-side.
-- **Rate limiting:** `/api/chat` is throttled at the edge via **Vercel Firewall** (dashboard rule: 10 req/min per IP). Custom firewall rules require the **Pro** plan.
-- **Live site:** [exdevx.in](https://exdevx.in)
+1. Connect your GitHub repository to Vercel.
+2. Select the **Vite** framework preset.
+3. Configure build settings:
+   - **Build Command**: `npm run build`
+   - **Output Directory**: `dist`
+4. Add environment variables in Vercel Project Settings:
+   - `VITE_CONTACT_ENDPOINT` *(optional: Webhook or API endpoint for form submissions)*
+   - `GROQ_API_KEY` *(optional: for serverless AI chat)*
+5. Deploy.
 
-Local API dev: `npm run dev` (Vite mounts the same `api/chat.js` handler as
-middleware) or `vercel dev` (runs the function under the Vercel runtime). Both
-use one handler — no divergent code path.
+### 2. Self-Hosted (Docker & Dokploy)
 
-After deploying, submit the sitemap in Google Search Console:  
-`https://exdevx.in/sitemap.xml`
+A production-ready multi-stage `Dockerfile` and `compose.yml` are provided. The build compiles static HTML and serves it using a minimal, high-performance Nginx image with gzip and client caching headers.
 
----
+#### Running with Docker Compose:
+```bash
+docker compose up -d --build
+```
 
-## Environment Variables
-
-| Variable | Required | Description |
-|---|---|---|
-| `GEMINI_API_KEY` | Yes | Google Gemini API key for the AI chatbot |
-
----
-
-## Founder
-
-**Abhay Jadhav** — Full-stack engineer, Maharashtra, India  
-GitHub: [github.com/AbhiDevepl](https://github.com/AbhiDevepl) · LinkedIn: [abhay-jadhav-56a623309](https://www.linkedin.com/in/abhay-jadhav-56a623309/)
+#### Deploying on Dokploy:
+1. Create a new Application in your Dokploy project.
+2. Select **Source: GitHub** and choose this repository.
+3. Choose **Build Type: Dockerfile**.
+4. Port: Set to `80`.
+5. Domain: Add `exdevx.in` and toggle SSL (Let's Encrypt).
+6. Click **Deploy**.
 
 ---
 
-<div align="center">
-  <p>© 2026 ExDevX · Pune, Maharashtra, India · <a href="https://exdevx.in">exdevx.in</a></p>
-</div>
+## Performance & Accessibility Checklist
+
+- [x] **WCAG AA Contrast**: All text pairings meet 4.5:1 (normal) and 3:1 (large) contrast.
+- [x] **Zero-Pill Discipline**: Metadata displayed as clean, unboxed typography with typographic separators (`·`).
+- [x] **Visible Focus Rings**: Dedicated 2px focus outlines on both ivory and dark backgrounds.
+- [x] **Reduced Motion**: Graceful fallback disabling translateY animations when requested.
+- [x] **Semantic HTML**: Semantic landmark elements (`<header>`, `<nav>`, `<main>`, `<section>`, `<footer>`).
+- [x] **Search & AI Discovery**: Complete Open Graph, Twitter cards, Schema.org Organization/WebSite graphs, `sitemap.xml`, and `robots.txt` supporting AI search crawlers.
+
+---
+
+## License
+
+Proprietary © 2022–Present ExDevX. All rights reserved.
