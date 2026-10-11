@@ -1,12 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo, memo } from 'react';
 import { processSteps } from '../../data/process';
-import { Container } from '../ui/Container';
 import { SectionHeading } from '../ui/SectionHeading';
 import { Check } from 'lucide-react';
 import { cn } from '../../lib/cn';
 
-export const ProcessStepper: React.FC = () => {
+export const ProcessStepper: React.FC = memo(() => {
   const [activeStep, setActiveStep] = useState(0);
+
+  const currentStep = useMemo(() => processSteps[activeStep], [activeStep]);
 
   return (
     <div className="w-full">
@@ -48,17 +49,17 @@ export const ProcessStepper: React.FC = () => {
       <div className="bg-[var(--bg)]/5 border border-[var(--bg)]/10 p-6 sm:p-10 rounded-xs">
         <div className="max-w-3xl">
           <div className="flex items-center gap-3 text-xs font-mono text-[var(--accent)] uppercase tracking-wider mb-2">
-            <span>Phase {processSteps[activeStep].step}</span>
+            <span>Phase {currentStep.step}</span>
             <span aria-hidden="true">·</span>
-            <span>{processSteps[activeStep].tagline}</span>
+            <span>{currentStep.tagline}</span>
           </div>
 
           <h3 className="font-display text-2xl sm:text-3xl font-semibold text-[var(--bg)] mb-4">
-            {processSteps[activeStep].name}: {processSteps[activeStep].tagline}
+            {currentStep.name}: {currentStep.tagline}
           </h3>
 
           <p className="text-base text-[var(--bg)]/85 leading-relaxed font-sans mb-6">
-            {processSteps[activeStep].description}
+            {currentStep.description}
           </p>
 
           <div className="border-t border-[var(--bg)]/15 pt-6">
@@ -66,7 +67,7 @@ export const ProcessStepper: React.FC = () => {
               Phase Deliverables
             </h4>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-              {processSteps[activeStep].deliverables.map((del) => (
+              {currentStep.deliverables.map((del) => (
                 <div
                   key={del}
                   className="flex items-start gap-2 text-xs font-mono text-[var(--bg)]/90 bg-[var(--bg)]/10 p-3 rounded-xs border border-[var(--bg)]/10"
@@ -81,4 +82,6 @@ export const ProcessStepper: React.FC = () => {
       </div>
     </div>
   );
-};
+});
+
+ProcessStepper.displayName = 'ProcessStepper';

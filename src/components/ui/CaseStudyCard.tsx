@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowUpRight, Check } from 'lucide-react';
+import { ArrowUpRight } from 'lucide-react';
 import { ProjectCaseStudy } from '../../data/projects';
 
 interface CaseStudyCardProps {
@@ -8,7 +8,7 @@ interface CaseStudyCardProps {
   featured?: boolean;
 }
 
-export const CaseStudyCard: React.FC<CaseStudyCardProps> = ({ project, featured = false }) => {
+export const CaseStudyCard: React.FC<CaseStudyCardProps> = memo(({ project, featured = false }) => {
   return (
     <article className="editorial-card p-6 sm:p-8 flex flex-col justify-between h-full">
       <div>
@@ -90,4 +90,6 @@ export const CaseStudyCard: React.FC<CaseStudyCardProps> = ({ project, featured 
       </div>
     </article>
   );
-};
+});
+
+CaseStudyCard.displayName = 'CaseStudyCard';

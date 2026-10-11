@@ -1,73 +1,42 @@
-/**
- * @license
- * SPDX-License-Identifier: Apache-2.0
- */
+import React from 'react';
+import { Header } from './components/Header';
+import { Hero } from './components/Hero';
+import { ServiceList } from './components/ServiceList';
+import { WorkList } from './components/WorkList';
+import { Contact } from './components/Contact';
+import { Footer } from './components/Footer';
+import { Section } from './components/Section';
 
-import { lazy, Suspense } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { MotionConfig } from 'motion/react';
-import { Navbar } from './components/ui/Navbar';
-import { Footer } from './components/ui/Footer';
-import ScrollToTop from './components/ScrollToTop';
-
-// Lazy-loaded route-level splitting
-const HomePage = lazy(() => import('./pages/HomePage'));
-const ServicesPage = lazy(() => import('./pages/ServicesPage'));
-const WorkPage = lazy(() => import('./pages/WorkPage'));
-const CaseStudyPage = lazy(() => import('./pages/CaseStudyPage'));
-const AboutPage = lazy(() => import('./pages/AboutPage'));
-const ContactPage = lazy(() => import('./pages/ContactPage'));
-const PrivacyPolicyPage = lazy(() => import('./pages/PrivacyPolicyPage'));
-const TermsPage = lazy(() => import('./pages/TermsPage'));
-import NotFoundPage from './pages/NotFoundPage';
-const ChatWidget = lazy(() => import('./components/ui/ChatWidget'));
-
-function PageLoader() {
+export default function App(): React.ReactElement {
   return (
-    <div className="min-h-[50vh] flex items-center justify-center bg-[var(--bg)]" aria-busy="true" aria-label="Loading page">
-      <div className="w-6 h-6 border-2 border-[var(--primary)] border-t-transparent rounded-full animate-spin" />
-    </div>
-  );
-}
+    <>
+      {/* Accessible Skip Link */}
+      <a href="#main" className="skip-link">
+        Skip to main content
+      </a>
 
-/**
- * AppInner — Router-agnostic shell used by client BrowserRouter and SSR prerender
- */
-export function AppInner() {
-  return (
-    <MotionConfig reducedMotion="user">
-      <ScrollToTop />
-      <div className="min-h-screen flex flex-col bg-[var(--bg)] text-[var(--text)]">
-        <Navbar />
-        <main id="main-content" className="flex-1">
-          <Suspense fallback={<PageLoader />}>
-            <Routes>
-              <Route path="/" element={<HomePage />} />
-              <Route path="/services" element={<ServicesPage />} />
-              <Route path="/work" element={<WorkPage />} />
-              <Route path="/work/:slug" element={<CaseStudyPage />} />
-              <Route path="/about" element={<AboutPage />} />
-              <Route path="/contact" element={<ContactPage />} />
-              <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
-              <Route path="/terms-of-service" element={<TermsPage />} />
-              <Route path="/404" element={<NotFoundPage />} />
-              <Route path="*" element={<NotFoundPage />} />
-            </Routes>
-          </Suspense>
+      {/* Main Single-Column Editorial Canvas (max 960px) */}
+      <div className="min-h-screen bg-[var(--bg)] text-[var(--text)] px-6 sm:px-12 md:px-16 max-w-[960px] mx-auto flex flex-col justify-between selection:bg-[var(--line)]">
+        <Header />
+
+        <main id="main">
+          <Hero />
+
+          <Section id="services" ariaLabelledBy="services-heading">
+            <ServiceList />
+          </Section>
+
+          <Section id="work" ariaLabelledBy="work-heading">
+            <WorkList />
+          </Section>
+
+          <Section id="contact" ariaLabelledBy="contact-heading">
+            <Contact />
+          </Section>
         </main>
-        <Footer />
-        <Suspense fallback={null}>
-          <ChatWidget />
-        </Suspense>
-      </div>
-    </MotionConfig>
-  );
-}
 
-export default function App() {
-  return (
-    <Router>
-      <AppInner />
-    </Router>
+        <Footer />
+      </div>
+    </>
   );
 }

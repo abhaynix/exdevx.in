@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { techStackList } from '../../data/process';
 import { Container } from '../ui/Container';
 
-export const TechStrip: React.FC = () => {
+export const TechStrip: React.FC = memo(() => {
   return (
     <div className="py-12 border-y border-[var(--text)]/10 bg-[var(--surface)]">
       <Container>
@@ -33,4 +33,6 @@ export const TechStrip: React.FC = () => {
       </Container>
     </div>
   );
-};
+});
+
+TechStrip.displayName = 'TechStrip';

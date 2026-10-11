@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo, memo } from 'react';
 import { Helmet } from 'react-helmet-async';
 
 interface SEOProps {
@@ -10,7 +10,7 @@ interface SEOProps {
   schema?: object | object[];
 }
 
-export const SEO: React.FC<SEOProps> = ({
+export const SEO: React.FC<SEOProps> = memo(({
   title = 'ExDevX | High-Performance Web, Mobile & AI Agency',
   description = 'ExDevX is a Maharashtra-based engineering agency building high-performance web applications, cross-platform mobile apps, autonomous workflows, and AI integrations.',
   canonical,
@@ -18,8 +18,17 @@ export const SEO: React.FC<SEOProps> = ({
   ogImage = 'https://ik.imagekit.io/exdev/file.jpg',
   schema,
 }) => {
-  const fullTitle = title.includes('ExDevX') ? title : `${title} | ExDevX`;
-  const canonicalUrl = canonical || (typeof window !== 'undefined' ? window.location.href : 'https://exdevx.in');
+  const fullTitle = useMemo(() => {
+    return title.includes('ExDevX') ? title : `${title} | ExDevX`;
+  }, [title]);
+
+  const canonicalUrl = useMemo(() => {
+    return canonical || (typeof window !== 'undefined' ? window.location.href : 'https://exdevx.in');
+  }, [canonical]);
+
+  const schemaJson = useMemo(() => {
+    return schema ? JSON.stringify(schema) : null;
+  }, [schema]);
 
   return (
     <Helmet>
@@ -43,11 +52,13 @@ export const SEO: React.FC<SEOProps> = ({
       <meta name="twitter:image" content={ogImage} />
 
       {/* Structured Data (Schema.org) */}
-      {schema && (
+      {schemaJson && (
         <script type="application/ld+json">
-          {JSON.stringify(schema)}
+          {schemaJson}
         </script>
       )}
     </Helmet>
   );
-};
+});
+
+SEO.displayName = 'SEO';

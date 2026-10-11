@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, CheckCircle2 } from 'lucide-react';
 import { ServiceItem } from '../../data/services';
@@ -8,7 +8,7 @@ interface ServiceCardProps {
   index: number;
 }
 
-export const ServiceCard: React.FC<ServiceCardProps> = ({ service, index }) => {
+export const ServiceCard: React.FC<ServiceCardProps> = memo(({ service, index }) => {
   return (
     <article className="editorial-card p-6 sm:p-8 flex flex-col justify-between h-full">
       <div>
@@ -63,4 +63,6 @@ export const ServiceCard: React.FC<ServiceCardProps> = ({ service, index }) => {
       </div>
     </article>
   );
-};
+});
+
+ServiceCard.displayName = 'ServiceCard';

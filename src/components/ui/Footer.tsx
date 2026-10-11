@@ -177,13 +177,20 @@ export const Footer: React.FC = () => {
           <div>
             &copy; {new Date().getFullYear()} ExDevX. All rights reserved. Registered in Maharashtra, India.
           </div>
-          <div className="flex items-center gap-6">
+          <div className="flex flex-wrap items-center gap-6">
             <Link to="/privacy-policy" className="hover:text-[var(--bg)] transition-colors focus-ring-dark">
               Privacy Policy
             </Link>
             <Link to="/terms-of-service" className="hover:text-[var(--bg)] transition-colors focus-ring-dark">
               Terms of Service
             </Link>
+            <button
+              type="button"
+              onClick={() => window.dispatchEvent(new CustomEvent('open-cookie-preferences'))}
+              className="hover:text-[var(--bg)] transition-colors focus-ring-dark cursor-pointer text-left"
+            >
+              Cookie Preferences
+            </button>
             <Link to="/about" className="hover:text-[var(--bg)] transition-colors focus-ring-dark">
               About Agency
             </Link>

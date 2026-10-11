@@ -1,66 +1,92 @@
 # ExDevX (exdevx.in)
 
-> Production-ready agency website for **ExDevX** — Web, Mobile, Automation, and AI Integration Agency founded in 2022 in Maharashtra, India. Engineered for premium editorial design, technical credibility, sub-second load times, and Lighthouse 95+ performance.
+> Minimal, editorial single-page agency website for **ExDevX** — an engineering studio in Maharashtra, India founded in 2022. Built with deliberate restraint: fewer elements, generous whitespace, strong typography, and zero decorative noise.
 
 ---
 
 ## Design System & Tokens
 
-Strict tokenized palette adhering to editorial color balance (ivory 60%, deep blue/navy 30%, coral highlight 10%):
+A strict, high-contrast palette adhering to editorial balance:
 
 ```css
 :root {
-  --bg: #EAE6DE;          /* warm ivory, page background */
-  --surface: #F4F1EB;     /* cards, raised panels */
-  --text: #0B1A33;        /* body text */
-  --primary: #226192;     /* deep editorial blue: headings, links, borders */
-  --dark: #021861;        /* midnight navy: hero band, footer, dark sections */
-  --accent: #EF8557;      /* coral: CTA and highlights only */
-  --on-accent: #021861;   /* text on coral buttons */
+  --bg: #EAE6DE;          /* Single background colour for entire page */
+  --text: #0B1A33;        /* High-contrast ink body and headline text */
+  --muted: #5B6577;       /* Secondary text, 5:1 contrast on --bg */
+  --primary: #226192;     /* Links, hover transitions, focus rules */
+  --line: #D8D2C6;        /* 1px structural dividing rules */
+  --accent: #EF8557;      /* Coral: ONE use per viewport (CTA button & logo dot) */
+  --on-accent: #021861;   /* Text on coral button */
 }
 ```
 
-### Color Rules
-1. **Ratio**: Ivory 60%, Blue & Navy 30%, Coral 10% maximum.
-2. **Coral**: Never used for small body text on ivory (fails WCAG contrast). Reserved exclusively for primary CTA buttons, marks, and hero highlights.
-3. **Contrast**: Button text on coral uses `--on-accent` (`#021861`). Text on `--dark` bands uses `--bg` (`#EAE6DE`).
-4. **Editorial weight**: Each page features a single focused `--dark` section band for technical contrast.
+### Core Invariants
+1. **Single Background Color (`--bg`)**: Zero dark sections, zero cards, zero shadows, zero gradients.
+2. **Whitespace Structure**: Structure comes exclusively from whitespace and 1px `--line` dividers.
+3. **Coral Discipline**: Coral appears at most once per viewport (the CTA button and the dot in "ExDevX."). Never on text.
+4. **Contrast**: Text on coral uses `--on-accent` (`#021861`). WCAG AA verified on every pairing.
+5. **Cut List**: No stats strips, no tech stack strips, no process steppers, no tab UIs, no case study sub-pages, no contact form, no chat widgets, no badges, no icons, no tags, no testimonials.
 
-### Typography
-- **Display**: Fraunces (weights 500 to 600, tight tracking, fluid optical sizing).
-- **UI & Body**: Inter (16px base, 1.6 line height).
-- **Technical & Mono**: JetBrains Mono (tags, metadata, deliverable checklists).
-- **Outlined Text Treatment**: CSS stroke treatment for repeating hero motifs (`.text-stroke-primary`).
+---
+
+## Typography
+
+- **Headline**: Fraunces 500, `clamp(2.5rem, 7vw, 5.5rem)`, line height 1.05, tracking −0.02em.
+- **Body**: Inter 17px, line height 1.65, max width 56ch.
+- **Labels**: Inter 12px uppercase, tracking 0.08em, `--muted`.
+- **Restraint**: No monospace, no outlined text, no stat counters.
+
+---
+
+## Layout Architecture
+
+- **Max Width**: 960px centered single-column layout.
+- **Padding**: 24px (mobile) to 64px (desktop) side padding.
+- **Vertical Spacing**: 128px desktop, 80px mobile.
+- **Navigation**: Mobile-first. Nav collapses to logo plus a single Contact link (no hamburger).
+- **Motion**: CSS-only fade and 8px rise on initial load. Respects `prefers-reduced-motion`.
 
 ---
 
 ## Tech Stack
 
-- **Framework**: Vite + React 19 + TypeScript (Strict mode)
-- **Styling**: Tailwind CSS v4 with CSS variables tokens (`src/styles/tokens.css` & `globals.css`)
-- **Routing**: React Router with route-level code splitting
-- **Motion**: Framer Motion (`motion/react`) with strict `prefers-reduced-motion` compliance
-- **SEO & Meta**: `react-helmet-async` with Open Graph, Twitter Cards, and Schema.org JSON-LD graphs
-- **Forms & Validation**: `react-hook-form` + `zod` with honeypot anti-spam defense
-- **Icons**: `lucide-react`
-- **SSG Prerendering**: Native Node/Vite `renderToString` build pipeline generating static HTML for every route
+- **Framework**: Vite + React + TypeScript (Strict mode, no `any`)
+- **Styling**: Tailwind CSS v4 with CSS variables tokens
+- **Fonts**: Fraunces (display) and Inter (UI) loaded via preconnect with `font-display: swap`
+- **Routing**: Anchor links (`#services`, `#work`, `#contact`) — zero router overhead
+- **Bundle Budget**: Under 60KB gzipped JS, Lighthouse 100 target, zero layout shift (CLS 0.000)
 
 ---
 
-## Architecture & Directory Structure
+## Project Structure
 
 ```
-src/
-  ├── app/                  # Router setup and lazy route boundaries
-  ├── components/
-  │   ├── ui/               # Modular primitives (Button, Container, Section, Reveal, SEO)
-  │   └── sections/         # Feature blocks (Navbar, Footer, ProcessStepper, TechStrip, ContactForm)
-  ├── data/                 # Strictly typed data constants (site.ts, services.ts, projects.ts, process.ts)
-  ├── lib/                  # Helpers (cn, validators, seo)
-  ├── pages/                # Route pages (Home, Services, Work, CaseStudy, About, Contact, 404, Legal)
-  ├── styles/               # tokens.css & globals.css
-  ├── entry-server.tsx      # SSR prerender entry point
-  └── main.tsx              # Client entry point
+├── public/
+│   ├── favicon.svg          # Minimal SVG favicon
+│   ├── robots.txt           # Crawler instructions
+│   └── sitemap.xml          # Clean root sitemap
+├── src/
+│   ├── components/
+│   │   ├── Header.tsx       # Logo with coral dot + desktop/mobile nav
+│   │   ├── Hero.tsx         # Serif headline, subline, coral CTA, anchor link
+│   │   ├── ServiceList.tsx  # Plain 4-row numbered services list
+│   │   ├── WorkList.tsx     # 4-row project archive with hover arrow shift
+│   │   ├── Contact.tsx      # Large serif mailto, WhatsApp, location
+│   │   ├── Footer.tsx       # Single-line copyright & founder attribution
+│   │   └── Section.tsx      # Semantic section wrapper with vertical rhythm
+│   ├── data/
+│   │   └── site.ts          # Strictly typed content constants (zero copy in components)
+│   ├── styles/
+│   │   ├── tokens.css       # Design tokens in CSS variables
+│   │   └── globals.css      # Base typography, skip-link, focus rings & CSS motion
+│   ├── App.tsx              # Clean single-page composition
+│   └── main.tsx             # React DOM entry point
+├── Dockerfile               # Multi-stage production Nginx static container
+├── compose.yml              # Self-hosted Docker Compose setup
+├── index.html               # Semantic SEO head, JSON-LD Schema & OpenGraph
+├── package.json
+├── tsconfig.json
+└── vite.config.ts
 ```
 
 ---
@@ -71,7 +97,7 @@ src/
 # 1. Install dependencies
 npm install
 
-# 2. Start the development server (runs on port 3000)
+# 2. Run local development server (runs on port 3000)
 npm run dev
 ```
 
@@ -79,29 +105,13 @@ Visit `http://localhost:3000`.
 
 ---
 
-## Production Build & Static Prerender (SSG)
-
-The build script compiles client assets and pre-renders static HTML for all routes into `dist/`:
+## Production Build & Preview
 
 ```bash
+# Type check and build static assets
 npm run build
-```
 
-Prerendered routes output:
-- `dist/index.html` (Homepage)
-- `dist/services/index.html` (Capabilities)
-- `dist/work/index.html` (Case Studies)
-- `dist/work/kisanpool/index.html`
-- `dist/work/ssnlc-law-college/index.html`
-- `dist/work/sumit-ubale-portfolio/index.html`
-- `dist/work/perpwise-ai/index.html`
-- `dist/about/index.html`
-- `dist/contact/index.html`
-- `dist/privacy-policy/index.html`
-- `dist/terms-of-service/index.html`
-
-Test the static build locally:
-```bash
+# Preview production build locally
 npm run preview
 ```
 
@@ -111,19 +121,16 @@ npm run preview
 
 ### 1. Vercel Deployment
 
-1. Connect your GitHub repository to Vercel.
+1. Connect the GitHub repository to Vercel.
 2. Select the **Vite** framework preset.
-3. Configure build settings:
+3. Settings:
    - **Build Command**: `npm run build`
    - **Output Directory**: `dist`
-4. Add environment variables in Vercel Project Settings:
-   - `VITE_CONTACT_ENDPOINT` *(optional: Webhook or API endpoint for form submissions)*
-   - `GROQ_API_KEY` *(optional: for serverless AI chat)*
-5. Deploy.
+4. Deploy.
 
-### 2. Self-Hosted (Docker & Dokploy)
+### 2. Self-Hosted (Dokploy / Docker Compose)
 
-A production-ready multi-stage `Dockerfile` and `compose.yml` are provided. The build compiles static HTML and serves it using a minimal, high-performance Nginx image with gzip and client caching headers.
+A production-ready multi-stage `Dockerfile` and `compose.yml` are provided.
 
 #### Running with Docker Compose:
 ```bash
@@ -131,26 +138,25 @@ docker compose up -d --build
 ```
 
 #### Deploying on Dokploy:
-1. Create a new Application in your Dokploy project.
-2. Select **Source: GitHub** and choose this repository.
+1. Create an Application in Dokploy.
+2. Select **Source: GitHub** and point to your repository.
 3. Choose **Build Type: Dockerfile**.
 4. Port: Set to `80`.
-5. Domain: Add `exdevx.in` and toggle SSL (Let's Encrypt).
+5. Add domain: `exdevx.in` with automatic Let's Encrypt SSL.
 6. Click **Deploy**.
 
 ---
 
-## Performance & Accessibility Checklist
+## Accessibility Checklist
 
-- [x] **WCAG AA Contrast**: All text pairings meet 4.5:1 (normal) and 3:1 (large) contrast.
-- [x] **Zero-Pill Discipline**: Metadata displayed as clean, unboxed typography with typographic separators (`·`).
-- [x] **Visible Focus Rings**: Dedicated 2px focus outlines on both ivory and dark backgrounds.
-- [x] **Reduced Motion**: Graceful fallback disabling translateY animations when requested.
-- [x] **Semantic HTML**: Semantic landmark elements (`<header>`, `<nav>`, `<main>`, `<section>`, `<footer>`).
-- [x] **Search & AI Discovery**: Complete Open Graph, Twitter cards, Schema.org Organization/WebSite graphs, `sitemap.xml`, and `robots.txt` supporting AI search crawlers.
+- [x] Accessible skip link (`#main`) with visible focus ring.
+- [x] Visible focus indicators: 2px `--primary` with 3px offset.
+- [x] All interactive links have discernible text; arrow glyphs are `aria-hidden`.
+- [x] Semantic landmarks: `<header>`, `<nav>`, `<main>`, `<section>`, `<footer>` with `aria-labelledby`.
+- [x] `prefers-reduced-motion` fully respected in CSS.
 
 ---
 
 ## License
 
-Proprietary © 2022–Present ExDevX. All rights reserved.
+© 2026 ExDevX. Founded by Abhay Jadhav. All rights reserved.

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { motion, useReducedMotion } from 'motion/react';
 import { cn } from '../../lib/cn';
 
@@ -9,7 +9,7 @@ interface RevealProps {
   className?: string;
 }
 
-export const Reveal: React.FC<RevealProps> = ({
+export const Reveal: React.FC<RevealProps> = memo(({
   children,
   delay = 0,
   direction = 'up',
@@ -31,11 +31,13 @@ export const Reveal: React.FC<RevealProps> = ({
       transition={{
         duration: 0.38,
         delay: delay * 0.08,
-        ease: [0.25, 1, 0.5, 1], // smooth ease-out
+        ease: [0.25, 1, 0.5, 1],
       }}
       className={cn(className)}
     >
       {children}
     </motion.div>
   );
-};
+});
+
+Reveal.displayName = 'Reveal';

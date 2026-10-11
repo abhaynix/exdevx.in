@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { cn } from '../../lib/cn';
 
 interface SectionHeadingProps {
@@ -10,7 +10,7 @@ interface SectionHeadingProps {
   className?: string;
 }
 
-export const SectionHeading: React.FC<SectionHeadingProps> = ({
+export const SectionHeading: React.FC<SectionHeadingProps> = memo(({
   tag,
   title,
   description,
@@ -60,4 +60,6 @@ export const SectionHeading: React.FC<SectionHeadingProps> = ({
       )}
     </div>
   );
-};
+});
+
+SectionHeading.displayName = 'SectionHeading';

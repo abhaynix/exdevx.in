@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { contactFormSchema, ContactFormData } from '../../lib/validators';
@@ -217,27 +218,35 @@ export const ContactForm: React.FC<ContactFormProps> = ({ initialService }) => {
           )}
         </div>
 
-        {/* Submit Button & Fast Tracks */}
-        <div className="pt-2 flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-t border-[var(--text)]/10">
-          <Button
-            type="submit"
-            variant="primary"
-            size="md"
-            disabled={submissionStatus === 'loading'}
-            className="w-full sm:w-auto"
-          >
-            {submissionStatus === 'loading' ? (
-              <span className="flex items-center gap-2">
-                <Loader2 className="w-4 h-4 animate-spin" />
-                Dispatching…
-              </span>
-            ) : (
-              'Submit Project Inquiry'
-            )}
-          </Button>
+        {/* Submit Button, Privacy Notice & Fast Tracks */}
+        <div className="pt-3 flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-t border-[var(--text)]/10">
+          <div className="flex flex-col gap-2">
+            <Button
+              type="submit"
+              variant="primary"
+              size="md"
+              disabled={submissionStatus === 'loading'}
+              className="w-full sm:w-auto"
+            >
+              {submissionStatus === 'loading' ? (
+                <span className="flex items-center gap-2">
+                  <Loader2 className="w-4 h-4 animate-spin" />
+                  Dispatching…
+                </span>
+              ) : (
+                'Submit Project Inquiry'
+              )}
+            </Button>
+            <p className="text-[11px] font-sans text-[var(--text)]/65 leading-tight max-w-sm">
+              We process your details strictly to evaluate and reply to this enquiry. Retained for 180 days.{' '}
+              <Link to="/privacy-policy" className="text-[var(--primary)] underline hover:text-[var(--dark)] focus-ring rounded-xs">
+                Privacy Policy
+              </Link>.
+            </p>
+          </div>
 
-          <div className="text-xs font-mono text-[var(--text)]/70 flex items-center gap-3">
-            <span>Or WhatsApp directly:</span>
+          <div className="text-xs font-mono text-[var(--text)]/70 flex items-center gap-2 self-start sm:self-center">
+            <span>Or WhatsApp:</span>
             <a
               href={siteConfig.contact.whatsappFormatted}
               target="_blank"
