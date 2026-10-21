@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, ArrowUpRight } from 'lucide-react';
+import { Menu, X, ArrowUpRight, Sun } from 'lucide-react';
 import { siteConfig } from '../../data/site';
 import { Button } from './Button';
 import { Container } from './Container';
@@ -9,7 +9,9 @@ import { cn } from '../../lib/cn';
 export const Navbar: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [warmGlow, setWarmGlow] = useState(true);
   const location = useLocation();
+  const isHome = location.pathname === '/';
 
   useEffect(() => {
     const handleScroll = () => {
@@ -47,28 +49,26 @@ export const Navbar: React.FC = () => {
 
       <header
         className={cn(
-          'sticky top-0 z-50 transition-[background-color,border-color,backdrop-filter] duration-200 border-b',
-          isScrolled
-            ? 'bg-[var(--bg)]/90 backdrop-blur-md border-[var(--text)]/10 shadow-xs'
-            : 'bg-[var(--bg)] border-transparent'
+          'sticky top-0 z-50 border-b border-[var(--text)]/10 bg-[var(--bg)] home-navbar',
+          isScrolled && 'bg-[var(--surface)]'
         )}
       >
         <Container>
-          <div className="flex items-center justify-between h-20">
+          <div className="flex items-center justify-between h-[88px]">
             {/* Brand Logo */}
             <Link
               to="/"
               className="group flex items-baseline gap-1.5 focus-ring rounded-xs py-1"
               aria-label="ExDevX Home"
             >
-              <span className="font-display text-2xl sm:text-3xl font-semibold tracking-tight text-[var(--dark)] group-hover:text-[var(--primary)] transition-colors">
+                <span className="font-display text-2xl sm:text-3xl font-semibold tracking-tight text-[var(--dark)]">
                 ExDevX
               </span>
               <span className="w-1.5 h-1.5 rounded-full bg-[var(--accent)] inline-block mb-1" />
             </Link>
 
             {/* Desktop Navigation */}
-            <nav className="hidden md:flex items-center gap-8" aria-label="Main Navigation">
+            <nav className={`hidden md:flex items-center gap-8${isHome ? ' home-desktop-nav' : ''}`} aria-label="Main Navigation">
               {siteConfig.navItems.map((item) => {
                 const isActive = location.pathname === item.href;
                 return (
@@ -84,7 +84,7 @@ export const Navbar: React.FC = () => {
                   >
                     {item.label}
                     {isActive && (
-                      <span className="absolute -bottom-1 left-0 right-0 h-[2px] bg-[var(--primary)]" />
+                      <span className="absolute -bottom-1 left-0 right-0 h-px bg-[var(--primary)]" />
                     )}
                   </Link>
                 );
@@ -92,17 +92,18 @@ export const Navbar: React.FC = () => {
             </nav>
 
             {/* Desktop CTA */}
-            <div className="hidden md:flex items-center gap-4">
+            <div className={`hidden md:flex items-center gap-4${isHome ? ' home-desktop-cta' : ''}`}>
               <Button to="/contact" size="sm" variant="primary">
                 Start a Project
               </Button>
             </div>
 
             {/* Mobile Menu Trigger */}
+            {isHome && <button type="button" className="home-glow-toggle focus-ring" aria-label="Toggle warm background glow" aria-pressed={warmGlow} title="Toggle warm background glow" onClick={() => { setWarmGlow((enabled) => !enabled); document.documentElement.classList.toggle('home-glow-off'); }}><Sun aria-hidden="true" /></button>}
             <button
               type="button"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="md:hidden p-2 text-[var(--text)] hover:text-[var(--primary)] focus-ring rounded-xs"
+              className={`p-2 text-[var(--text)] hover:text-[var(--primary)] focus-ring rounded-xs${isHome ? ' home-menu-button' : ' md:hidden'}`}
               aria-expanded={isMobileMenuOpen}
               aria-label={isMobileMenuOpen ? 'Close Menu' : 'Open Menu'}
             >
@@ -114,7 +115,7 @@ export const Navbar: React.FC = () => {
         {/* Mobile Navigation Drawer */}
         {isMobileMenuOpen && (
           <div
-            className="md:hidden border-b border-[var(--text)]/10 bg-[var(--surface)] px-4 pt-3 pb-6 shadow-xl animate-in slide-in-from-top-2 duration-200"
+            className={`md:hidden border-b border-[var(--text)]/10 bg-[var(--surface)] px-4 pt-3 pb-6 shadow-xl animate-in slide-in-from-top-2 duration-200${isHome ? ' home-menu-drawer' : ''}`}
             role="dialog"
             aria-label="Mobile Navigation"
           >

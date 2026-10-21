@@ -24,9 +24,9 @@ export const processSteps: ProcessStep[] = [
   {
     step: "03",
     name: "Build",
-    tagline: "Type-safe engineering with zero shortcuts",
+    tagline: "Build and refine the product",
     description: "Production implementation in clean, modular TypeScript. Component-driven interfaces, strict testing, and continuous deployment branches.",
-    deliverables: ["Modular React/Native Codebase", "Sub-second API Endpoints", "Staging Preview Environment"]
+    deliverables: ["Application code", "API integrations", "Preview environment"]
   },
   {
     step: "04",
@@ -38,9 +38,9 @@ export const processSteps: ProcessStep[] = [
   {
     step: "05",
     name: "Optimize",
-    tagline: "Lighthouse 95+, SEO audit, and telemetry",
-    description: "Rigorous performance audits, bundle tree-shaking, server-side caching, and schema markup injection ensuring instant indexability.",
-    deliverables: ["Lighthouse 95+ Audit Signoff", "Structured Schema Markup", "Documentation & Runbooks"]
+    tagline: "Review and maintain",
+    description: "We review the finished work, address issues and prepare documentation for handover.",
+    deliverables: ["Quality review", "Documentation", "Handover"]
   }
 ];
 

@@ -4,7 +4,7 @@
  */
 
 import { lazy, Suspense } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { MotionConfig } from 'motion/react';
 import { Navbar } from './components/ui/Navbar';
 import { Footer } from './components/ui/Footer';
@@ -34,10 +34,11 @@ function PageLoader() {
  * AppInner — Router-agnostic shell used by client BrowserRouter and SSR prerender
  */
 export function AppInner() {
+  const isHome = useLocation().pathname === '/';
   return (
     <MotionConfig reducedMotion="user">
       <ScrollToTop />
-      <div className="min-h-screen flex flex-col bg-[var(--bg)] text-[var(--text)]">
+      <div className={`min-h-screen flex flex-col bg-[var(--bg)] text-[var(--text)]${isHome ? ' home-theme' : ''}`}>
         <Navbar />
         <main id="main-content" className="flex-1">
           <Suspense fallback={<PageLoader />}>

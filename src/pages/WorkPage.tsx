@@ -21,13 +21,13 @@ export const WorkPage: React.FC = () => {
         <Container>
           <Reveal>
             <div className="text-xs font-mono uppercase tracking-widest text-[var(--primary)] font-semibold mb-4">
-              Production Portfolio
+              Selected work
             </div>
             <h1 className="font-display text-4xl sm:text-6xl font-medium tracking-tight text-[var(--dark)] max-w-4xl leading-tight">
-              Systems designed for durability, speed and scale.
+              Projects across web, mobile and AI.
             </h1>
             <p className="mt-6 text-lg text-[var(--text)]/80 max-w-2xl font-sans leading-relaxed">
-              Every client project represents a tangible business bottleneck solved through rigorous engineering, clean codebases, and measurable outcomes.
+              A selection of projects from our portfolio.
             </p>
           </Reveal>
         </Container>
@@ -47,7 +47,7 @@ export const WorkPage: React.FC = () => {
       </Section>
 
       {/* Single Dark Section Band per page */}
-      <Section tone="dark">
+      <Section tone="surface">
         <Container>
           <Reveal>
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
@@ -55,11 +55,11 @@ export const WorkPage: React.FC = () => {
                 <div className="text-xs font-mono uppercase tracking-widest text-[var(--accent)] font-semibold mb-2">
                   Code Ownership
                 </div>
-                <h2 className="font-display text-2xl sm:text-3xl font-medium text-[var(--bg)] mb-3">
-                  All Intellectual Property & Source Code Belongs 100% to You
+                <h2 className="font-display text-2xl sm:text-3xl font-medium text-[var(--dark)] mb-3">
+                  Your project, in your hands.
                 </h2>
-                <p className="text-sm text-[var(--bg)]/80 leading-relaxed font-sans max-w-2xl">
-                  We don't hold repos hostage or enforce recurring software lock-in fees. Every sprint commits directly to your private GitHub organization with full documentation and automated deployment scripts.
+                <p className="text-sm text-[var(--dark)]/80 leading-relaxed font-sans max-w-2xl">
+                  We aim to build with familiar tools and clear handover, so your team can continue working with the code.
                 </p>
               </div>
 

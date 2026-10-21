@@ -59,34 +59,10 @@ export const CaseStudyPage: React.FC = () => {
               {project.subtitle}
             </p>
 
-            {/* Outcome Callout Box */}
-            <div className="bg-[var(--surface)] border-l-4 border-[var(--accent)] p-6 rounded-xs max-w-3xl mb-8">
-              <div className="text-xs font-mono uppercase tracking-wider text-[var(--primary)] font-bold mb-1">
-                Measured Real-World Impact
-              </div>
-              <p className="text-base sm:text-lg text-[var(--dark)] font-sans font-medium leading-relaxed">
-                "{project.oneLineOutcome}"
-              </p>
-            </div>
-
-            {/* Metrics Ribbon */}
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-3xl border-t border-[var(--text)]/10 pt-6">
-              {project.metrics.map((m) => (
-                <div key={m.label} className="p-3 bg-[var(--surface)] rounded-xs border border-[var(--text)]/5">
-                  <div className="font-display text-2xl font-bold text-[var(--primary)]">
-                    {m.value}
-                  </div>
-                  <div className="text-[10px] font-mono uppercase text-[var(--text)]/60">
-                    {m.label}
-                  </div>
-                </div>
-              ))}
-            </div>
-
             {project.liveUrl && (
               <div className="mt-8">
                 <Button href={project.liveUrl} variant="primary" size="md">
-                  Visit Live Production Platform <ArrowUpRight className="w-4 h-4 ml-1.5" />
+                Visit project <ArrowUpRight className="w-4 h-4 ml-1.5" />
                 </Button>
               </div>
             )}
@@ -128,13 +104,13 @@ export const CaseStudyPage: React.FC = () => {
       </Section>
 
       {/* Single Dark Section Band: Technical Architecture */}
-      <Section tone="dark">
+      <Section tone="surface">
         <Container size="narrow">
           <Reveal>
             <div className="text-xs font-mono uppercase tracking-widest text-[var(--accent)] font-semibold mb-3">
               03. Technical Architecture
             </div>
-            <h2 className="font-display text-2xl sm:text-3xl font-medium text-[var(--bg)] mb-6">
+            <h2 className="font-display text-2xl sm:text-3xl font-medium text-[var(--dark)] mb-6">
               Engineering Specs & Architectural Invariants
             </h2>
 
@@ -142,10 +118,10 @@ export const CaseStudyPage: React.FC = () => {
               {project.architecture.map((arch, idx) => (
                 <div
                   key={idx}
-                  className="flex items-start gap-3 p-4 bg-[var(--bg)]/5 border border-[var(--bg)]/10 rounded-xs"
+                  className="flex items-start gap-3 p-4 bg-[var(--dark)]/5 border border-[var(--text)]/10 rounded-xs"
                 >
                   <Cpu className="w-4 h-4 text-[var(--accent)] shrink-0 mt-0.5" />
-                  <span className="text-sm text-[var(--bg)]/90 font-mono leading-relaxed">
+                  <span className="text-sm text-[var(--dark)]/90 font-mono leading-relaxed">
                     {arch}
                   </span>
                 </div>
@@ -153,15 +129,15 @@ export const CaseStudyPage: React.FC = () => {
             </div>
 
             {/* Stack Tags */}
-            <div className="border-t border-[var(--bg)]/15 pt-6">
-              <div className="text-xs font-mono uppercase tracking-wider text-[var(--bg)]/60 mb-3">
+            <div className="border-t border-[var(--text)]/10 pt-6">
+              <div className="text-xs font-mono uppercase tracking-wider text-[var(--dark)]/60 mb-3">
                 Technologies Utilized
               </div>
               <div className="flex flex-wrap gap-2">
                 {project.stack.map((item) => (
                   <span
                     key={item}
-                    className="text-xs font-mono text-[var(--bg)] bg-[var(--bg)]/10 px-3 py-1.5 rounded-xs"
+                    className="text-xs font-mono text-[var(--dark)] bg-[var(--bg)]/10 px-3 py-1.5 rounded-xs"
                   >
                     {item}
                   </span>

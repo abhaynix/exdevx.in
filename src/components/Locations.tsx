@@ -132,7 +132,7 @@ export function FAQ() {
       </div>
 
       <div className="mt-12 md:mt-16 text-center px-8 py-10 border border-white/5 rounded-2xl bg-white/[0.01]">
-        <p className="text-zinc-400 text-sm md:text-base">Still have questions? We respond within 24 hours.</p>
+        <p className="text-zinc-400 text-sm md:text-base">Still have questions? Contact the ExDevX team.</p>
         <a
           href="mailto:hello@exdevx.in"
           className="inline-block mt-4 font-mono text-xs text-primary border-b border-primary/30 pb-1 hover:border-primary transition-colors rounded-sm focus-ring"

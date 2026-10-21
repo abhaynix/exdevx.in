@@ -84,7 +84,7 @@ const FAQ_SCHEMA = {
       "name": "What makes ExDevX different from other web development agencies in Pune?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "ExDevX is a production-first agency focused on performance and reliability. Founded in 2022 by Abhay Jadhav, we have delivered live platforms like ssnlc.in for real institutions. We specialize in React, Node.js, AI integration, and SaaS architecture — every project is built for scale with sub-second load times as our standard."
+        "text": "ExDevX builds web applications, mobile apps, automation systems and AI integrations in Maharashtra, India."
       }
     }
   ]
@@ -151,7 +151,7 @@ const SERVICE_SCHEMA = {
       "item": {
         "@type": "Service",
         "name": "Web Development",
-        "description": "Custom React, Next.js, and Vue.js websites with sub-second load times and mobile-first design for businesses in Maharashtra.",
+        "description": "Custom React, Next.js, and Vue.js websites for businesses in Maharashtra.",
         "provider": { "@id": `${BASE_URL}/#organization` },
         "areaServed": "Maharashtra, India"
       }

@@ -131,22 +131,22 @@ export const ContactPage: React.FC = () => {
       </Section>
 
       {/* Dark Assurance Band */}
-      <Section tone="dark">
+      <Section tone="surface">
         <Container>
           <Reveal>
             <div className="max-w-2xl mx-auto text-center">
               <div className="text-xs font-mono uppercase tracking-widest text-[var(--accent)] font-semibold mb-3">
-                Zero Friction Guarantee
+                Get in touch
               </div>
-              <h2 className="font-display text-2xl sm:text-3xl font-medium text-[var(--bg)] mb-4">
+              <h2 className="font-display text-2xl sm:text-3xl font-medium text-[var(--dark)] mb-4">
                 What happens after you reach out?
               </h2>
-              <p className="text-sm text-[var(--bg)]/85 leading-relaxed font-sans mb-8">
-                1. We review your requirements and reply within 12 hours.<br />
-                2. We schedule a 25-minute technical discovery call.<br />
-                3. You receive a concise architectural proposal and transparent fixed milestone quote.
+              <p className="text-sm text-[var(--dark)]/85 leading-relaxed font-sans mb-8">
+                1. Tell us about your project.<br />
+                2. We discuss the project and its requirements.<br />
+                3. We share a proposal based on the scope.
               </p>
-              <div className="text-xs font-mono text-[var(--bg)]/60">
+              <div className="text-xs font-mono text-[var(--dark)]/60">
                 No spam. No newsletter additions. No generic sales badgering.
               </div>
             </div>

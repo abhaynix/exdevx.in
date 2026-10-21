@@ -35,7 +35,7 @@ export interface SiteConfig {
 
 export const siteConfig: SiteConfig = {
   name: "ExDevX",
-  tagline: "Engineering high-performance digital products & intelligent automations.",
+  tagline: "Web, mobile and AI development.",
   subline: "We build scalable web platforms, cross-platform mobile apps, autonomous workflows, and AI systems for ambitious businesses worldwide.",
   foundedYear: 2022,
   location: "Pune & Ahilyanagar, Maharashtra, India",

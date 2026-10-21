@@ -89,24 +89,10 @@ export const AboutPage: React.FC = () => {
                     At ExDevX, clients collaborate directly with systems engineers—never account managers or outsourced junior subcontractors. We scope tightly, eliminate speculative features, write strict TypeScript, and deploy self-healing automated pipelines.
                   </p>
                   <p>
-                    From rural agricultural logistics in Maharashtra (KisanPool) to institutional portals handling tens of thousands of students without a glitch (ssnlc.in), our work is engineered for resilient reality.
+                    Our portfolio includes agricultural logistics and institutional web platforms such as KisanPool and ssnlc.in.
                   </p>
                 </div>
 
-                <div className="pt-6 grid grid-cols-2 sm:grid-cols-3 gap-4 border-t border-[var(--text)]/10 text-xs font-mono">
-                  <div>
-                    <span className="block text-[var(--primary)] font-bold text-lg">2022</span>
-                    <span className="text-[var(--text)]/60 uppercase">Year Founded</span>
-                  </div>
-                  <div>
-                    <span className="block text-[var(--primary)] font-bold text-lg">Pune, MH</span>
-                    <span className="text-[var(--text)]/60 uppercase">Operations Hub</span>
-                  </div>
-                  <div>
-                    <span className="block text-[var(--primary)] font-bold text-lg">100%</span>
-                    <span className="text-[var(--text)]/60 uppercase">In-House Engineering</span>
-                  </div>
-                </div>
               </Reveal>
             </div>
           </div>
@@ -114,43 +100,43 @@ export const AboutPage: React.FC = () => {
       </Section>
 
       {/* Agency Values (Single Dark Section Band) */}
-      <Section tone="dark">
+      <Section tone="surface">
         <Container>
           <Reveal>
             <SectionHeading
               tag="Core Invariants"
               title="Three pillars that govern every engagement"
               description="These aren't marketing slogans. They are architectural guidelines applied to every line of code we ship."
-              tone="dark"
+
             />
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              <div className="p-6 bg-[var(--bg)]/5 border border-[var(--bg)]/10 rounded-xs">
+              <div className="p-6 bg-[var(--dark)]/5 border border-[var(--text)]/10 rounded-xs">
                 <span className="text-xs font-mono text-[var(--accent)] font-bold block mb-2">01 / PRINCIPLE</span>
-                <h3 className="font-display text-2xl font-medium text-[var(--bg)] mb-3">
+                <h3 className="font-display text-2xl font-medium text-[var(--dark)] mb-3">
                   Execution Over Theory
                 </h3>
-                <p className="text-xs text-[var(--bg)]/80 leading-relaxed font-sans">
-                  We don't waste client budgets on 60-page slide decks or speculative user personas. We validate through working staging builds, reproducible prototypes, and measurable metrics.
+                <p className="text-xs text-[var(--dark)]/80 leading-relaxed font-sans">
+                  We focus on clear scope, working prototypes and useful feedback during development.
                 </p>
               </div>
 
-              <div className="p-6 bg-[var(--bg)]/5 border border-[var(--bg)]/10 rounded-xs">
+              <div className="p-6 bg-[var(--dark)]/5 border border-[var(--text)]/10 rounded-xs">
                 <span className="text-xs font-mono text-[var(--accent)] font-bold block mb-2">02 / PRINCIPLE</span>
-                <h3 className="font-display text-2xl font-medium text-[var(--bg)] mb-3">
+                <h3 className="font-display text-2xl font-medium text-[var(--dark)] mb-3">
                   Automation First
                 </h3>
-                <p className="text-xs text-[var(--bg)]/80 leading-relaxed font-sans">
+                <p className="text-xs text-[var(--dark)]/80 leading-relaxed font-sans">
                   If an operational task repeats more than twice, it gets codified into an automated worker, cron schedule, or LLM agent. Humans should make decisions; machines should run the loops.
                 </p>
               </div>
 
-              <div className="p-6 bg-[var(--bg)]/5 border border-[var(--bg)]/10 rounded-xs">
+              <div className="p-6 bg-[var(--dark)]/5 border border-[var(--text)]/10 rounded-xs">
                 <span className="text-xs font-mono text-[var(--accent)] font-bold block mb-2">03 / PRINCIPLE</span>
-                <h3 className="font-display text-2xl font-medium text-[var(--bg)] mb-3">
+                <h3 className="font-display text-2xl font-medium text-[var(--dark)] mb-3">
                   Self-Hosted & Resilient Infra
                 </h3>
-                <p className="text-xs text-[var(--bg)]/80 leading-relaxed font-sans">
+                <p className="text-xs text-[var(--dark)]/80 leading-relaxed font-sans">
                   We architect systems that can run anywhere: Docker, Dokploy, VPS, AWS, or bare metal. No lock-in traps or unpredictable runaway billings.
                 </p>
               </div>
@@ -191,7 +177,7 @@ export const AboutPage: React.FC = () => {
                     Institutional & Large Scale Platforms
                   </h4>
                   <p className="text-xs text-[var(--text)]/80 font-sans mt-1 leading-relaxed">
-                    Designed and deployed high-traffic institutional portals including ssnlc.in, digitizing admissions for thousands of candidates with zero downtime.
+                    Designed and deployed institutional web platforms, including ssnlc.in.
                   </p>
                 </div>
               </div>

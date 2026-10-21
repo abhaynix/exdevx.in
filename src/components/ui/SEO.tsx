@@ -11,8 +11,8 @@ interface SEOProps {
 }
 
 export const SEO: React.FC<SEOProps> = ({
-  title = 'ExDevX | High-Performance Web, Mobile & AI Agency',
-  description = 'ExDevX is a Maharashtra-based engineering agency building high-performance web applications, cross-platform mobile apps, autonomous workflows, and AI integrations.',
+  title = 'ExDevX | Web, Mobile & AI Development',
+  description = 'ExDevX builds web applications, mobile apps, automation systems and AI integrations.',
   canonical,
   ogType = 'website',
   ogImage = 'https://ik.imagekit.io/exdev/file.jpg',

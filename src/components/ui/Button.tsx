@@ -31,13 +31,13 @@ export const Button: React.FC<ButtonProps> = ({
 
   const variantStyles = {
     primary:
-      'bg-[var(--accent)] text-[var(--on-accent)] font-semibold shadow-xs hover:-translate-y-0.5 hover:shadow-md active:translate-y-0 active:scale-[0.98]',
+      'bg-[var(--accent)] text-[var(--on-accent)] font-semibold hover:opacity-90 active:scale-[0.98]',
     outline:
-      'border border-[var(--primary)] text-[var(--primary)] bg-transparent hover:bg-[var(--primary)]/5 hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98]',
+      'border border-[var(--text)]/20 text-[var(--dark)] bg-transparent hover:bg-[var(--text)]/5 active:scale-[0.98]',
     'outline-on-dark':
       'border border-[var(--bg)]/40 text-[var(--bg)] bg-transparent hover:bg-[var(--bg)]/10 hover:border-[var(--bg)] hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98]',
     ghost:
-      'text-[var(--primary)] bg-transparent hover:bg-[var(--primary)]/5 active:scale-[0.98]',
+      'text-[var(--primary)] bg-transparent hover:underline underline-offset-4',
     'ghost-on-dark':
       'text-[var(--bg)] bg-transparent hover:bg-[var(--bg)]/10 active:scale-[0.98]',
   };

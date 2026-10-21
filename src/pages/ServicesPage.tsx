@@ -21,13 +21,13 @@ export const ServicesPage: React.FC = () => {
         <Container>
           <Reveal>
             <div className="text-xs font-mono uppercase tracking-widest text-[var(--primary)] font-semibold mb-4">
-              Comprehensive Service Matrix
+              Services
             </div>
             <h1 className="font-display text-4xl sm:text-6xl font-medium tracking-tight text-[var(--dark)] max-w-4xl leading-tight">
-              Engineering without bloat, abstraction layers or guesswork.
+              Software for your product and business.
             </h1>
             <p className="mt-6 text-lg text-[var(--text)]/80 max-w-2xl font-sans leading-relaxed">
-              We operate as your specialized product engineering squad. Each discipline is managed with strict architectural contracts, type safety, and zero external subcontractor overhead.
+              We design and build web applications, mobile apps, automation systems and AI integrations.
             </p>
           </Reveal>
         </Container>
@@ -52,8 +52,6 @@ export const ServicesPage: React.FC = () => {
                     <Reveal>
                       <div className="flex items-center gap-2 text-xs font-mono text-[var(--primary)] font-bold mb-3">
                         <span>DISCIPLINE 0{index + 1}</span>
-                        <span aria-hidden="true">·</span>
-                        <span className="text-[var(--text)]/60">{service.metrics}</span>
                       </div>
 
                       <h2 className="font-display text-3xl sm:text-4xl font-semibold text-[var(--dark)] mb-4 leading-tight">
@@ -66,7 +64,7 @@ export const ServicesPage: React.FC = () => {
 
                       <div className="p-4 bg-[var(--bg)] border border-[var(--text)]/10 rounded-xs mb-6">
                         <div className="text-xs font-mono uppercase tracking-wider text-[var(--text)]/50 mb-2">
-                          Standard Production Stack
+                          Technologies
                         </div>
                         <div className="flex flex-wrap gap-x-3 gap-y-1 text-xs font-mono text-[var(--text)] font-semibold">
                           {service.techStack.map((tech, idx) => (
@@ -79,7 +77,7 @@ export const ServicesPage: React.FC = () => {
                       </div>
 
                       <Button to="/contact" variant="primary" size="md">
-                        Inquire About {service.title}
+                        Discuss {service.title}
                       </Button>
                     </Reveal>
                   </div>
@@ -89,7 +87,7 @@ export const ServicesPage: React.FC = () => {
                     <Reveal delay={1}>
                       <div className="bg-[var(--surface)] border border-[var(--text)]/10 p-6 sm:p-8 rounded-xs">
                         <h3 className="text-xs font-mono uppercase tracking-wider text-[var(--primary)] font-bold mb-6 pb-2 border-b border-[var(--text)]/10">
-                          Production Scope & Deliverables
+                          What we can build
                         </h3>
 
                         <ul className="space-y-4">
@@ -103,16 +101,6 @@ export const ServicesPage: React.FC = () => {
                           ))}
                         </ul>
 
-                        <div className="mt-8 pt-6 border-t border-[var(--text)]/10 grid grid-cols-2 gap-4 text-xs font-mono text-[var(--text)]/70">
-                          <div>
-                            <span className="block text-[var(--primary)] font-bold">Timeline Range</span>
-                            <span>2 to 6 weeks per sprint</span>
-                          </div>
-                          <div>
-                            <span className="block text-[var(--primary)] font-bold">Handover Asset</span>
-                            <span>Full git repo + CI/CD runbook</span>
-                          </div>
-                        </div>
                       </div>
                     </Reveal>
                   </div>
@@ -124,50 +112,50 @@ export const ServicesPage: React.FC = () => {
       </div>
 
       {/* Single Dark Section Band per page */}
-      <Section tone="dark">
+      <Section tone="surface">
         <Container>
           <Reveal>
             <SectionHeading
               tag="Architectural Standard"
-              title="Our Non-Negotiable Engineering Principles"
-              description="Every deliverable that leaves ExDevX is governed by core invariants ensuring longevity, security, and low operational overhead."
-              tone="dark"
+              title="How we work"
+              description="A practical approach to building and maintaining software."
+
             />
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div className="p-6 bg-[var(--bg)]/5 border border-[var(--bg)]/10 rounded-xs">
+              <div className="p-6 bg-[var(--dark)]/5 border border-[var(--text)]/10 rounded-xs">
                 <div className="w-8 h-8 rounded-xs bg-[var(--accent)] text-[var(--on-accent)] flex items-center justify-center mb-4">
                   <Terminal className="w-4 h-4" />
                 </div>
-                <h3 className="font-display text-xl font-medium text-[var(--bg)] mb-2">
+                <h3 className="font-display text-xl font-medium text-[var(--dark)] mb-2">
                   Zero Lock-In
                 </h3>
-                <p className="text-xs text-[var(--bg)]/80 leading-relaxed font-sans">
-                  We write clean, idiomatic code adhering to open standards. No proprietary agency frameworks, no opaque magic configs. You own 100% of the repository.
+                <p className="text-xs text-[var(--dark)]/80 leading-relaxed font-sans">
+                  We use familiar tools and open standards, with clear handover so your team can continue working with the code.
                 </p>
               </div>
 
-              <div className="p-6 bg-[var(--bg)]/5 border border-[var(--bg)]/10 rounded-xs">
+              <div className="p-6 bg-[var(--dark)]/5 border border-[var(--text)]/10 rounded-xs">
                 <div className="w-8 h-8 rounded-xs bg-[var(--accent)] text-[var(--on-accent)] flex items-center justify-center mb-4">
                   <Zap className="w-4 h-4" />
                 </div>
-                <h3 className="font-display text-xl font-medium text-[var(--bg)] mb-2">
-                  Lighthouse 95+ Guarantee
+                <h3 className="font-display text-xl font-medium text-[var(--dark)] mb-2">
+                  Performance
                 </h3>
-                <p className="text-xs text-[var(--bg)]/80 leading-relaxed font-sans">
-                  We profile every route with Web Vitals thresholds. Sub-second initial loads, zero cumulative layout shift (CLS), and accessible semantic trees.
+                <p className="text-xs text-[var(--dark)]/80 leading-relaxed font-sans">
+                  We consider loading speed, responsive behavior and accessibility as part of implementation.
                 </p>
               </div>
 
-              <div className="p-6 bg-[var(--bg)]/5 border border-[var(--bg)]/10 rounded-xs">
+              <div className="p-6 bg-[var(--dark)]/5 border border-[var(--text)]/10 rounded-xs">
                 <div className="w-8 h-8 rounded-xs bg-[var(--accent)] text-[var(--on-accent)] flex items-center justify-center mb-4">
                   <Shield className="w-4 h-4" />
                 </div>
-                <h3 className="font-display text-xl font-medium text-[var(--bg)] mb-2">
+                <h3 className="font-display text-xl font-medium text-[var(--dark)] mb-2">
                   Deterministic AI Output
                 </h3>
-                <p className="text-xs text-[var(--bg)]/80 leading-relaxed font-sans">
-                  We constrain LLMs via strict Pydantic and JSON schemas, assertive fallbacks, and bounded agent memory. Zero hallucination in critical data flows.
+                <p className="text-xs text-[var(--dark)]/80 leading-relaxed font-sans">
+                  We constrain LLMs via strict Pydantic and JSON schemas, assertive fallbacks, and bounded agent memory. We design AI integrations around the needs and constraints of each use case.
                 </p>
               </div>
             </div>
@@ -190,7 +178,7 @@ export const ServicesPage: React.FC = () => {
                 Discuss Your Scope
               </Button>
               <Button to="/work" variant="outline" size="lg">
-                Examine Case Studies
+                View projects
               </Button>
             </div>
           </div>

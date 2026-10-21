@@ -65,7 +65,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({ initialService }) => {
       }
 
       setSubmissionStatus('success');
-      setStatusMessage('Thank you! Your inquiry was delivered directly to our engineering team. We typically respond within 12 hours.');
+      setStatusMessage('Thank you. Your inquiry has been received.');
       reset();
     } catch (err) {
       console.error('Contact submission error:', err);

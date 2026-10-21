@@ -72,7 +72,7 @@ ${formData.message}
         {/* LEFT SIDE */}
         <div className="lg:col-span-5 space-y-8 md:space-y-12">
           <p className="text-zinc-400 text-base md:text-lg leading-relaxed max-w-md">
-            We respond within 24 hours. Serving Pune, Ahilyanagar,
+            Serving Pune, Ahilyanagar,
             Shrigonda & all of Maharashtra.
           </p>
 
@@ -232,7 +232,7 @@ ${formData.message}
               <span className="font-mono text-[10px] text-zinc-700 uppercase tracking-[0.2em]">
                 {opening
                   ? 'If WhatsApp didn’t open, email hello@exdevx.in'
-                  : 'Response within 24 hours · No spam'}
+                  : 'No spam'}
               </span>
             </div>
 
