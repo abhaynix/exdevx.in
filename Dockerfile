@@ -14,7 +14,7 @@ RUN npm run build
 # Production static server stage using lightweight Nginx
 FROM nginx:alpine AS runner
 
-# Copy custom Nginx configuration with gzip & SPA fallback
+# Copy prerendered static pages
 COPY --from=builder /app/dist /usr/share/nginx/html
 
 # Custom nginx server block
@@ -26,8 +26,9 @@ RUN echo 'server { \
     gzip on; \
     gzip_types text/plain text/css application/json application/javascript text/xml application/xml application/xml+rss text/javascript image/svg+xml; \
     location / { \
-        try_files $uri $uri/ /index.html; \
+        try_files $uri $uri/ =404; \
     } \
+    error_page 404 /404.html; \
     location ~* \.(?:ico|css|js|gif|jpe?g|png|svg|woff2?)$ { \
         expires 6M; \
         access_log off; \

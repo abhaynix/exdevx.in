@@ -19,6 +19,7 @@ export const NotFoundPage: React.FC = () => {
       <SEO
         title="404 — Page Not Found | ExDevX"
         description="Looks like this page took a wrong turn. Return to ExDevX homepage or get in touch with our engineering team."
+        noindex
       />
 
       <section className="relative overflow-hidden py-20 sm:py-28 bg-[var(--bg)] min-h-[calc(100vh-12rem)] flex items-center">

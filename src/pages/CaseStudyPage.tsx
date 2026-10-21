@@ -1,11 +1,12 @@
 import React from 'react';
-import { useParams, Link, Navigate } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { projectsData } from '../data/projects';
 import { Container } from '../components/ui/Container';
 import { Section } from '../components/ui/Section';
 import { Button } from '../components/ui/Button';
 import { Reveal } from '../components/ui/Reveal';
 import { SEO } from '../components/ui/SEO';
+import NotFoundPage from './NotFoundPage';
 import { ArrowLeft, ArrowUpRight, CheckCircle2, Layers, Cpu, Check } from 'lucide-react';
 
 export const CaseStudyPage: React.FC = () => {
@@ -13,7 +14,7 @@ export const CaseStudyPage: React.FC = () => {
   const project = projectsData.find((p) => p.slug === slug);
 
   if (!project) {
-    return <Navigate to="/work" replace />;
+    return <NotFoundPage />;
   }
 
   // Find next project for pagination

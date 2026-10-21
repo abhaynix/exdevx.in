@@ -54,7 +54,7 @@ await build({
   },
   ssr: {
     // Bundle these so they work in the Node.js prerender context
-    noExternal: ['react-helmet-async'],
+    noExternal: ['react-helmet-async', 'gsap'],
   },
 });
 
@@ -63,15 +63,15 @@ console.log('\n[prerender] Rendering pages…');
 
 const serverEntryPath = path.join(root, 'dist/server/entry-server.js');
 const { render } = (await import(pathToFileURL(serverEntryPath).href)) as {
-  render: (url: string) => { html: string };
+  render: (url: string) => { html: string; head: string };
 };
 
 const template = readFileSync(path.join(root, 'dist/index.html'), 'utf-8');
 
 for (const { url, file } of routes) {
-  const { html: appHtml } = render(url);
+  const { html: appHtml, head } = await render(url);
 
-  const fullHtml = template.replace('<!--ssr-outlet-->', appHtml);
+  const fullHtml = template.replace('<!--ssr-outlet-->', appHtml).replace('<!--ssr-head-->', head);
 
   const outPath = path.join(root, 'dist', file);
   const outDir = path.dirname(outPath);
