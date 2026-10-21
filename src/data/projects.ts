@@ -4,7 +4,7 @@ export interface ProjectCaseStudy {
   subtitle: string;
   category: string;
   year: string;
-  client: string;
+  client?: string;
 
   summary: string;
   challenge: string;
@@ -22,7 +22,6 @@ export const projectsData: ProjectCaseStudy[] = [
     subtitle: "Decentralized Agricultural Produce Pooling & Price Discovery Platform",
     category: "Web & Mobile Logistics",
     year: "2024",
-    client: "Agricultural Cooperative Alliance",
 
     summary: "A platform for farming collectives to aggregate harvests and coordinate bulk sales.",
     challenge: "Small farming collectives can face challenges coordinating transport and sales across multiple markets.",
@@ -85,7 +84,6 @@ export const projectsData: ProjectCaseStudy[] = [
     subtitle: "Autonomous Financial Intelligence & Multi-Agent Market Hedging Bot",
     category: "AI & Distributed Systems",
     year: "2024",
-    client: "Quantitative Trading Syndicate",
 
     summary: "A quantitative monitoring application that brings together market data and alerts.",
     challenge: "The project combines exchange data feeds with analysis and alerts in one application.",

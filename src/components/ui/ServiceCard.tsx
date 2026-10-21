@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, Code2, Database, Globe2, PenTool, Search, Smartphone, Sparkles, Workflow } from 'lucide-react';
 import { ServiceItem } from '../../data/services';
 
 interface ServiceCardProps {
@@ -9,11 +9,22 @@ interface ServiceCardProps {
 }
 
 export const ServiceCard: React.FC<ServiceCardProps> = ({ service, index }) => {
+  const Icon = {
+    'web-applications': Code2,
+    'mobile-apps': Smartphone,
+    'automation-systems': Workflow,
+    'ai-integrations': Sparkles,
+    'backend-api': Database,
+    'ui-ux-design': PenTool,
+    'seo-digital-marketing': Search,
+  }[service.id] ?? Globe2;
+
   return (
     <article className="editorial-card p-6 sm:p-8 flex flex-col justify-between h-full">
       <div>
-        <div className="mb-4 text-xs font-medium text-[var(--primary)]">
+        <div className="mb-4 flex items-center justify-between text-xs font-medium text-[var(--primary)]">
           Service {String(index + 1).padStart(2, '0')}
+          <Icon className="home-service-icon" size={19} strokeWidth={1.5} aria-hidden="true" />
         </div>
 
         <h3 className="font-display text-2xl font-semibold tracking-tight text-[var(--dark)] mb-3">

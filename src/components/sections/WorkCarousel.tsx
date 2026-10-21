@@ -11,7 +11,7 @@ export function WorkCarousel() {
   return (
     <section id="work" className="home-work" aria-labelledby="home-work-title">
       <Container size="wide">
-        <div className="home-work-heading">
+        <div className="home-work-heading" data-reveal>
           <div>
             <p className="home-eyebrow">Selected work</p>
             <h2 id="home-work-title">Selected Work</h2>
@@ -25,7 +25,7 @@ export function WorkCarousel() {
             if (event.key === 'ArrowLeft') { event.preventDefault(); move(-1); }
           }}>
             {projectsData.map((project, index) => (
-              <article className="home-work-card" key={project.slug}>
+              <article className="home-work-card" data-reveal key={project.slug}>
                 <div className={`home-work-art home-work-art-${index + 1}`} aria-hidden="true">
                   <span className="home-art-mark">{project.title}</span>
                   <span className="home-art-index">0{index + 1}</span>

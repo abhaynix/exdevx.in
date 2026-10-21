@@ -62,5 +62,29 @@ export const servicesData: ServiceItem[] = [
       "Private Model Fine-Tuning & Self-Hosted Ollama"
     ],
     techStack: ["Gemini API", "Python", "FastAPI", "LangChain", "pgvector", "Ollama", "TypeScript"],
+  },
+  {
+    id: "backend-api",
+    title: "Backend & API Engineering",
+    shortDescription: "Reliable APIs, data models and integrations for the products you depend on.",
+    fullDescription: "We build the services behind digital products, connecting interfaces to reliable data and third-party tools.",
+    deliverables: ["REST and GraphQL APIs", "Database design and integration", "Authentication and service connections"],
+    techStack: ["Node.js", "Python", "FastAPI", "PostgreSQL", "MongoDB"],
+  },
+  {
+    id: "ui-ux-design",
+    title: "UI/UX Design",
+    shortDescription: "Clear, considered interfaces shaped around real user needs.",
+    fullDescription: "We map user flows, explore visual directions and design responsive interfaces ready for engineering.",
+    deliverables: ["User flows and wireframes", "Responsive interface design", "Reusable design patterns"],
+    techStack: ["Figma", "Prototyping", "Design systems"],
+  },
+  {
+    id: "seo-digital-marketing",
+    title: "SEO & Digital Marketing",
+    shortDescription: "Search foundations and practical improvements that help people find your site.",
+    fullDescription: "We improve technical search readiness, page structure and content foundations for discoverability.",
+    deliverables: ["Technical SEO review", "Metadata and structured data", "Performance and indexing improvements"],
+    techStack: ["Technical SEO", "Schema.org", "Core Web Vitals"],
   }
 ];

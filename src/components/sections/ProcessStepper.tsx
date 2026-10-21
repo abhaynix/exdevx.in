@@ -16,7 +16,7 @@ export const ProcessStepper: React.FC = () => {
       />
 
       {/* Interactive Step Switcher for Mobile & Desktop Tabs */}
-      <div className="grid grid-cols-2 sm:grid-cols-5 gap-2 pb-6 border-b border-[var(--bg)]/15 mb-8">
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 pb-6 border-b border-[var(--bg)]/15 mb-8" data-reveal-group>
         {processSteps.map((item, idx) => {
           const isSelected = activeStep === idx;
           return (
@@ -43,7 +43,7 @@ export const ProcessStepper: React.FC = () => {
       </div>
 
       {/* Selected Step Deep Dive Card */}
-      <div className="bg-[var(--surface)] border border-[var(--text)]/10 p-6 sm:p-10">
+      <div className="bg-[var(--surface)] border border-[var(--text)]/10 p-6 sm:p-10" data-reveal>
         <div className="max-w-3xl">
           <div className="flex items-center gap-3 text-xs text-[var(--primary)] mb-2">
             <span>Phase {processSteps[activeStep].step}</span>

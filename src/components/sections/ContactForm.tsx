@@ -45,23 +45,22 @@ export const ContactForm: React.FC<ContactFormProps> = ({ initialService }) => {
     const endpoint = import.meta.env.VITE_CONTACT_ENDPOINT;
 
     try {
-      if (endpoint) {
-        const response = await fetch(endpoint, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            ...data,
-            timestamp: new Date().toISOString(),
-            source: 'exdevx.in',
-          }),
-        });
+      if (!endpoint) {
+        throw new Error('Contact endpoint is not configured.');
+      }
 
-        if (!response.ok) {
-          throw new Error(`Server responded with ${response.status}`);
-        }
-      } else {
-        // Simulated network delay for development/prototype when endpoint is not configured
-        await new Promise((resolve) => setTimeout(resolve, 800));
+      const response = await fetch(endpoint, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          ...data,
+          timestamp: new Date().toISOString(),
+          source: 'exdevx.in',
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error(`Server responded with ${response.status}`);
       }
 
       setSubmissionStatus('success');
@@ -173,8 +172,11 @@ export const ContactForm: React.FC<ContactFormProps> = ({ initialService }) => {
               <option value="">Select scope…</option>
               <option value="Web Applications">Web Application (React / Next.js)</option>
               <option value="Mobile Apps">Mobile App (React Native)</option>
+              <option value="UI/UX Design">UI/UX Design</option>
+              <option value="Backend & API Engineering">Backend & API Engineering</option>
               <option value="Automation Systems">Automation & Background Workers</option>
               <option value="AI Integrations">AI Agents & Gemini Integration</option>
+              <option value="SEO & Digital Marketing">SEO & Digital Marketing</option>
               <option value="Full Digital Overhaul">Full Digital Overhaul</option>
             </select>
             {errors.service && (

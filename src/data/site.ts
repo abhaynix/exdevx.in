@@ -61,9 +61,9 @@ export const siteConfig: SiteConfig = {
     bio: "Systems architect and developer specializing in React, Node.js, distributed automations, and AI agent integrations."
   },
   navItems: [
+    { label: "Home", href: "/" },
     { label: "Services", href: "/services" },
     { label: "Work", href: "/work" },
-    { label: "Process", href: "/#process" },
     { label: "About", href: "/about" },
     { label: "Contact", href: "/contact" }
   ]

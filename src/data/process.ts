@@ -9,38 +9,31 @@ export interface ProcessStep {
 export const processSteps: ProcessStep[] = [
   {
     step: "01",
-    name: "Define",
-    tagline: "Scrutinize goals & eliminate ambiguity",
-    description: "We audit your product constraints, user journeys, and technical feasibility before touching code. No speculative features or runaway scope.",
-    deliverables: ["Product Specification", "Data Schema Models", "Technical Feasibility Memo"]
+    name: "Discover",
+    tagline: "Understand the problem before the product",
+    description: "We get clear on your goals, users, requirements and constraints before choosing a direction.",
+    deliverables: ["Project scope", "User needs", "Technical constraints"]
   },
   {
     step: "02",
-    name: "Architect",
-    tagline: "Blueprint systems for velocity & longevity",
-    description: "Selecting minimal, resilient stacks. We design database schemas, API contracts, infrastructure boundaries, and security policies.",
-    deliverables: ["System Architecture Diagram", "API Contract Spec (OpenAPI)", "Database Entity Diagrams"]
+    name: "Design",
+    tagline: "Shape the experience and the system",
+    description: "We map the product experience and define an architecture that fits the work and can be maintained.",
+    deliverables: ["Experience direction", "Interface designs", "System plan"]
   },
   {
     step: "03",
     name: "Build",
-    tagline: "Build and refine the product",
-    description: "Production implementation in clean, modular TypeScript. Component-driven interfaces, strict testing, and continuous deployment branches.",
-    deliverables: ["Application code", "API integrations", "Preview environment"]
+    tagline: "Implement, test and integrate",
+    description: "We build the product in focused increments, connect its services and validate the details as we go.",
+    deliverables: ["Product implementation", "Connected services", "Reviewable previews"]
   },
   {
     step: "04",
-    name: "Automate",
-    tagline: "Engineer autonomous background loops",
-    description: "Connecting webhook triggers, background workers, automated backups, and AI-assisted workflows so operations scale without friction.",
-    deliverables: ["Self-Healing Worker Queues", "Webhook Event Relays", "Monitoring & Error Alerts"]
-  },
-  {
-    step: "05",
-    name: "Optimize",
-    tagline: "Review and maintain",
-    description: "We review the finished work, address issues and prepare documentation for handover.",
-    deliverables: ["Quality review", "Documentation", "Handover"]
+    name: "Launch",
+    tagline: "Deploy, validate and support",
+    description: "We prepare the release, check the live product and provide a clear handover for what comes next.",
+    deliverables: ["Production deployment", "Launch checks", "Documentation and handover"]
   }
 ];
 

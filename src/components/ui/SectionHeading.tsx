@@ -41,7 +41,7 @@ export const SectionHeading: React.FC<SectionHeadingProps> = ({
 
       <h2
         className={cn(
-          'font-display text-3xl sm:text-4xl md:text-5xl font-medium tracking-tight leading-[1.15]',
+          'font-display text-[length:var(--type-section)] font-semibold tracking-tight leading-[var(--leading-display)]',
           isDark ? 'text-[var(--bg)]' : 'text-[var(--primary)]'
         )}
       >

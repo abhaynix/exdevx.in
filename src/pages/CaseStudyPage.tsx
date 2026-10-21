@@ -45,8 +45,7 @@ export const CaseStudyPage: React.FC = () => {
             {/* Unboxed Metadata Header */}
             <div className="flex flex-wrap items-center gap-2 text-xs font-mono text-[var(--primary)] font-bold mb-4">
               <span>{project.category}</span>
-              <span aria-hidden="true">·</span>
-              <span>{project.client}</span>
+              {project.client && <><span aria-hidden="true">·</span><span>{project.client}</span></>}
               <span aria-hidden="true">·</span>
               <span>{project.year}</span>
             </div>
