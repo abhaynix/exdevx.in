@@ -4,11 +4,12 @@
  */
 
 import { lazy, Suspense } from 'react';
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation, Navigate } from 'react-router-dom';
 import { MotionConfig } from 'motion/react';
 import { Navbar } from './components/ui/Navbar';
 import { Footer } from './components/ui/Footer';
 import ScrollToTop from './components/ScrollToTop';
+import { CookieConsent } from './components/ui/CookieConsent';
 
 // Lazy-loaded route-level splitting
 const HomePage = lazy(() => import('./pages/HomePage'));
@@ -19,6 +20,7 @@ const AboutPage = lazy(() => import('./pages/AboutPage'));
 const ContactPage = lazy(() => import('./pages/ContactPage'));
 const PrivacyPolicyPage = lazy(() => import('./pages/PrivacyPolicyPage'));
 const TermsPage = lazy(() => import('./pages/TermsPage'));
+const CookiePolicyPage = lazy(() => import('./pages/CookiePolicyPage'));
 import NotFoundPage from './pages/NotFoundPage';
 const ChatWidget = lazy(() => import('./components/ui/ChatWidget'));
 
@@ -50,13 +52,16 @@ export function AppInner() {
               <Route path="/about" element={<AboutPage />} />
               <Route path="/contact" element={<ContactPage />} />
               <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
-              <Route path="/terms-of-service" element={<TermsPage />} />
+              <Route path="/terms-and-conditions" element={<TermsPage />} />
+              <Route path="/terms-of-service" element={<Navigate to="/terms-and-conditions" replace />} />
+              <Route path="/cookie-policy" element={<CookiePolicyPage />} />
               <Route path="/404" element={<NotFoundPage />} />
               <Route path="*" element={<NotFoundPage />} />
             </Routes>
           </Suspense>
         </main>
         <Footer />
+        <CookieConsent />
         <Suspense fallback={null}>
           <ChatWidget />
         </Suspense>

@@ -8,6 +8,7 @@ import { cn } from '../../lib/cn';
 
 export const Navbar: React.FC = () => {
   const header = useRef<HTMLElement>(null);
+  const mobileMenuButton = useRef<HTMLButtonElement>(null);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const mobileDrawer = useRef<HTMLDivElement>(null);
@@ -105,6 +106,7 @@ export const Navbar: React.FC = () => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape' && isMobileMenuOpen) {
         setIsMobileMenuOpen(false);
+        mobileMenuButton.current?.focus();
       }
     };
     window.addEventListener('keydown', handleKeyDown);
@@ -171,6 +173,7 @@ export const Navbar: React.FC = () => {
 
             {/* Mobile Menu Trigger */}
             <button
+              ref={mobileMenuButton}
               type="button"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               className={`site-navbar-toggle p-2 text-[var(--text)] hover:text-[var(--primary)] focus-ring rounded-xs${isHome ? ' home-menu-button' : ' md:hidden'}`}

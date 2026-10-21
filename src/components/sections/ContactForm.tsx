@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { contactFormSchema, ContactFormData } from '../../lib/validators';
 import { siteConfig } from '../../data/site';
+import { Link } from 'react-router-dom';
 import { Button } from '../ui/Button';
 import { CheckCircle2, AlertCircle, Loader2, ArrowUpRight } from 'lucide-react';
 
@@ -46,7 +47,19 @@ export const ContactForm: React.FC<ContactFormProps> = ({ initialService }) => {
 
     try {
       if (!endpoint) {
-        throw new Error('Contact endpoint is not configured.');
+        const subject = encodeURIComponent(`Project inquiry from ${data.name}`);
+        const body = encodeURIComponent([
+          `Name: ${data.name}`,
+          `Email: ${data.email}`,
+          `Service: ${data.service}`,
+          `Timeline / Budget: ${data.budget || 'Not specified'}`,
+          '',
+          data.message,
+        ].join('\n'));
+        window.location.href = `mailto:${siteConfig.contact.email}?subject=${subject}&body=${body}`;
+        setSubmissionStatus('error');
+        setStatusMessage('No online receiver is configured. If your email app opens, send the prefilled inquiry to complete your request.');
+        return;
       }
 
       const response = await fetch(endpoint, {
@@ -66,10 +79,10 @@ export const ContactForm: React.FC<ContactFormProps> = ({ initialService }) => {
       setSubmissionStatus('success');
       setStatusMessage('Thank you. Your inquiry has been received.');
       reset();
-    } catch (err) {
-      console.error('Contact submission error:', err);
+    } catch {
+      console.error('Contact submission failed');
       setSubmissionStatus('error');
-      setStatusMessage(`Submission failed. Please email us directly at ${siteConfig.contact.email} or WhatsApp us at ${siteConfig.contact.phone}.`);
+      setStatusMessage(`Submission failed. Please email us directly at ${siteConfig.contact.email} or WhatsApp us at ${siteConfig.contact.whatsapp}.`);
     }
   };
 
@@ -80,28 +93,31 @@ export const ContactForm: React.FC<ContactFormProps> = ({ initialService }) => {
           Project Specification Inquiry
         </h3>
         <p className="text-xs font-mono text-[var(--text)]/60 uppercase tracking-wider">
-          Direct engineering consultation · NDA upon request · Direct replies
+          Project scope · Service · Timeline / budget
+        </p>
+        <p className="mt-3 text-xs leading-relaxed text-[var(--text)]/70">
+          We use these details to respond to your inquiry. If an online form receiver is configured, your submission is sent to that service. See our <Link to="/privacy-policy" className="text-[var(--primary)] underline underline-offset-2">Privacy Policy</Link>. Please do not include sensitive personal information.
         </p>
       </div>
 
       {/* Accessible aria-live status message */}
       <div aria-live="polite" className="mb-4">
         {submissionStatus === 'success' && (
-          <div className="p-4 bg-emerald-50 border border-emerald-300 text-emerald-900 rounded-xs flex items-start gap-3 text-sm">
-            <CheckCircle2 className="w-5 h-5 text-emerald-600 shrink-0 mt-0.5" />
+          <div className="p-4 bg-[var(--success-bg)] border border-[var(--success-border)] text-[var(--text-primary)] rounded-xs flex items-start gap-3 text-sm">
+            <CheckCircle2 className="w-5 h-5 text-[var(--success)] shrink-0 mt-0.5" />
             <div>
               <p className="font-semibold">Inquiry Received</p>
-              <p className="text-xs text-emerald-800 mt-1">{statusMessage}</p>
+              <p className="text-xs text-[var(--text-secondary)] mt-1">{statusMessage}</p>
             </div>
           </div>
         )}
 
         {submissionStatus === 'error' && (
-          <div className="p-4 bg-rose-50 border border-rose-300 text-rose-900 rounded-xs flex items-start gap-3 text-sm">
-            <AlertCircle className="w-5 h-5 text-rose-600 shrink-0 mt-0.5" />
+          <div className="p-4 bg-[var(--error-bg)] border border-[var(--error-border)] text-[var(--text-primary)] rounded-xs flex items-start gap-3 text-sm">
+            <AlertCircle className="w-5 h-5 text-[var(--error)] shrink-0 mt-0.5" />
             <div>
               <p className="font-semibold">Notice</p>
-              <p className="text-xs text-rose-800 mt-1">{statusMessage}</p>
+              <p className="text-xs text-[var(--text-secondary)] mt-1">{statusMessage}</p>
             </div>
           </div>
         )}
@@ -124,35 +140,39 @@ export const ContactForm: React.FC<ContactFormProps> = ({ initialService }) => {
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
             <label htmlFor="name" className="block text-xs font-mono font-semibold uppercase tracking-wider text-[var(--text)] mb-1.5">
-              Your Name <span className="text-[var(--accent)]">*</span>
+              Your Name <span aria-hidden="true" className="text-[var(--accent)]">*</span><span className="sr-only"> (required)</span>
             </label>
             <input
               id="name"
               type="text"
               placeholder="e.g. Vikram Sharma"
-              className="w-full bg-[var(--bg)] border border-[var(--text)]/15 px-3.5 py-2.5 text-sm text-[var(--text)] rounded-xs focus-ring"
+              className="w-full bg-[var(--bg)] border border-[var(--control-border)] px-3.5 py-2.5 text-sm text-[var(--text)] rounded-xs focus-ring"
               {...register('name')}
               aria-invalid={errors.name ? 'true' : 'false'}
+              aria-describedby={errors.name ? 'name-error' : undefined}
+              required
             />
             {errors.name && (
-              <p className="text-xs text-rose-600 font-sans mt-1">{errors.name.message}</p>
+              <p id="name-error" role="alert" className="text-xs text-[var(--error)] font-sans mt-1">{errors.name.message}</p>
             )}
           </div>
 
           <div>
             <label htmlFor="email" className="block text-xs font-mono font-semibold uppercase tracking-wider text-[var(--text)] mb-1.5">
-              Work Email <span className="text-[var(--accent)]">*</span>
+              Work Email <span aria-hidden="true" className="text-[var(--accent)]">*</span><span className="sr-only"> (required)</span>
             </label>
             <input
               id="email"
               type="email"
               placeholder="e.g. vikram@company.com"
-              className="w-full bg-[var(--bg)] border border-[var(--text)]/15 px-3.5 py-2.5 text-sm text-[var(--text)] rounded-xs focus-ring"
+              className="w-full bg-[var(--bg)] border border-[var(--control-border)] px-3.5 py-2.5 text-sm text-[var(--text)] rounded-xs focus-ring"
               {...register('email')}
               aria-invalid={errors.email ? 'true' : 'false'}
+              aria-describedby={errors.email ? 'email-error' : undefined}
+              required
             />
             {errors.email && (
-              <p className="text-xs text-rose-600 font-sans mt-1">{errors.email.message}</p>
+              <p id="email-error" role="alert" className="text-xs text-[var(--error)] font-sans mt-1">{errors.email.message}</p>
             )}
           </div>
         </div>
@@ -161,13 +181,15 @@ export const ContactForm: React.FC<ContactFormProps> = ({ initialService }) => {
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
             <label htmlFor="service" className="block text-xs font-mono font-semibold uppercase tracking-wider text-[var(--text)] mb-1.5">
-              Primary Capability <span className="text-[var(--accent)]">*</span>
+              Primary Capability <span aria-hidden="true" className="text-[var(--accent)]">*</span><span className="sr-only"> (required)</span>
             </label>
             <select
               id="service"
-              className="w-full bg-[var(--bg)] border border-[var(--text)]/15 px-3.5 py-2.5 text-sm text-[var(--text)] rounded-xs focus-ring"
+              className="w-full bg-[var(--bg)] border border-[var(--control-border)] px-3.5 py-2.5 text-sm text-[var(--text)] rounded-xs focus-ring"
               {...register('service')}
               aria-invalid={errors.service ? 'true' : 'false'}
+              aria-describedby={errors.service ? 'service-error' : undefined}
+              required
             >
               <option value="">Select scope…</option>
               <option value="Web Applications">Web Application (React / Next.js)</option>
@@ -180,7 +202,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({ initialService }) => {
               <option value="Full Digital Overhaul">Full Digital Overhaul</option>
             </select>
             {errors.service && (
-              <p className="text-xs text-rose-600 font-sans mt-1">{errors.service.message}</p>
+              <p id="service-error" role="alert" className="text-xs text-[var(--error)] font-sans mt-1">{errors.service.message}</p>
             )}
           </div>
 
@@ -204,18 +226,20 @@ export const ContactForm: React.FC<ContactFormProps> = ({ initialService }) => {
         {/* Row 3: Message */}
         <div>
           <label htmlFor="message" className="block text-xs font-mono font-semibold uppercase tracking-wider text-[var(--text)] mb-1.5">
-            Project Overview & Goals <span className="text-[var(--accent)]">*</span>
+            Project Overview & Goals <span aria-hidden="true" className="text-[var(--accent)]">*</span><span className="sr-only"> (required)</span>
           </label>
           <textarea
             id="message"
             rows={4}
             placeholder="Tell us about the product challenge, technical expectations, or current bottlenecks…"
-            className="w-full bg-[var(--bg)] border border-[var(--text)]/15 px-3.5 py-2.5 text-sm text-[var(--text)] rounded-xs focus-ring resize-y"
+            className="w-full bg-[var(--bg)] border border-[var(--control-border)] px-3.5 py-2.5 text-sm text-[var(--text)] rounded-xs focus-ring resize-y"
             {...register('message')}
             aria-invalid={errors.message ? 'true' : 'false'}
+            aria-describedby={errors.message ? 'message-error' : undefined}
+            required
           />
           {errors.message && (
-            <p className="text-xs text-rose-600 font-sans mt-1">{errors.message.message}</p>
+            <p id="message-error" role="alert" className="text-xs text-[var(--error)] font-sans mt-1">{errors.message.message}</p>
           )}
         </div>
 
@@ -246,7 +270,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({ initialService }) => {
               rel="noopener noreferrer"
               className="font-bold text-[var(--primary)] hover:underline inline-flex items-center gap-0.5 focus-ring"
             >
-              +91 88301 74066
+              {siteConfig.contact.whatsapp}
               <ArrowUpRight className="w-3 h-3" />
             </a>
           </div>

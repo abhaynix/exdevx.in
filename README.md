@@ -1,36 +1,42 @@
 # ExDevX (exdevx.in)
 
-> Production-ready agency website for **ExDevX** — Web, Mobile, Automation, and AI Integration Agency founded in 2022 in Maharashtra, India. Engineered for premium editorial design, technical credibility, sub-second load times, and Lighthouse 95+ performance.
+> Agency website for **ExDevX** — Web, Mobile, Automation, and AI Integration Agency founded in 2022 in Maharashtra, India.
 
 ---
 
 ## Design System & Tokens
 
-Strict tokenized palette adhering to editorial color balance (ivory 60%, deep blue/navy 30%, coral highlight 10%):
+The approved site palette uses near-black surfaces, near-white text, and ExDevX orange accents. Shared semantic tokens live in `src/styles/tokens.css`; legacy component variables map to them.
 
 ```css
 :root {
-  --bg: #EAE6DE;          /* warm ivory, page background */
-  --surface: #F4F1EB;     /* cards, raised panels */
-  --text: #0B1A33;        /* body text */
-  --primary: #226192;     /* deep editorial blue: headings, links, borders */
-  --dark: #021861;        /* midnight navy: hero band, footer, dark sections */
-  --accent: #EF8557;      /* coral: CTA and highlights only */
-  --on-accent: #021861;   /* text on coral buttons */
+  --background: #08090c;
+  --background-secondary: #0d1015;
+  --surface-hover: #171a20;
+  --text-primary: #f2f2f3;
+  --text-secondary: #9a9da6;
+  --accent-primary: #ff8a45;
+  --accent: #ff792e;
+  --accent-hover: #ff9b50;
+  --on-accent: #101114;
+  --control-border: #646872;
+  --focus-ring: #ff9b50;
+  --success: #4ade80;
+  --warning: #fbbf24;
+  --error: #fb7185;
 }
 ```
 
 ### Color Rules
-1. **Ratio**: Ivory 60%, Blue & Navy 30%, Coral 10% maximum.
-2. **Coral**: Never used for small body text on ivory (fails WCAG contrast). Reserved exclusively for primary CTA buttons, marks, and hero highlights.
-3. **Contrast**: Button text on coral uses `--on-accent` (`#021861`). Text on `--dark` bands uses `--bg` (`#EAE6DE`).
-4. **Editorial weight**: Each page features a single focused `--dark` section band for technical contrast.
+1. **Surfaces**: Pages use the shared dark tokens, with slightly lighter secondary surfaces for cards and controls.
+2. **Accent**: Orange is used for links, emphasis, focus, and primary actions; button text uses `--on-accent` for contrast.
+3. **Status**: Success, warning, and error colors remain semantic and separate from the brand accents.
+4. **Contrast**: `--text-secondary` is used for supporting copy, and `--control-border` distinguishes inputs and secondary controls.
 
 ### Typography
-- **Display**: Fraunces (weights 500 to 600, tight tracking, fluid optical sizing).
-- **UI & Body**: Inter (16px base, 1.6 line height).
-- **Technical & Mono**: JetBrains Mono (tags, metadata, deliverable checklists).
-- **Outlined Text Treatment**: CSS stroke treatment for repeating hero motifs (`.text-stroke-primary`).
+- **Display**: Manrope Variable.
+- **UI & Body**: Inter Variable.
+- **Technical & Mono**: System monospace stack.
 
 ---
 
@@ -98,7 +104,9 @@ Prerendered routes output:
 - `dist/about/index.html`
 - `dist/contact/index.html`
 - `dist/privacy-policy/index.html`
-- `dist/terms-of-service/index.html`
+- `dist/terms-and-conditions/index.html`
+- `dist/cookie-policy/index.html`
+- `dist/terms-of-service/index.html` (legacy redirect)
 
 Test the static build locally:
 ```bash
@@ -117,8 +125,9 @@ npm run preview
    - **Build Command**: `npm run build`
    - **Output Directory**: `dist`
 4. Add environment variables in Vercel Project Settings:
-   - `VITE_CONTACT_ENDPOINT` *(optional: Webhook or API endpoint for form submissions)*
-   - `GROQ_API_KEY` *(optional: for serverless AI chat)*
+   - `VITE_CONTACT_ENDPOINT` *(optional: webhook/API for online form delivery; without it, the form opens a prefilled email draft)*
+   - `GEMINI_API_KEY` *(optional: enables live AI chat; without it, chat shows a contact fallback)*
+   - `GEMINI_MODEL` *(optional: defaults to `gemini-3.5-flash`)*
 5. Deploy.
 
 ### 2. Self-Hosted (Docker & Dokploy)
@@ -140,14 +149,11 @@ docker compose up -d --build
 
 ---
 
-## Performance & Accessibility Checklist
+## Accessibility & Search
 
-- [x] **WCAG AA Contrast**: All text pairings meet 4.5:1 (normal) and 3:1 (large) contrast.
-- [x] **Zero-Pill Discipline**: Metadata displayed as clean, unboxed typography with typographic separators (`·`).
-- [x] **Visible Focus Rings**: Dedicated 2px focus outlines on both ivory and dark backgrounds.
-- [x] **Reduced Motion**: Graceful fallback disabling translateY animations when requested.
-- [x] **Semantic HTML**: Semantic landmark elements (`<header>`, `<nav>`, `<main>`, `<section>`, `<footer>`).
-- [x] **Search & AI Discovery**: Complete Open Graph, Twitter cards, Schema.org Organization/WebSite graphs, `sitemap.xml`, and `robots.txt` supporting AI search crawlers.
+- The site provides visible keyboard focus styles, a skip link, semantic landmarks, labelled form controls, and reduced-motion handling.
+- Color tokens aim for readable contrast, but a complete WCAG 2.2 AA contrast and assistive-technology audit has not been completed.
+- Route metadata and the sitemap are generated during prerendering. Search appearance and indexing are not guaranteed.
 
 ---
 

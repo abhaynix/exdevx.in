@@ -15,6 +15,12 @@ export interface ProjectCaseStudy {
   githubUrl?: string;
 }
 
+export type PortfolioProject = Pick<ProjectCaseStudy, 'slug' | 'title' | 'category' | 'summary'> & {
+  liveUrl?: string;
+  stack?: string[];
+  caseStudyUrl?: string;
+};
+
 export const projectsData: ProjectCaseStudy[] = [
   {
     slug: "kisanpool",
@@ -58,27 +64,6 @@ export const projectsData: ProjectCaseStudy[] = [
     liveUrl: "https://ssnlc.in"
   },
   {
-    slug: "sumit-ubale-portfolio",
-    title: "Sumit Ubale Portfolio",
-    subtitle: "Fluid Editorial Portfolio & Design Engineering Showcase",
-    category: "Design Engineering",
-    year: "2024",
-    client: "Sumit Ubale (Lead Product Designer)",
-
-    summary: "A portfolio website presenting a product designer’s work and profile.",
-    challenge: "The project focused on presenting design work through an editorial layout and responsive interactions.",
-    solution: "Built with responsive layouts, motion, self-hosted fonts and SVG graphics.",
-    architecture: [
-      "Reserved image proportions to reduce layout shifts",
-      "Self-hosted typography loaded parallel to first paint without FOIT",
-      "Kinetic pointer physics disabled gracefully under prefers-reduced-motion",
-      "Clean semantic markup with rich Open Graph preview cards"
-    ],
-
-    stack: ["React", "TypeScript", "Tailwind CSS", "Motion", "Vite"],
-    liveUrl: "https://sumitubale.com"
-  },
-  {
     slug: "perpwise-ai",
     title: "PerpWise AI",
     subtitle: "Autonomous Financial Intelligence & Multi-Agent Market Hedging Bot",
@@ -97,5 +82,18 @@ export const projectsData: ProjectCaseStudy[] = [
 
     stack: ["Python", "FastAPI", "Gemini API", "TypeScript", "React", "Redis", "Docker"],
     liveUrl: "https://perpwise.ai"
+  }
+];
+
+export const portfolioProjectsData: PortfolioProject[] = [
+  ...projectsData.map(({ slug, title, category, summary, stack, liveUrl }) => ({
+    slug, title, category, summary, stack, liveUrl, caseStudyUrl: `/work/${slug}`
+  })),
+  {
+    slug: 'configshell',
+    title: 'ConfigShell',
+    category: 'Developer Tools',
+    summary: 'Choose Linux apps for your distribution and generate the install commands. Nothing installs automatically.',
+    liveUrl: 'https://configshell.antideploy.com/'
   }
 ];

@@ -1,7 +1,7 @@
 import { useRef } from 'react';
 import { ArrowLeft, ArrowRight, ArrowUpRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { projectsData } from '../../data/projects';
+import { portfolioProjectsData } from '../../data/projects';
 import { Container } from '../ui/Container';
 
 export function WorkCarousel() {
@@ -24,7 +24,7 @@ export function WorkCarousel() {
             if (event.key === 'ArrowRight') { event.preventDefault(); move(1); }
             if (event.key === 'ArrowLeft') { event.preventDefault(); move(-1); }
           }}>
-            {projectsData.map((project, index) => (
+            {portfolioProjectsData.map((project, index) => (
               <article className="home-work-card" data-reveal key={project.slug}>
                 <div className={`home-work-art home-work-art-${index + 1}`} aria-hidden="true">
                   <span className="home-art-mark">{project.title}</span>
@@ -33,8 +33,12 @@ export function WorkCarousel() {
                 </div>
                 <div className="home-work-card-copy">
                   <div><p>{project.category}</p><h3>{project.title}</h3><span>{project.summary}</span></div>
-                  <Link to={`/work/${project.slug}`} aria-label={`Read the ${project.title} case study`} className="home-card-link focus-ring"><ArrowUpRight size={19} aria-hidden="true" /></Link>
-                  <p className="home-work-stack">{project.stack.slice(0, 4).join(' · ')}</p>
+                  {project.caseStudyUrl ? (
+                    <Link to={project.caseStudyUrl} aria-label={`Read the ${project.title} case study`} className="home-card-link focus-ring"><ArrowUpRight size={19} aria-hidden="true" /></Link>
+                  ) : project.liveUrl ? (
+                    <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" aria-label={`View ${project.title} project (opens in a new tab)`} className="home-card-link focus-ring"><ArrowUpRight size={19} aria-hidden="true" /></a>
+                  ) : null}
+                  {project.stack && <p className="home-work-stack">{project.stack.slice(0, 4).join(' · ')}</p>}
                 </div>
               </article>
             ))}

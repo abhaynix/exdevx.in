@@ -1,11 +1,32 @@
 :root {
-  --bg: #EAE6DE;
-  --surface: #F4F1EB;
-  --text: #0B1A33;
-  --primary: #226192;
-  --dark: #021861;
-  --accent: #EF8557;
-  --on-accent: #021861;
+  --background: #08090c;
+  --background-secondary: #0d1015;
+  --surface-hover: #171a20;
+  --text-primary: #f2f2f3;
+  --text-secondary: #9a9da6;
+  --accent-primary: #ff8a45;
+  --accent: #ff792e;
+  --accent-hover: #ff9b50;
+  --accent-bright: var(--accent-hover);
+  --on-accent: #101114;
+  --border: rgba(255, 255, 255, .09);
+  --control-border: #646872;
+  --focus-ring: #ff9b50;
+  --success: #4ade80;
+  --success-bg: rgba(74, 222, 128, .1);
+  --success-border: rgba(74, 222, 128, .4);
+  --warning: #fbbf24;
+  --error: #fb7185;
+  --error-bg: rgba(251, 113, 133, .1);
+  --error-border: rgba(251, 113, 133, .4);
+
+  /* Compatibility aliases used by existing components. */
+  --bg: var(--background);
+  --surface: var(--background-secondary);
+  --text: var(--text-primary);
+  --primary: var(--accent-primary);
+  --dark: #f5f5f6;
+  --muted: var(--text-secondary);
 
   --font-display: "Manrope Variable", "Manrope", sans-serif;
   --font-sans: "Inter Variable", Inter, sans-serif;

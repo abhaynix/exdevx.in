@@ -85,6 +85,8 @@ export const ChatWidget: React.FC = () => {
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const panelRef = useRef<HTMLDivElement>(null);
+  const triggerRef = useRef<HTMLButtonElement>(null);
+  const wasOpen = useRef(false);
 
   // Auto-scroll to bottom of conversation
   const scrollToBottom = (smooth = true) => {
@@ -96,7 +98,10 @@ export const ChatWidget: React.FC = () => {
       scrollToBottom(false);
       // Focus input when opened
       setTimeout(() => inputRef.current?.focus(), 100);
+    } else if (wasOpen.current) {
+      triggerRef.current?.focus();
     }
+    wasOpen.current = isOpen;
   }, [isOpen]);
 
   useEffect(() => {
@@ -136,9 +141,9 @@ export const ChatWidget: React.FC = () => {
 
     try {
       // Map history for server endpoint
-      const historyPayload = newMessages.slice(1, -1).map((m) => ({
+      const historyPayload = newMessages.slice(1, -1).slice(-20).map((m) => ({
         role: m.role,
-        content: m.content,
+        content: m.content.slice(0, 2000),
       }));
 
       const res = await fetch('/api/chat', {
@@ -168,14 +173,14 @@ export const ChatWidget: React.FC = () => {
       };
 
       setMessages((prev) => [...prev, assistantMsg]);
-    } catch (err) {
-      console.error('Chat error:', err);
+    } catch {
+      console.error('Chat request failed');
       setHasError(true);
       const errorMsg: ChatMessage = {
         id: `assistant-${Date.now()}`,
         role: 'assistant',
         content:
-          "I encountered an issue connecting right now. You can reach Abhay Jadhav directly via email at hello@exdevx.in or on WhatsApp at +91 88301 74066.",
+          `I encountered an issue connecting right now. You can reach Abhay Jadhav directly via email at hello@exdevx.in or on WhatsApp at ${siteConfig.contact.whatsapp}.`,
         timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
       };
       setMessages((prev) => [...prev, errorMsg]);
@@ -204,9 +209,10 @@ export const ChatWidget: React.FC = () => {
       {/* ── Floating Chat Button ── */}
       {!isOpen && (
         <button
+          ref={triggerRef}
           type="button"
           onClick={() => setIsOpen(true)}
-          className="group relative flex items-center gap-2.5 bg-[var(--primary)] text-[var(--bg)] px-4 py-3 sm:px-5 sm:py-3.5 rounded-full shadow-xl hover:bg-[var(--dark)] hover:scale-105 active:scale-95 transition-[transform,background-color,box-shadow] duration-150 focus-ring cursor-pointer"
+          className="group relative flex items-center gap-2.5 bg-[var(--primary)] text-[var(--bg)] px-3 py-3 sm:px-5 sm:py-3.5 rounded-full shadow-xl hover:bg-[var(--accent-hover)] hover:scale-105 active:scale-95 transition-[transform,background-color,box-shadow] duration-150 focus-ring cursor-pointer"
           aria-label="Open ExDevX AI assistant"
           aria-expanded={isOpen}
         >
@@ -214,7 +220,7 @@ export const ChatWidget: React.FC = () => {
             <MessageSquare className="w-5 h-5 text-[var(--bg)]" />
             <span className="absolute -top-1 -right-1 w-2.5 h-2.5 bg-[var(--accent)] rounded-full ring-2 ring-[var(--primary)] animate-pulse" />
           </div>
-          <span className="text-xs sm:text-sm font-sans font-semibold tracking-wide">
+          <span className="hidden text-xs font-sans font-semibold tracking-wide sm:inline sm:text-sm">
             Chat with ExDevX
           </span>
         </button>
@@ -240,7 +246,7 @@ export const ChatWidget: React.FC = () => {
                   <h3 className="font-display font-semibold text-sm text-[var(--bg)]">
                     ExDevX Assistant
                   </h3>
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 inline-block" />
+                  <span className="w-1.5 h-1.5 rounded-full bg-[var(--success)] inline-block" />
                 </div>
                 <p className="text-[10px] font-mono text-[var(--bg)]/70 uppercase tracking-wider">
                   AI Engineering Consultant · Gemini Powered
@@ -268,6 +274,10 @@ export const ChatWidget: React.FC = () => {
               </button>
             </div>
           </div>
+
+          <p className="border-b border-[var(--text)]/10 px-4 py-2 text-[10px] leading-relaxed text-[var(--text)]/70">
+            When AI chat is available, messages are sent to Google Gemini to generate replies. Please do not include sensitive information. <a href="/privacy-policy" className="text-[var(--primary)] underline focus-ring">Privacy policy</a>.
+          </p>
 
           {/* Conversation Thread */}
           <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-[var(--bg)]/40">
@@ -306,7 +316,7 @@ export const ChatWidget: React.FC = () => {
 
                     <div
                       className={`text-[9px] font-mono mt-1.5 ${
-                        isUser ? 'text-[var(--bg)]/70 text-right' : 'text-[var(--text)]/50'
+                        isUser ? 'text-[var(--bg)]/70 text-right' : 'text-[var(--text-secondary)]'
                       }`}
                     >
                       {msg.timestamp}
@@ -359,7 +369,7 @@ export const ChatWidget: React.FC = () => {
               rel="noopener noreferrer"
               className="text-[var(--primary)] hover:underline font-bold inline-flex items-center gap-0.5 focus-ring"
             >
-              +91 88301 74066
+              {siteConfig.contact.whatsapp}
               <ArrowUpRight className="w-2.5 h-2.5" />
             </a>
           </div>
@@ -371,17 +381,18 @@ export const ChatWidget: React.FC = () => {
                 ref={inputRef}
                 type="text"
                 value={inputValue}
+                maxLength={2000}
                 onChange={(e) => setInputValue(e.target.value)}
                 placeholder="Ask about services, timelines, pricing…"
                 disabled={isLoading}
                 aria-label="Message ExDevX Assistant"
-                className="flex-1 bg-[var(--bg)] border border-[var(--text)]/15 px-3 py-2 text-xs sm:text-sm text-[var(--text)] rounded-xs focus-ring placeholder:text-[var(--text)]/40 disabled:opacity-50"
+                className="flex-1 bg-[var(--bg)] border border-[var(--control-border)] px-3 py-2 text-xs sm:text-sm text-[var(--text)] rounded-xs focus-ring placeholder:text-[var(--text-secondary)] disabled:opacity-50"
               />
               <button
                 type="submit"
                 disabled={!inputValue.trim() || isLoading}
                 aria-label="Send message"
-                className="bg-[var(--accent)] text-[var(--on-accent)] font-semibold p-2 sm:px-3 sm:py-2 rounded-xs hover:opacity-90 active:scale-95 disabled:opacity-40 disabled:pointer-events-none transition-[opacity,transform] focus-ring cursor-pointer flex items-center justify-center shrink-0"
+                className="bg-[var(--accent)] text-[var(--on-accent)] font-semibold p-2 sm:px-3 sm:py-2 rounded-xs hover:bg-[var(--accent-hover)] active:scale-95 disabled:opacity-40 disabled:pointer-events-none transition-[background-color,transform] focus-ring cursor-pointer flex items-center justify-center shrink-0"
               >
                 <Send className="w-4 h-4" />
               </button>

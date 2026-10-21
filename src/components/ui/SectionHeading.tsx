@@ -32,7 +32,7 @@ export const SectionHeading: React.FC<SectionHeadingProps> = ({
         <div
           className={cn(
             'text-xs font-mono tracking-widest uppercase mb-3 font-semibold',
-            isDark ? 'text-[var(--accent)]' : 'text-[var(--primary)]'
+            isDark ? 'text-[var(--accent-hover)]' : 'text-[var(--primary)]'
           )}
         >
           {tag}
@@ -42,7 +42,7 @@ export const SectionHeading: React.FC<SectionHeadingProps> = ({
       <h2
         className={cn(
           'font-display text-[length:var(--type-section)] font-semibold tracking-tight leading-[var(--leading-display)]',
-          isDark ? 'text-[var(--bg)]' : 'text-[var(--primary)]'
+          isDark ? 'text-[var(--text-primary)]' : 'text-[var(--primary)]'
         )}
       >
         {title}
@@ -52,7 +52,7 @@ export const SectionHeading: React.FC<SectionHeadingProps> = ({
         <p
           className={cn(
             'mt-4 text-base sm:text-lg leading-relaxed font-sans',
-            isDark ? 'text-[var(--bg)]/80' : 'text-[var(--text)]/80'
+            isDark ? 'text-[var(--text-secondary)]' : 'text-[var(--text)]/80'
           )}
         >
           {description}

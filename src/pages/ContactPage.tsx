@@ -12,7 +12,7 @@ export const ContactPage: React.FC = () => {
     <>
       <SEO
         title="Contact Engineering Team | ExDevX"
-        description="Initiate a project consultation with ExDevX. Email hello@exdevx.in or WhatsApp +91 88301 74066. Based in Pune & Maharashtra, India."
+        description={`Initiate a project consultation with ExDevX. Email hello@exdevx.in or WhatsApp ${siteConfig.contact.whatsapp}. Based in Pune & Maharashtra, India.`}
       />
 
       {/* Hero Header */}
@@ -113,7 +113,7 @@ export const ContactPage: React.FC = () => {
                     </div>
                     <div className="flex items-start gap-2">
                       <ShieldCheck className="w-4 h-4 text-[var(--primary)] shrink-0 mt-0.5" />
-                      <span>Non-Disclosure Agreements executed prior to code review</span>
+                      <span>Please agree confidentiality terms with us before sharing sensitive project materials.</span>
                     </div>
                   </div>
                 </div>

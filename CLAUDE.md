@@ -11,17 +11,17 @@ npm run dev            # Vite dev server on http://localhost:5000 (also mounts /
 npm run build          # full SSG build: client bundle → SSR bundle → prerender each route (scripts/prerender.ts)
 npm run build:client   # client-only Vite build (skips prerender) — rarely what you want
 npm run preview        # serve the built dist/
-npm run lint           # tsc --noEmit — this is the ONLY check; there is no ESLint
+  npm run lint           # tsc --noEmit
+  npm test               # Node's built-in test runner
 ```
 
-No test runner is configured. The chat handler has a standalone guard test:
-`node api/chat.js --selfcheck` (no network/key needed — exercises 405 + 400 paths only).
+The chat handler tests exercise method, body, message, history, and size validation without calling the AI service.
 
 ## Architecture
 
-**SSG prerender is the core pattern.** `npm run build` does NOT just run `vite build` — it runs [scripts/prerender.ts](scripts/prerender.ts), which: (1) builds the client bundle to `dist/`, (2) builds an SSR bundle from [src/entry-server.tsx](src/entry-server.tsx) to `dist/server/`, (3) renders each route with `renderToString` and injects the HTML into `dist/index.html` at the `<!--ssr-outlet-->` marker, writing one static file per route.
+**SSG prerender is the core pattern.** `npm run build` builds client and server bundles, then renders each public route with `renderToPipeableStream`, injecting route HTML and Helmet metadata into static files. Case-study routes and sitemap entries come from [src/data/projects.ts](src/data/projects.ts).
 
-**Adding a route requires two edits in lockstep:** the `<Route>` in [src/App.tsx](src/App.tsx) AND the `routes` array in [scripts/prerender.ts](scripts/prerender.ts). Miss the second and the page ships as an empty (non-crawlable) SPA shell.
+**Adding a standard route requires updates to [src/App.tsx](src/App.tsx) and [scripts/prerender.ts](scripts/prerender.ts).** Case studies are generated from the project data, so adding one there also adds its prerendered page and sitemap URL.
 
 **`AppInner` is router-agnostic and must stay that way.** [src/App.tsx](src/App.tsx) exports `AppInner` (layout + `<Routes>`, no `<Router>`). The client wraps it in `BrowserRouter` ([main.tsx](src/main.tsx)); the SSR entry wraps it in `MemoryRouter` ([entry-server.tsx](src/entry-server.tsx)). `MemoryRouter` is used on the server deliberately — `StaticRouter` breaks under Vite SSR + react-router-dom v7. Don't move a `<Router>` into `AppInner`.
 
@@ -29,13 +29,11 @@ No test runner is configured. The chat handler has a standalone guard test:
 
 **One chat handler serves two runtimes.** [api/chat.js](api/chat.js) is a Vercel serverless function AND is imported by [vite.config.ts](vite.config.ts) as dev middleware, so `npm run dev` and prod run identical logic. Because of this, `getBody()` tolerates both Vercel's pre-parsed `req.body` and a raw request stream. Keep the handler runtime-neutral (no Vercel-only or Vite-only assumptions).
 
-**Chat model:** Groq via `groq-sdk`, model `llama-3.3-70b-versatile`, non-streaming, returns `{ text }`. The frontend ([components/Chatbot.tsx](src/components/Chatbot.tsx)) depends on that `res.json()` `{ text }` contract — do not introduce streaming without changing both ends. 429s return a branded capacity message, not an error. Note: `llama-3.3-70b-versatile` is measurably weaker at prompt-injection/scope defense than the prior `gpt-oss-120b`.
+**Chat model:** Gemini via `@google/genai`, configured with server-side `GEMINI_API_KEY` and optional `GEMINI_MODEL`. The active frontend ([src/components/ui/ChatWidget.tsx](src/components/ui/ChatWidget.tsx)) expects a JSON `{ text }` response.
 
 ## Conventions & gotchas
 
-- **`GROQ_API_KEY` is server-side only** — no `VITE_` prefix (that would ship it to the browser). [vite.config.ts](vite.config.ts) copies it into `process.env` for the dev middleware.
-- **README.md is stale** on the chatbot: it says Gemini / `GEMINI_API_KEY`, but the code uses Groq / `GROQ_API_KEY`. Trust the code.
-- **Some components are grouped per file:** [Hero.tsx](src/components/Hero.tsx) exports `Hero`, `Marquee`, `Services`; [Locations.tsx](src/components/Locations.tsx) exports `Locations` and `FAQ`. Grep for the export, don't assume one-component-per-file.
-- **SEO is content, not decoration.** Per-page `<SEO>` ([components/SEO.tsx](src/components/SEO.tsx)) via react-helmet-async, plus JSON-LD schema in `index.html`. The whole point of the SSG pipeline is that crawlers/AI bots see this rendered — verify new pages actually appear in `dist/<route>/index.html` after a build.
-- **Rate limiting is at the edge**, not in code — Vercel Firewall rule (10 req/min per IP on `/api/chat`). Deploy is Vercel; SPA routes rewrite to `/index.html` except `/api/*` ([vercel.json](vercel.json)).
+- **`GEMINI_API_KEY` is server-side only** — do not add a `VITE_` prefix. [vite.config.ts](vite.config.ts) loads it for the dev middleware.
+- **SEO metadata** lives in [src/components/ui/SEO.tsx](src/components/ui/SEO.tsx); homepage Organization/WebSite JSON-LD is supplied by [src/pages/HomePage.tsx](src/pages/HomePage.tsx). The prerender template must keep both SSR insertion markers.
+- **Rate limiting is not configured in repository code.** Verify the Vercel Firewall setting separately for deployed chat traffic.
 - **`@` path alias** resolves to the repo root (not `src/`).

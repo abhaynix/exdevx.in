@@ -8,6 +8,10 @@
 import { GoogleGenAI } from '@google/genai';
 
 const DEFAULT_MODEL = 'gemini-3.5-flash';
+const MAX_BODY_BYTES = 100_000;
+const MAX_MESSAGE_LENGTH = 2_000;
+const MAX_HISTORY_MESSAGES = 20;
+const WHATSAPP_NUMBER = '+91 70204 01094';
 
 const SYSTEM_INSTRUCTION = `
 You are the ExDevX website assistant. Answer clearly, warmly, and briefly using only the ExDevX information provided here.
@@ -22,8 +26,8 @@ You are the ExDevX website assistant. Answer clearly, warmly, and briefly using 
   3. Self-hosted & resilient infrastructure: Docker, VPS, AWS, bare-metal without vendor lock-in.
 
 ## SERVICES OFFERED
-1. Web Applications: High-performance React, Next.js, and TypeScript platforms with sub-second TTFB, Lighthouse 95+ scores, and SSR/SSG architectures.
-2. Mobile Apps: Cross-platform iOS and Android apps using React Native and Flutter with 60fps native performance and offline-first syncing.
+1. Web Applications: React, Next.js, and TypeScript platforms using SSR/SSG architectures.
+2. Mobile Apps: Cross-platform iOS and Android apps using React Native and Flutter.
 3. Automation Systems: Event-driven microservices, background job queues (BullMQ/Redis), WhatsApp/Telegram notification bots, and automated ETL pipelines.
 4. AI Integrations: Gemini API reasoning agents, enterprise RAG with vector search (pgvector), autonomous decision workflows, and multimodal document processing.
 5. SaaS Platforms & Architecture: End-to-end multi-tenant systems, subscription billing, and administrative portals.
@@ -32,44 +36,64 @@ You are the ExDevX website assistant. Answer clearly, warmly, and briefly using 
 8. SEO & Digital Performance: Technical SEO, structured JSON-LD schemas, and Core Web Vitals optimization.
 
 ## NOTABLE CASE STUDIES
-- KisanPool: Decentralized agricultural produce pooling platform in Maharashtra. Aggregated 12,000+ quintals of produce, saving farmers 22% in freight costs.
-- ssnlc.in: Shri Shivaji New Law College portal handling admissions and exam notices with 100% digital workflows and zero downtime.
-- Sumit Ubale Portfolio: Design engineer portfolio with 100/100 Lighthouse score and 0.000 CLS.
-- PerpWise AI: Autonomous quantitative market hedging bot processing 850,000+ daily data ticks with sub-800ms inference.
+- KisanPool: Decentralized agricultural produce pooling platform in Maharashtra, supporting produce aggregation and sales coordination.
+- ssnlc.in: Shri Shivaji New Law College platform for academic information, online applications, notices and faculty resources.
+- Sumit Ubale Portfolio: Design engineer portfolio presenting work and profile.
+- PerpWise AI: Quantitative monitoring application bringing together market data and alerts.
 
 ## TYPICAL TIMELINE & ENGAGEMENT
-- Standard sprint duration: 2 to 6 weeks per milestone.
-- Full source code ownership transferred 100% to clients.
+- Project timelines, payment milestones, and source code ownership are agreed in the written proposal or project agreement.
 
 ## CONTACT DETAILS
 - Email: hello@exdevx.in
-- Phone / WhatsApp: +91 88301 74066
-- Consultation: Free initial discovery call. Visitors can use the Contact page form on the website or message directly on WhatsApp.
+- Phone / WhatsApp: ${WHATSAPP_NUMBER}
+- Consultation: Visitors can send a project inquiry through the Contact page form or message directly on WhatsApp.
 
 ## BEHAVIOR RULES
 - Keep responses concise, warm, and professional (aim for 2-4 sentences or clear bullet points).
 - Answer using only the verified facts above. Never invent fake pricing, fake testimonials, or speculative guarantees.
-- If a visitor wants to start a project or get a quote, warmly encourage them to share their project requirements or use the Contact form on the site or WhatsApp (+91 88301 74066).
+- If a visitor wants to start a project or get a quote, warmly encourage them to share their project requirements or use the Contact form on the site or WhatsApp (${WHATSAPP_NUMBER}).
 `.trim();
 
 function readStream(req) {
   return new Promise((resolve, reject) => {
-    let data = '';
-    req.on('data', (c) => {
-      data += c;
-      if (data.length > 100_000) reject(new Error('payload too large'));
+    let size = 0;
+    let tooLarge = false;
+    const chunks = [];
+    req.on('data', (chunk) => {
+      if (tooLarge) return;
+      const buffer = Buffer.isBuffer(chunk) ? chunk : Buffer.from(chunk);
+      size += buffer.length;
+      if (size > MAX_BODY_BYTES) {
+        tooLarge = true;
+        const error = new Error('payload too large');
+        error.statusCode = 413;
+        reject(error);
+        req.resume();
+        return;
+      }
+      chunks.push(buffer);
     });
-    req.on('end', () => resolve(data));
+    req.on('end', () => resolve(Buffer.concat(chunks).toString('utf8')));
     req.on('error', reject);
   });
 }
 
 async function getBody(req) {
+  let body;
   if (req.body !== undefined && req.body !== null) {
-    return typeof req.body === 'string' ? JSON.parse(req.body) : req.body;
+    body = typeof req.body === 'string' ? JSON.parse(req.body) : req.body;
+  } else {
+    const raw = await readStream(req);
+    body = raw ? JSON.parse(raw) : {};
   }
-  const raw = await readStream(req);
-  return raw ? JSON.parse(raw) : {};
+
+  if (Buffer.byteLength(JSON.stringify(body) ?? '') > MAX_BODY_BYTES) {
+    const error = new Error('payload too large');
+    error.statusCode = 413;
+    throw error;
+  }
+  return body;
 }
 
 function send(res, code, obj) {
@@ -87,22 +111,33 @@ export default async function handler(req, res) {
   if (!apiKey) {
     console.warn('[chat] GEMINI_API_KEY is not configured in the server environment');
     return send(res, 200, {
-      text: "Hi! I'm the ExDevX assistant. Live AI chat requires the GEMINI_API_KEY environment variable. You can reach Abhay Jadhav and our engineering team directly at hello@exdevx.in or WhatsApp +91 88301 74066!",
+      text: `Hi! I'm the ExDevX assistant. Live AI chat requires the GEMINI_API_KEY environment variable. You can reach Abhay Jadhav and our engineering team directly at hello@exdevx.in or WhatsApp ${WHATSAPP_NUMBER}!`,
     });
   }
 
   let body;
   try {
     body = await getBody(req);
-  } catch {
+  } catch (error) {
+    if (error.statusCode === 413) return send(res, 413, { error: 'Request is too large.' });
+    return send(res, 400, { error: 'Invalid request body.' });
+  }
+
+  if (!body || typeof body !== 'object' || Array.isArray(body)) {
     return send(res, 400, { error: 'Invalid request body.' });
   }
 
   const userMessage = typeof body.message === 'string' ? body.message.trim() : '';
-  const history = Array.isArray(body.messages) ? body.messages : [];
+  const history = body.messages === undefined ? [] : body.messages;
 
-  if (!userMessage) {
-    return send(res, 400, { error: 'Message is required.' });
+  if (!userMessage || userMessage.length > MAX_MESSAGE_LENGTH) {
+    return send(res, 400, { error: 'Message is required and must be 2,000 characters or fewer.' });
+  }
+  if (!Array.isArray(history) || history.length > MAX_HISTORY_MESSAGES || history.some((message) =>
+    !message || !['user', 'assistant'].includes(message.role) ||
+    typeof message.content !== 'string' || !message.content.trim() || message.content.length > MAX_MESSAGE_LENGTH
+  )) {
+    return send(res, 400, { error: 'Conversation history is invalid or too large.' });
   }
 
   const modelName = process.env.GEMINI_MODEL || DEFAULT_MODEL;
@@ -145,10 +180,10 @@ export default async function handler(req, res) {
 
     return send(res, 200, { text: replyText });
   } catch (err) {
-    console.error('[chat] Gemini API error:', err?.message || err);
+    console.error('[chat] Gemini API request failed');
     return send(res, 502, {
       error: 'Upstream AI service error.',
-      text: "I'm having a momentary connection glitch. Feel free to contact our team directly at hello@exdevx.in or via WhatsApp at +91 88301 74066.",
+      text: `I'm having a momentary connection glitch. Feel free to contact our team directly at hello@exdevx.in or via WhatsApp at ${WHATSAPP_NUMBER}.`,
     });
   }
 }

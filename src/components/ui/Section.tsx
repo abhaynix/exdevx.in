@@ -18,7 +18,7 @@ export const Section: React.FC<SectionProps> = ({
   const toneClasses = {
     default: 'bg-[var(--bg)] text-[var(--text)]',
     surface: 'bg-[var(--surface)] text-[var(--text)] border-y border-[var(--text)]/5',
-    dark: 'bg-[var(--dark)] text-[var(--bg)]',
+    dark: 'bg-[var(--background)] text-[var(--text-primary)]',
   };
 
   return (

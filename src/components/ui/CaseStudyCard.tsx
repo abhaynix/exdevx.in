@@ -1,10 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowUpRight } from 'lucide-react';
-import { ProjectCaseStudy } from '../../data/projects';
+import { PortfolioProject } from '../../data/projects';
 
 interface CaseStudyCardProps {
-  project: ProjectCaseStudy;
+  project: PortfolioProject;
   featured?: boolean;
 }
 
@@ -23,15 +23,28 @@ export const CaseStudyCard: React.FC<CaseStudyCardProps> = ({ project, featured 
 
       <div>
         <div className="flex items-center justify-between gap-4">
-          <Link
-            to={`/work/${project.slug}`}
-            className="inline-flex items-center gap-1.5 text-xs font-mono font-bold uppercase tracking-wider text-[var(--primary)] hover:text-[var(--dark)] group focus-ring py-1"
-          >
-            <span>Read case study</span>
-            <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-          </Link>
+          {project.caseStudyUrl ? (
+            <Link
+              to={project.caseStudyUrl}
+              className="inline-flex items-center gap-1.5 text-xs font-mono font-bold uppercase tracking-wider text-[var(--primary)] hover:text-[var(--accent-hover)] group focus-ring py-1"
+            >
+              <span>Read case study</span>
+              <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+            </Link>
+          ) : project.liveUrl ? (
+            <a
+              href={project.liveUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`View ${project.title} project (opens in a new tab)`}
+              className="inline-flex items-center gap-1.5 text-xs font-mono font-bold uppercase tracking-wider text-[var(--primary)] hover:text-[var(--accent-hover)] group focus-ring py-1"
+            >
+              <span>View Project</span>
+              <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+            </a>
+          ) : null}
 
-          {project.liveUrl && (
+          {project.caseStudyUrl && project.liveUrl && (
             <a
               href={project.liveUrl}
               target="_blank"

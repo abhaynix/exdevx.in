@@ -28,7 +28,7 @@ export const ProcessStepper: React.FC = () => {
                 'text-left p-3 transition-colors focus-ring cursor-pointer',
                 isSelected
                   ? 'bg-[var(--surface)] border-b-2 border-[var(--primary)] text-[var(--dark)]'
-                  : 'hover:bg-[var(--surface)] text-[var(--text)]/70 hover:text-[var(--dark)]'
+                  : 'hover:bg-[var(--surface-hover)] text-[var(--text)]/70 hover:text-[var(--accent-hover)]'
               )}
             >
               <div className="text-xs text-[var(--primary)] font-semibold">

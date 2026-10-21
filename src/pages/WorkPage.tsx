@@ -1,5 +1,5 @@
 import React from 'react';
-import { projectsData } from '../data/projects';
+import { portfolioProjectsData } from '../data/projects';
 import { Container } from '../components/ui/Container';
 import { Section } from '../components/ui/Section';
 import { SectionHeading } from '../components/ui/SectionHeading';
@@ -37,7 +37,7 @@ export const WorkPage: React.FC = () => {
       <Section tone="surface">
         <Container>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
-            {projectsData.map((project, idx) => (
+            {portfolioProjectsData.map((project, idx) => (
               <Reveal key={project.slug} delay={idx}>
                 <CaseStudyCard project={project} />
               </Reveal>

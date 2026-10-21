@@ -47,8 +47,8 @@ export const siteConfig: SiteConfig = {
   contact: {
     email: "hello@exdevx.in",
     phone: "+91 88301 74066",
-    whatsapp: "+918830174066",
-    whatsappFormatted: "https://wa.me/918830174066?text=Hi%20ExDevX%20team%2C%20I%20would%20like%20to%20discuss%20a%20project."
+    whatsapp: "+917020401094",
+    whatsappFormatted: "https://wa.me/917020401094?text=Hi%20ExDevX%20team%2C%20I%20would%20like%20to%20discuss%20a%20project."
   },
   social: {
     github: "https://github.com/AbhiDevepl",

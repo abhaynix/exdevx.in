@@ -25,7 +25,8 @@ export const Footer: React.FC = () => (
           <ul className="space-y-2 text-sm">
             <li><Link className="hover:text-[var(--primary)]" to="/work">Selected projects</Link></li>
             <li><Link className="hover:text-[var(--primary)]" to="/privacy-policy">Privacy policy</Link></li>
-            <li><Link className="hover:text-[var(--primary)]" to="/terms-of-service">Terms of service</Link></li>
+            <li><Link className="hover:text-[var(--primary)]" to="/terms-and-conditions">Terms and conditions</Link></li>
+            <li><Link className="hover:text-[var(--primary)]" to="/cookie-policy">Cookie policy</Link></li>
           </ul>
         </nav>
         <div>
@@ -42,6 +43,13 @@ export const Footer: React.FC = () => (
           </ul>
         </div>
       </div>
+      <button
+        type="button"
+        className="mt-5 text-xs text-[var(--text)]/70 underline underline-offset-4 hover:text-[var(--primary)] focus-ring"
+        onClick={() => window.dispatchEvent(new Event('exdevx:open-cookie-settings'))}
+      >
+        Cookie settings
+      </button>
       <div className="mt-10 border-t border-[var(--text)]/10 pt-5 text-xs text-[var(--text)]/60">
         © {new Date().getFullYear()} ExDevX
       </div>

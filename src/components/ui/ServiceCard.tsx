@@ -45,7 +45,7 @@ export const ServiceCard: React.FC<ServiceCardProps> = ({ service, index }) => {
       <div>
         <Link
           to={`/services#${service.id}`}
-          className="inline-flex items-center gap-2 text-xs font-mono font-bold tracking-wider uppercase text-[var(--primary)] hover:text-[var(--dark)] group focus-ring py-1"
+          className="inline-flex items-center gap-2 text-xs font-mono font-bold tracking-wider uppercase text-[var(--primary)] hover:text-[var(--accent-hover)] group focus-ring py-1"
         >
           <span>View service</span>
           <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />

@@ -20,7 +20,7 @@ export const TechStrip: React.FC = () => {
             {techStackList.map((item, index) => (
               <div key={item.name} className="flex items-center gap-2 text-sm font-mono text-[var(--text)]">
                 <span className="font-semibold text-[var(--dark)]">{item.name}</span>
-                <span className="text-[10px] text-[var(--text)]/40 uppercase">({item.category})</span>
+                <span className="text-[10px] text-[var(--text-secondary)] uppercase">({item.category})</span>
                 {index < techStackList.length - 1 && (
                   <span className="text-[var(--text)]/20 ml-2 hidden sm:inline" aria-hidden="true">
                     /
