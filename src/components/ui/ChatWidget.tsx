@@ -238,9 +238,6 @@ export const ChatWidget: React.FC = () => {
           <div ref={panelRef} className="flex min-h-0 flex-1 flex-col overflow-hidden">
           {/* Header */}
           <div className="border-b border-[var(--text)]/10 bg-[var(--surface-hover)] px-5 py-2 text-[var(--text)]">
-            <p className="mb-1 text-xs leading-4 text-[var(--text-secondary)]">
-              Chat with the ExDevX AI engineering consultant.
-            </p>
             <div className="flex items-center justify-between gap-3">
               <div className="flex min-w-0 items-center gap-3">
                 <div className="flex size-8 shrink-0 items-center justify-center rounded-full border border-[var(--border)] font-display text-sm font-bold text-[var(--text)]">
@@ -253,9 +250,6 @@ export const ChatWidget: React.FC = () => {
                     </h3>
                     <span className="inline-block size-1.5 shrink-0 rounded-full border border-[var(--success)]" />
                   </div>
-                  <p className="mt-0.5 text-[10px] leading-4 text-[var(--text-secondary)]">
-                    AI Engineering Consultant · <span className="whitespace-nowrap">Gemini Powered</span>
-                  </p>
                 </div>
               </div>
 
@@ -280,11 +274,6 @@ export const ChatWidget: React.FC = () => {
               </div>
             </div>
           </div>
-
-          <p className="border-b border-[var(--text)]/10 px-5 py-2.5 text-[11px] leading-relaxed text-[var(--text-secondary)] sm:text-xs">
-            When AI chat is available, messages are sent to Google Gemini to generate replies. Please do not include sensitive information.{' '}
-            <a href="/privacy-policy" className="mx-0.5 inline-block text-[var(--primary)] underline underline-offset-2 focus-ring">Privacy policy</a>.
-          </p>
 
           {/* Conversation Thread */}
           <div className="flex-1 overflow-y-auto space-y-3 bg-[var(--bg)]/40 p-4">
