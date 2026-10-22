@@ -233,56 +233,61 @@ export const ChatWidget: React.FC = () => {
           open={isOpen}
           onClose={() => setIsOpen(false)}
           title="ExDevX Assistant"
-          description="Chat with the ExDevX AI engineering consultant."
-          className="fixed bottom-4 right-4 z-50 flex h-[560px] max-h-[calc(100dvh-2rem)] w-[calc(100vw-2rem)] max-w-none flex-col overflow-hidden rounded-sm border border-[var(--text)]/15 bg-[var(--surface)] p-0 shadow-none sm:bottom-6 sm:right-6 sm:w-[420px] [&>h2:first-child]:sr-only"
+          className="fixed bottom-4 right-4 z-50 flex h-[660px] max-h-[calc(100dvh-2rem)] w-[calc(100vw-2rem)] max-w-none flex-col overflow-hidden rounded-sm border border-[var(--text)]/15 bg-[var(--surface)] p-0 shadow-none sm:bottom-6 sm:right-6 sm:h-[600px] sm:w-[420px] [&>h2:first-child]:sr-only"
         >
           <div ref={panelRef} className="flex min-h-0 flex-1 flex-col overflow-hidden">
           {/* Header */}
-          <div className="bg-[var(--surface-hover)] text-[var(--text)] px-5 py-3.5 flex items-center justify-between border-b border-[var(--text)]/10">
-            <div className="flex items-center gap-3">
-              <div className="w-8 h-8 rounded-full border border-[var(--border)] text-[var(--text)] flex items-center justify-center font-bold font-display text-sm">
-                <Bot className="w-4 h-4" />
-              </div>
-              <div>
-                <div className="flex items-center gap-1.5">
-                  <h3 className="font-display font-semibold text-sm text-[var(--text)]">
-                    ExDevX Assistant
-                  </h3>
-                  <span className="size-1.5 rounded-full border border-[var(--success)] inline-block" />
+          <div className="border-b border-[var(--text)]/10 bg-[var(--surface-hover)] px-5 py-2 text-[var(--text)]">
+            <p className="mb-1 text-xs leading-4 text-[var(--text-secondary)]">
+              Chat with the ExDevX AI engineering consultant.
+            </p>
+            <div className="flex items-center justify-between gap-3">
+              <div className="flex min-w-0 items-center gap-3">
+                <div className="flex size-8 shrink-0 items-center justify-center rounded-full border border-[var(--border)] font-display text-sm font-bold text-[var(--text)]">
+                  <Bot className="size-4" />
                 </div>
-                <p className="text-[10px] font-mono text-[var(--text)]/70 tracking-wider">
-                  AI Engineering Consultant · Gemini Powered
-                </p>
+                <div className="min-w-0">
+                  <div className="flex items-center gap-1.5">
+                    <h3 className="font-display text-sm font-semibold leading-5 text-[var(--text)]">
+                      ExDevX Assistant
+                    </h3>
+                    <span className="inline-block size-1.5 shrink-0 rounded-full border border-[var(--success)]" />
+                  </div>
+                  <p className="mt-0.5 text-[10px] leading-4 text-[var(--text-secondary)]">
+                    AI Engineering Consultant · <span className="whitespace-nowrap">Gemini Powered</span>
+                  </p>
+                </div>
               </div>
-            </div>
 
-            <div className="flex items-center gap-1">
-              <button
-                type="button"
-                onClick={resetChat}
-                title="Restart conversation"
-                className="p-1.5 text-[var(--text)]/70 hover:text-[var(--text)] rounded-xs focus-ring-dark transition-colors"
-                aria-label="Restart conversation"
-              >
-                <RotateCcw className="w-3.5 h-3.5" />
-              </button>
-              <button
-                type="button"
-                onClick={() => setIsOpen(false)}
-                className="p-1.5 text-[var(--text)]/70 hover:text-[var(--text)] rounded-xs focus-ring-dark transition-colors"
-                aria-label="Close chat panel"
-              >
-                <X className="w-4 h-4" />
-              </button>
+              <div className="flex shrink-0 items-center gap-1">
+                <button
+                  type="button"
+                  onClick={resetChat}
+                  title="Restart conversation"
+                  className="flex size-11 items-center justify-center rounded-xs text-[var(--text)]/70 transition-colors hover:text-[var(--text)] focus-ring-dark"
+                  aria-label="Restart conversation"
+                >
+                  <RotateCcw className="size-4" />
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setIsOpen(false)}
+                  className="flex size-11 items-center justify-center rounded-xs text-[var(--text)]/70 transition-colors hover:text-[var(--text)] focus-ring-dark"
+                  aria-label="Close chat panel"
+                >
+                  <X className="size-4" />
+                </button>
+              </div>
             </div>
           </div>
 
-          <p className="border-b border-[var(--text)]/10 px-4 py-2 text-[10px] leading-relaxed text-[var(--text)]/70">
-            When AI chat is available, messages are sent to Google Gemini to generate replies. Please do not include sensitive information. <a href="/privacy-policy" className="text-[var(--primary)] underline focus-ring">Privacy policy</a>.
+          <p className="border-b border-[var(--text)]/10 px-5 py-2.5 text-[11px] leading-relaxed text-[var(--text-secondary)] sm:text-xs">
+            When AI chat is available, messages are sent to Google Gemini to generate replies. Please do not include sensitive information.{' '}
+            <a href="/privacy-policy" className="mx-0.5 inline-block text-[var(--primary)] underline underline-offset-2 focus-ring">Privacy policy</a>.
           </p>
 
           {/* Conversation Thread */}
-          <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-[var(--bg)]/40">
+          <div className="flex-1 overflow-y-auto space-y-3 bg-[var(--bg)]/40 p-4">
             {messages.map((msg) => {
               const isUser = msg.role === 'user';
               return (
@@ -302,25 +307,21 @@ export const ChatWidget: React.FC = () => {
                     {isUser ? <User className="w-3 h-3" /> : <Bot className="w-3.5 h-3.5" />}
                   </div>
 
-                  {/* Message Bubble */}
-                  <div
-                    className={`max-w-[85%] rounded-xs p-3.5 text-xs sm:text-sm ${
-                      isUser
-                        ? 'bg-[var(--surface-hover)] text-[var(--text)] border border-[var(--text)]/10'
-                          : 'bg-[var(--surface)] text-[var(--text)] border border-[var(--text)]/10'
-                    }`}
-                  >
-                    {isUser ? (
-                      <p className="whitespace-pre-wrap">{msg.content}</p>
-                    ) : (
-                      <FormattedMessage text={msg.content} />
-                    )}
-
+                  <div className={`flex max-w-[85%] min-w-0 flex-col ${isUser ? 'items-end' : 'items-start'}`}>
                     <div
-                      className={`text-[9px] font-mono mt-1.5 ${
-                        isUser ? 'text-[var(--bg)]/70 text-right' : 'text-[var(--text-secondary)]'
+                      className={`max-w-full rounded-lg border border-[var(--text)]/10 p-3.5 text-xs leading-relaxed sm:text-sm ${
+                        isUser
+                          ? 'bg-[var(--surface-hover)] text-[var(--text)]'
+                          : 'bg-[var(--surface)] text-[var(--text)]'
                       }`}
                     >
+                      {isUser ? (
+                        <p className="whitespace-pre-wrap break-words">{msg.content}</p>
+                      ) : (
+                        <FormattedMessage text={msg.content} />
+                      )}
+                    </div>
+                    <div className={`mt-1.5 px-1 text-[10px] font-mono leading-4 text-[var(--text-secondary)] ${isUser ? 'text-right' : 'text-left'}`}>
                       {msg.timestamp}
                     </div>
                   </div>
@@ -330,21 +331,21 @@ export const ChatWidget: React.FC = () => {
 
             {/* Suggested Prompts (Shown on first load) */}
             {messages.length === 1 && (
-              <div className="pt-2 pb-1 space-y-2">
-                <div className="text-[10px] font-mono tracking-wider text-[var(--text)]/50 flex items-center gap-1.5">
+              <div className="space-y-3 pt-1 pb-1">
+                <div className="flex items-center gap-2 text-xs font-mono text-[var(--text-secondary)]">
                   <Sparkles className="w-3 h-3 text-[var(--text-secondary)]" />
                   <span>Suggested inquiries</span>
                 </div>
-                <div className="grid grid-cols-1 gap-1.5">
+                <div className="flex flex-wrap gap-2">
                   {SUGGESTED_PROMPTS.map((prompt) => (
                     <button
                       key={prompt}
                       type="button"
                       onClick={() => handlePromptClick(prompt)}
-                      className="text-left px-3 py-2 text-xs font-sans text-[var(--text)] bg-[var(--surface)] hover:bg-[var(--surface-hover)] border border-[var(--text)]/10 hover:border-[var(--border)] rounded-xs transition-[border-color,background-color] focus-ring cursor-pointer flex items-center justify-between group"
+                      className="group inline-flex min-h-11 max-w-full items-center gap-2 rounded-md border border-[var(--text)]/10 bg-[var(--surface)] px-3 py-2 text-left text-xs leading-4 text-[var(--text)] transition-[border-color,background-color] hover:border-[var(--border)] hover:bg-[var(--surface-hover)] focus-ring"
                     >
-                      <span>{prompt}</span>
-                      <ArrowUpRight className="w-3 h-3 text-[var(--primary)] opacity-0 group-hover:opacity-100 transition-opacity shrink-0" />
+                      <span className="break-words">{prompt}</span>
+                      <ArrowUpRight className="size-3 shrink-0 text-[var(--primary)] opacity-0 transition-opacity group-hover:opacity-100" />
                     </button>
                   ))}
                 </div>
@@ -363,16 +364,16 @@ export const ChatWidget: React.FC = () => {
           </div>
 
           {/* Quick Actions Footer strip */}
-          <div className="px-4 py-1.5 bg-[var(--surface)] border-t border-[var(--text)]/10 flex items-center justify-between text-[10px] font-mono text-[var(--text)]/60">
+          <div className="flex flex-wrap items-center justify-between gap-x-3 gap-y-1 border-t border-[var(--text)]/10 bg-[var(--surface)] px-5 py-2.5 text-xs font-mono text-[var(--text-secondary)]">
             <span>Direct WhatsApp:</span>
             <a
               href={siteConfig.contact.whatsappFormatted}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-[var(--primary)] hover:underline font-bold inline-flex items-center gap-0.5 focus-ring"
+              className="inline-flex min-h-8 shrink-0 items-center gap-1 font-semibold text-[var(--primary)] hover:underline focus-ring"
             >
-              {siteConfig.contact.whatsapp}
-              <ArrowUpRight className="w-2.5 h-2.5" />
+              {siteConfig.contact.phone}
+              <ArrowUpRight className="size-3" />
             </a>
           </div>
 
