@@ -50,10 +50,6 @@ export const ServicesPage: React.FC = () => {
                   {/* Left Column: Title & Overview */}
                   <div className="lg:col-span-5">
                     <Reveal>
-                      <div className="flex items-center gap-2 text-xs font-mono text-[var(--primary)] font-bold mb-3">
-                        <span>DISCIPLINE 0{index + 1}</span>
-                      </div>
-
                       <h2 className="font-display text-3xl sm:text-4xl font-semibold text-[var(--dark)] mb-4 leading-tight">
                         {service.title}
                       </h2>
@@ -124,10 +120,8 @@ export const ServicesPage: React.FC = () => {
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <div className="p-6 bg-[var(--dark)]/5 border border-[var(--text)]/10 rounded-xs">
-                <div className="w-8 h-8 rounded-xs bg-[var(--accent)] text-[var(--on-accent)] flex items-center justify-center mb-4">
-                  <Terminal className="w-4 h-4" />
-                </div>
-                <h3 className="font-display text-xl font-medium text-[var(--dark)] mb-2">
+                <h3 className="flex items-center gap-3 font-display text-xl font-medium text-[var(--dark)] mb-2">
+                  <Terminal aria-hidden="true" className="h-5 w-5 text-[var(--accent-primary)]" />
                   Zero lock-in
                 </h3>
                 <p className="text-xs text-[var(--dark)]/80 leading-relaxed font-sans">
@@ -136,10 +130,8 @@ export const ServicesPage: React.FC = () => {
               </div>
 
               <div className="p-6 bg-[var(--dark)]/5 border border-[var(--text)]/10 rounded-xs">
-                <div className="w-8 h-8 rounded-xs bg-[var(--accent)] text-[var(--on-accent)] flex items-center justify-center mb-4">
-                  <Zap className="w-4 h-4" />
-                </div>
-                <h3 className="font-display text-xl font-medium text-[var(--dark)] mb-2">
+                <h3 className="flex items-center gap-3 font-display text-xl font-medium text-[var(--dark)] mb-2">
+                  <Zap aria-hidden="true" className="h-5 w-5 text-[var(--accent-primary)]" />
                   Performance
                 </h3>
                 <p className="text-xs text-[var(--dark)]/80 leading-relaxed font-sans">
@@ -148,10 +140,8 @@ export const ServicesPage: React.FC = () => {
               </div>
 
               <div className="p-6 bg-[var(--dark)]/5 border border-[var(--text)]/10 rounded-xs">
-                <div className="w-8 h-8 rounded-xs bg-[var(--accent)] text-[var(--on-accent)] flex items-center justify-center mb-4">
-                  <Shield className="w-4 h-4" />
-                </div>
-                <h3 className="font-display text-xl font-medium text-[var(--dark)] mb-2">
+                <h3 className="flex items-center gap-3 font-display text-xl font-medium text-[var(--dark)] mb-2">
+                  <Shield aria-hidden="true" className="h-5 w-5 text-[var(--accent-primary)]" />
                   Deterministic AI Output
                 </h3>
                 <p className="text-xs text-[var(--dark)]/80 leading-relaxed font-sans">

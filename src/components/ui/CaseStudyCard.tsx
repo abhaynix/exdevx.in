@@ -7,16 +7,18 @@ import { Card } from '../../../components/ui/card';
 interface CaseStudyCardProps {
   project: PortfolioProject;
   featured?: boolean;
+  headingLevel?: 2 | 3;
 }
 
-export const CaseStudyCard: React.FC<CaseStudyCardProps> = ({ project, featured = false }) => {
+export const CaseStudyCard: React.FC<CaseStudyCardProps> = ({ project, headingLevel = 3 }) => {
+  const Heading: React.ElementType = headingLevel === 2 ? 'h2' : 'h3';
   return (
     <Card role="article" className="editorial-card p-6 sm:p-8 flex flex-col justify-between h-full">
       <div>
         <p className="mb-3 text-xs font-medium text-[var(--primary)]">{project.category}</p>
-        <h3 className="font-display text-2xl sm:text-3xl font-semibold tracking-tight text-[var(--dark)] mb-2">
+        <Heading className="font-display text-2xl sm:text-3xl font-semibold tracking-tight text-[var(--dark)] mb-2">
           {project.title}
-        </h3>
+        </Heading>
         <p className="text-sm font-sans text-[var(--text)]/80 leading-relaxed mb-5">
           {project.summary}
         </p>

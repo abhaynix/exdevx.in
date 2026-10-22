@@ -29,10 +29,10 @@
   --muted: var(--text-secondary);
 
   --font-display: "Manrope Variable", "Manrope", sans-serif;
-  --font-sans: "Inter Variable", Inter, sans-serif;
+  --font-sans: "Onest Variable", "Onest", sans-serif;
   --font-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
 
-  --type-hero: clamp(2.5rem, 6.7vw, 5.5rem);
+  --type-hero: clamp(2.5rem, 5.6vw, 4.5rem);
   --type-section: clamp(2rem, 4vw, 3.25rem);
   --type-card: clamp(1.25rem, 2vw, 1.5rem);
   --type-body: clamp(0.9375rem, 1vw, 1.0625rem);

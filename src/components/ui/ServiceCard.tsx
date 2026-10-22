@@ -6,10 +6,9 @@ import { Card } from '../../../components/ui/card';
 
 interface ServiceCardProps {
   service: ServiceItem;
-  index: number;
 }
 
-export const ServiceCard: React.FC<ServiceCardProps> = ({ service, index }) => {
+export const ServiceCard: React.FC<ServiceCardProps> = ({ service }) => {
   const Icon = {
     'web-applications': Code2,
     'mobile-apps': Smartphone,
@@ -23,8 +22,7 @@ export const ServiceCard: React.FC<ServiceCardProps> = ({ service, index }) => {
   return (
     <Card role="article" className="editorial-card p-6 sm:p-8 flex flex-col justify-between h-full">
       <div>
-        <div className="mb-4 flex items-center justify-between text-xs font-medium text-[var(--primary)]">
-          Service {String(index + 1).padStart(2, '0')}
+        <div className="mb-4 flex items-center justify-end text-xs font-medium text-[var(--primary)]">
           <Icon className="home-service-icon" size={19} strokeWidth={1.5} aria-hidden="true" />
         </div>
 

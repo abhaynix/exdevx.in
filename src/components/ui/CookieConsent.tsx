@@ -98,14 +98,14 @@ export function CookieConsent() {
       <div className="mt-4 flex flex-wrap gap-2">
         {!customize ? (
           <>
-            <button type="button" onClick={() => saveChoice('accepted')} className="btn-asym rounded-none rounded-tr-lg rounded-bl-lg bg-[var(--primary)] px-4 py-2 text-sm font-semibold text-[var(--primary-foreground)] hover:bg-[var(--primary)]/90 focus-ring">Accept optional cookies</button>
-            <button type="button" onClick={() => saveChoice('rejected')} className="rounded-xs border border-[var(--control-border)] px-4 py-2 text-sm font-semibold text-[var(--text)] focus-ring">Reject optional cookies</button>
-            <button type="button" onClick={() => { setAnalyticsEnabled(choice === 'accepted'); setCustomize(true); }} className="rounded-xs px-3 py-2 text-sm font-semibold text-[var(--text)] underline underline-offset-2 focus-ring">Customise</button>
+            <button type="button" onClick={() => saveChoice('accepted')} className="btn-asym min-h-11 rounded-none rounded-tr-lg rounded-bl-lg bg-[var(--primary)] px-4 py-2 text-sm font-semibold text-[var(--primary-foreground)] hover:bg-[var(--primary)]/90 focus-ring">Accept optional cookies</button>
+            <button type="button" onClick={() => saveChoice('rejected')} className="min-h-11 rounded-xs border border-[var(--control-border)] px-4 py-2 text-sm font-semibold text-[var(--text)] focus-ring">Reject optional cookies</button>
+            <button type="button" onClick={() => { setAnalyticsEnabled(choice === 'accepted'); setCustomize(true); }} className="min-h-11 rounded-xs px-3 py-2 text-sm font-semibold text-[var(--text)] underline underline-offset-2 focus-ring">Customise</button>
           </>
         ) : (
           <>
-            <button type="button" onClick={() => saveChoice(analyticsEnabled ? 'accepted' : 'rejected')} className="btn-asym rounded-none rounded-tr-lg rounded-bl-lg bg-[var(--primary)] px-4 py-2 text-sm font-semibold text-[var(--primary-foreground)] hover:bg-[var(--primary)]/90 focus-ring">Save preferences</button>
-            <button type="button" onClick={() => setCustomize(false)} className="rounded-xs border border-[var(--control-border)] px-4 py-2 text-sm font-semibold text-[var(--text)] focus-ring">Back</button>
+            <button type="button" onClick={() => saveChoice(analyticsEnabled ? 'accepted' : 'rejected')} className="btn-asym min-h-11 rounded-none rounded-tr-lg rounded-bl-lg bg-[var(--primary)] px-4 py-2 text-sm font-semibold text-[var(--primary-foreground)] hover:bg-[var(--primary)]/90 focus-ring">Save preferences</button>
+            <button type="button" onClick={() => setCustomize(false)} className="min-h-11 rounded-xs border border-[var(--control-border)] px-4 py-2 text-sm font-semibold text-[var(--text)] focus-ring">Back</button>
           </>
         )}
       </div>

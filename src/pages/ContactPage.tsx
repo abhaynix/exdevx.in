@@ -16,7 +16,6 @@ export const ContactPage: React.FC = () => (
     <section className="pt-16 pb-20 border-b border-[var(--text)]/10 bg-[var(--bg)]">
       <Container>
         <Reveal>
-          <div className="text-xs font-mono tracking-widest text-[var(--primary)] font-semibold mb-4">Contact</div>
           <h1 className="font-display text-4xl sm:text-6xl font-medium tracking-tight text-[var(--dark)] max-w-4xl leading-tight">
             Let’s build something great.
           </h1>
@@ -44,7 +43,7 @@ export const ContactPage: React.FC = () => (
             </Reveal>
           </div>
           <div className="lg:col-span-7">
-            <Reveal delay={1}><ContactForm /></Reveal>
+            <Reveal delay={1}><ContactForm headingLevel={2} /></Reveal>
           </div>
         </div>
       </Container>

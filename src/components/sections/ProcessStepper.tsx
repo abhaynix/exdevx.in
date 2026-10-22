@@ -23,6 +23,7 @@ export const ProcessStepper: React.FC = () => {
             <button
               key={item.step}
               type="button"
+              aria-pressed={isSelected}
               onClick={() => setActiveStep(idx)}
               className={cn(
                 'text-left p-3 transition-colors focus-ring cursor-pointer',

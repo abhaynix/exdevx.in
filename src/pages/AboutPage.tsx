@@ -20,7 +20,7 @@ export const AboutPage: React.FC = () => {
       <section className="pt-16 pb-20 border-b border-[var(--text)]/10 bg-[var(--bg)]">
         <Container>
           <Reveal>
-            <div className="text-xs font-mono tracking-widest text-[var(--primary)] font-semibold mb-4">
+            <div className="text-xs font-mono tracking-wide text-[var(--primary)] font-semibold mb-4">
               Agency origins and ethos
             </div>
             <h1 className="font-display text-4xl sm:text-6xl font-medium tracking-tight text-[var(--dark)] max-w-4xl leading-tight">
@@ -43,9 +43,9 @@ export const AboutPage: React.FC = () => {
                   <div className="text-xs font-mono text-[var(--primary)] tracking-wider font-bold mb-2">
                     Founder profile
                   </div>
-                  <h3 className="font-display text-3xl font-semibold text-[var(--dark)] mb-2">
+                  <h2 className="font-display text-3xl font-semibold text-[var(--dark)] mb-2">
                     {siteConfig.founder.name}
-                  </h3>
+                  </h2>
                   <div className="text-xs font-mono text-[var(--text)]/60 mb-6">
                     {siteConfig.founder.role} · Based in Maharashtra, India
                   </div>
@@ -112,7 +112,7 @@ export const AboutPage: React.FC = () => {
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               <div className="p-6 bg-[var(--dark)]/5 border border-[var(--text)]/10 rounded-xs">
-                <span className="text-xs font-mono text-[var(--accent)] font-bold block mb-2">01 / Principle</span>
+                <span className="text-xs font-mono text-[var(--accent-primary)] font-bold block mb-2">Principle</span>
                 <h3 className="font-display text-2xl font-medium text-[var(--dark)] mb-3">
                   Execution over theory
                 </h3>
@@ -122,7 +122,7 @@ export const AboutPage: React.FC = () => {
               </div>
 
               <div className="p-6 bg-[var(--dark)]/5 border border-[var(--text)]/10 rounded-xs">
-                <span className="text-xs font-mono text-[var(--accent)] font-bold block mb-2">02 / Principle</span>
+                <span className="text-xs font-mono text-[var(--accent-primary)] font-bold block mb-2">Principle</span>
                 <h3 className="font-display text-2xl font-medium text-[var(--dark)] mb-3">
                   Automation First
                 </h3>
@@ -132,7 +132,7 @@ export const AboutPage: React.FC = () => {
               </div>
 
               <div className="p-6 bg-[var(--dark)]/5 border border-[var(--text)]/10 rounded-xs">
-                <span className="text-xs font-mono text-[var(--accent)] font-bold block mb-2">03 / Principle</span>
+                <span className="text-xs font-mono text-[var(--accent-primary)] font-bold block mb-2">Principle</span>
                 <h3 className="font-display text-2xl font-medium text-[var(--dark)] mb-3">
                   Self-Hosted & Resilient Infra
                 </h3>
@@ -160,9 +160,9 @@ export const AboutPage: React.FC = () => {
                 <div className="absolute left-1.5 top-1.5 w-3 h-3 rounded-full bg-[var(--primary)] border-2 border-[var(--bg)]" />
                 <div>
                   <span className="text-xs font-mono font-bold text-[var(--primary)]">2022</span>
-                  <h4 className="font-display text-lg font-semibold text-[var(--dark)] mt-0.5">
+                  <h3 className="font-display text-lg font-semibold text-[var(--dark)] mt-0.5">
                     Founding in Maharashtra, India
-                  </h4>
+                  </h3>
                   <p className="text-xs text-[var(--text)]/80 font-sans mt-1 leading-relaxed">
                     ExDevX established by Abhay Jadhav to build custom web and mobile applications for local businesses and early-stage innovators.
                   </p>
@@ -173,9 +173,9 @@ export const AboutPage: React.FC = () => {
                 <div className="absolute left-1.5 top-1.5 w-3 h-3 rounded-full bg-[var(--primary)] border-2 border-[var(--bg)]" />
                 <div>
                   <span className="text-xs font-mono font-bold text-[var(--primary)]">2023</span>
-                  <h4 className="font-display text-lg font-semibold text-[var(--dark)] mt-0.5">
+                  <h3 className="font-display text-lg font-semibold text-[var(--dark)] mt-0.5">
                     Institutional & Large Scale Platforms
-                  </h4>
+                  </h3>
                   <p className="text-xs text-[var(--text)]/80 font-sans mt-1 leading-relaxed">
                     Designed and deployed institutional web platforms, including ssnlc.in.
                   </p>
@@ -186,9 +186,9 @@ export const AboutPage: React.FC = () => {
                 <div className="absolute left-1.5 top-1.5 w-3 h-3 rounded-full bg-[var(--primary)] border-2 border-[var(--bg)]" />
                 <div>
                   <span className="text-xs font-mono font-bold text-[var(--primary)]">2024 - Present</span>
-                  <h4 className="font-display text-lg font-semibold text-[var(--dark)] mt-0.5">
+                  <h3 className="font-display text-lg font-semibold text-[var(--dark)] mt-0.5">
                     AI agent workflows and quantitative automation
-                  </h4>
+                  </h3>
                   <p className="text-xs text-[var(--text)]/80 font-sans mt-1 leading-relaxed">
                     Expanded core practice to include Gemini API reasoning agents, autonomous data ingestion, and agricultural logistics networks (KisanPool).
                   </p>

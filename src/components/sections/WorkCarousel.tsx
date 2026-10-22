@@ -6,14 +6,16 @@ import { Container } from '../ui/Container';
 
 export function WorkCarousel() {
   const track = useRef<HTMLDivElement>(null);
-  const move = (direction: number) => track.current?.scrollBy({ left: direction * (track.current.clientWidth * 0.78), behavior: 'smooth' });
+  const move = (direction: number) => track.current?.scrollBy({
+    left: direction * (track.current.clientWidth * 0.78),
+    behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth',
+  });
 
   return (
     <section id="work" className="home-work" aria-labelledby="home-work-title">
       <Container size="wide">
         <div className="home-work-heading" data-reveal>
           <div>
-            <p className="home-eyebrow">Selected work</p>
             <h2 id="home-work-title">Selected work</h2>
             <p className="home-work-intro">A selection of platforms, products and tools we’ve built.</p>
           </div>
@@ -28,8 +30,6 @@ export function WorkCarousel() {
               <article className="home-work-card" data-reveal key={project.slug}>
                 <div className={`home-work-art home-work-art-${index + 1}`} aria-hidden="true">
                   <span className="home-art-mark">{project.title}</span>
-                  <span className="home-art-index">0{index + 1}</span>
-                  <span className="home-art-lines" />
                 </div>
                 <div className="home-work-card-copy">
                   <div><p>{project.category}</p><h3>{project.title}</h3><span>{project.summary}</span></div>

@@ -31,7 +31,7 @@ export const SectionHeading: React.FC<SectionHeadingProps> = ({
       {tag && (
         <div
           className={cn(
-            'text-xs font-mono tracking-widest mb-3 font-semibold',
+            'text-xs font-mono tracking-wide mb-3 font-semibold',
             isDark ? 'text-[var(--accent-hover)]' : 'text-[var(--primary)]'
           )}
         >

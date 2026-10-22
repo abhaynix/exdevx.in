@@ -17,7 +17,7 @@ export function ThemeSwitcher({ className }: { className?: string }) {
       aria-label="Toggle theme"
       title="Toggle theme"
       className={cn(
-        'inline-flex size-9 cursor-pointer items-center justify-center rounded-md text-foreground transition-colors duration-200 outline-none hover:text-highlight focus-visible:ring-[3px] focus-visible:ring-ring/50',
+        'inline-flex size-11 cursor-pointer items-center justify-center rounded-md text-foreground transition-colors duration-200 outline-none hover:text-highlight focus-visible:ring-[3px] focus-visible:ring-ring/50',
         className,
       )}
     >

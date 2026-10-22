@@ -10,7 +10,7 @@ import { cn } from '@/lib/utils'
  */
 /** Shared with triggers that must be the button themselves, like a Radix DropdownMenuTrigger. */
 export const menuToggleClass =
-  'inline-flex size-9 cursor-pointer items-center justify-center rounded-md text-foreground outline-none focus-visible:ring-[3px] focus-visible:ring-ring/50'
+  'inline-flex size-11 cursor-pointer items-center justify-center rounded-md text-foreground outline-none focus-visible:ring-[3px] focus-visible:ring-ring/50'
 
 export function MenuToggle({ open, className, ...props }: React.ComponentProps<'button'> & { open: boolean }) {
   return (

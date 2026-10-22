@@ -55,7 +55,7 @@ export function Hero({
           <h1 data-hero="title" className="relative z-10 max-w-6xl text-[42px] leading-11 font-semibold tracking-tight text-black @3xl:text-6xl @3xl:leading-none @5xl:text-7xl dark:text-white">
             {title}
           </h1>
-          {children && <p data-hero="copy" className="relative z-10 mt-4 max-w-3xl text-base text-neutral-700 @xl:mt-6 @3xl:text-xl dark:text-neutral-400">{children}</p>}
+          {children && <p data-hero="copy" className="relative z-10 mt-4 max-w-3xl text-base text-neutral-700 @xl:mt-6 @3xl:text-xl dark:text-neutral-300">{children}</p>}
           {(primary || secondary) && (
             <div data-hero="actions" className={cn('mt-6 flex flex-wrap items-center gap-4', centred && 'justify-center')}>
               {primary && (

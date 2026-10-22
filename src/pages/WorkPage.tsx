@@ -39,7 +39,7 @@ export const WorkPage: React.FC = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
             {portfolioProjectsData.map((project, idx) => (
               <Reveal key={project.slug} delay={idx}>
-                <CaseStudyCard project={project} />
+                <CaseStudyCard project={project} headingLevel={2} />
               </Reveal>
             ))}
           </div>
@@ -52,7 +52,7 @@ export const WorkPage: React.FC = () => {
           <Reveal>
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
               <div className="lg:col-span-8">
-                <div className="text-xs font-mono tracking-widest text-[var(--accent)] font-semibold mb-2">
+                <div className="text-xs font-mono tracking-widest text-[var(--accent-primary)] font-semibold mb-2">
                   Code ownership
                 </div>
                 <h2 className="font-display text-2xl sm:text-3xl font-medium text-[var(--dark)] mb-3">

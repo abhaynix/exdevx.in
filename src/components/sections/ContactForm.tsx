@@ -9,9 +9,10 @@ import { CheckCircle2, AlertCircle, Loader2, ArrowUpRight } from 'lucide-react';
 
 interface ContactFormProps {
   initialService?: string;
+  headingLevel?: 2 | 3;
 }
 
-export const ContactForm: React.FC<ContactFormProps> = ({ initialService }) => {
+export const ContactForm: React.FC<ContactFormProps> = ({ initialService, headingLevel = 3 }) => {
   const [submissionStatus, setSubmissionStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
   const [statusMessage, setStatusMessage] = useState<string>('');
   const [whatsappLink, setWhatsappLink] = useState('');
@@ -19,7 +20,6 @@ export const ContactForm: React.FC<ContactFormProps> = ({ initialService }) => {
   const {
     register,
     handleSubmit,
-    reset,
     formState: { errors },
   } = useForm<ContactFormData>({
     resolver: zodResolver(contactFormSchema),
@@ -33,6 +33,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({ initialService }) => {
       honeypot: '',
     },
   });
+  const Heading = headingLevel === 2 ? 'h2' : 'h3';
 
   const onSubmit = async (data: ContactFormData) => {
     // Honeypot check
@@ -43,7 +44,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({ initialService }) => {
     }
 
     setSubmissionStatus('loading');
-    setStatusMessage('Opening WhatsApp…');
+    setStatusMessage('Preparing your WhatsApp message…');
     setWhatsappLink('');
     const message = [
       'Hi EXDEV X team, I just submitted a project inquiry.',
@@ -59,22 +60,20 @@ export const ContactForm: React.FC<ContactFormProps> = ({ initialService }) => {
       window.open(link, '_blank', 'noopener,noreferrer');
       setWhatsappLink(link);
       setSubmissionStatus('success');
-      setStatusMessage('Your inquiry is ready in WhatsApp. Review and send the message to contact our team.');
-      reset({ name: '', email: '', phone: '', service: initialService || '', budget: '', message: '', honeypot: '' });
-    } catch (error) {
-      const message = error instanceof Error ? error.message : 'WhatsApp could not be opened. Use the link below to continue.';
+      setStatusMessage('Review and send your prefilled message. If WhatsApp did not open automatically, use the link below. Your form entries remain here.');
+    } catch {
       setWhatsappLink(link);
       setSubmissionStatus('error');
-      setStatusMessage(message);
+      setStatusMessage('WhatsApp could not open automatically. Use the link below to review and send your message. Your form entries remain here.');
     }
   };
 
   return (
     <div className="card-chai bg-[var(--surface)] p-6 sm:p-10 rounded-xs">
       <div className="mb-6">
-        <h3 className="font-display text-2xl font-semibold text-[var(--primary)] mb-2">
+        <Heading className="font-display text-2xl font-semibold text-[var(--primary)] mb-2">
           Project inquiry
-        </h3>
+        </Heading>
         <p className="text-xs font-mono text-[var(--text)]/60 tracking-wider">
           Name · contact details · service · project overview
         </p>
@@ -86,18 +85,18 @@ export const ContactForm: React.FC<ContactFormProps> = ({ initialService }) => {
       {/* Accessible aria-live status message */}
       <div aria-live="polite" className="mb-4">
         {submissionStatus === 'success' && (
-          <div className="p-4 bg-[var(--success-bg)] border border-[var(--success-border)] text-[var(--text-primary)] rounded-xs flex items-start gap-3 text-sm">
+          <div className="form-feedback p-4 bg-[var(--success-bg)] border border-[var(--success-border)] text-[var(--text-primary)] rounded-xs flex items-start gap-3 text-sm">
             <CheckCircle2 className="w-5 h-5 text-[var(--success)] shrink-0 mt-0.5" />
             <div>
-              <p className="font-semibold">WhatsApp message ready</p>
-              <p className="text-xs text-[var(--text-secondary)] mt-1">{statusMessage}</p>
+              <p className="font-semibold">Continue in WhatsApp</p>
+              <p className="text-xs text-[var(--text-secondary)] mt-1">{statusMessage || 'Review and send your prefilled message. If WhatsApp did not open automatically, use the link below. Your form entries remain here.'}</p>
               {whatsappLink && <a href={whatsappLink} target="_blank" rel="noopener noreferrer" className="mt-2 inline-flex items-center gap-1 text-xs font-semibold text-[var(--primary)] underline">Open WhatsApp conversation <ArrowUpRight className="h-3 w-3" /></a>}
             </div>
           </div>
         )}
 
         {submissionStatus === 'error' && (
-          <div className="p-4 bg-[var(--error-bg)] border border-[var(--error-border)] text-[var(--text-primary)] rounded-xs flex items-start gap-3 text-sm">
+          <div className="form-feedback p-4 bg-[var(--error-bg)] border border-[var(--error-border)] text-[var(--text-primary)] rounded-xs flex items-start gap-3 text-sm">
             <AlertCircle className="w-5 h-5 text-[var(--error)] shrink-0 mt-0.5" />
             <div>
               <p className="font-semibold">Notice</p>
@@ -125,7 +124,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({ initialService }) => {
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
             <label htmlFor="name" className="block text-xs font-mono font-semibold tracking-wider text-[var(--text)] mb-1.5">
-              Your name <span aria-hidden="true" className="text-[var(--accent)]">*</span><span className="sr-only"> (required)</span>
+              Your name <span aria-hidden="true" className="text-[var(--accent-bright)]">*</span><span className="sr-only"> (required)</span>
             </label>
             <input
               id="name"
@@ -138,13 +137,13 @@ export const ContactForm: React.FC<ContactFormProps> = ({ initialService }) => {
               required
             />
             {errors.name && (
-              <p id="name-error" role="alert" className="text-xs text-[var(--error)] font-sans mt-1">{errors.name.message}</p>
+              <p id="name-error" role="alert" className="form-feedback text-xs text-[var(--error)] font-sans mt-1">{errors.name.message}</p>
             )}
           </div>
 
           <div>
             <label htmlFor="email" className="block text-xs font-mono font-semibold tracking-wider text-[var(--text)] mb-1.5">
-              Work email <span aria-hidden="true" className="text-[var(--accent)]">*</span><span className="sr-only"> (required)</span>
+              Work email <span aria-hidden="true" className="text-[var(--accent-bright)]">*</span><span className="sr-only"> (required)</span>
             </label>
             <input
               id="email"
@@ -157,7 +156,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({ initialService }) => {
               required
             />
             {errors.email && (
-              <p id="email-error" role="alert" className="text-xs text-[var(--error)] font-sans mt-1">{errors.email.message}</p>
+              <p id="email-error" role="alert" className="form-feedback text-xs text-[var(--error)] font-sans mt-1">{errors.email.message}</p>
             )}
           </div>
         </div>
@@ -165,14 +164,14 @@ export const ContactForm: React.FC<ContactFormProps> = ({ initialService }) => {
         <div>
           <label htmlFor="phone" className="block text-xs font-mono font-semibold tracking-wider text-[var(--text)] mb-1.5">WhatsApp number</label>
           <input id="phone" type="tel" inputMode="tel" autoComplete="tel" placeholder="+91 70204 01094" className="w-full bg-[var(--bg)] border border-[var(--control-border)] px-3.5 py-2.5 text-sm text-[var(--text)] rounded-xs focus-ring" {...register('phone', { setValueAs: (value: string) => value.replace(/[\s()-]/g, '') })} aria-invalid={errors.phone ? 'true' : 'false'} aria-describedby={errors.phone ? 'phone-error' : undefined} />
-          {errors.phone && <p id="phone-error" role="alert" className="text-xs text-[var(--error)] font-sans mt-1">{errors.phone.message}</p>}
+          {errors.phone && <p id="phone-error" role="alert" className="form-feedback text-xs text-[var(--error)] font-sans mt-1">{errors.phone.message}</p>}
         </div>
 
         {/* Row 2: Service & Budget */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
             <label htmlFor="service" className="block text-xs font-mono font-semibold tracking-wider text-[var(--text)] mb-1.5">
-              Service <span aria-hidden="true" className="text-[var(--accent)]">*</span><span className="sr-only"> (required)</span>
+              Service <span aria-hidden="true" className="text-[var(--accent-bright)]">*</span><span className="sr-only"> (required)</span>
             </label>
             <select
               id="service"
@@ -192,18 +191,19 @@ export const ContactForm: React.FC<ContactFormProps> = ({ initialService }) => {
               <option value="Full Digital Overhaul">Full Digital Overhaul</option>
             </select>
             {errors.service && (
-              <p id="service-error" role="alert" className="text-xs text-[var(--error)] font-sans mt-1">{errors.service.message}</p>
+              <p id="service-error" role="alert" className="form-feedback text-xs text-[var(--error)] font-sans mt-1">{errors.service.message}</p>
             )}
           </div>
 
           <div>
             <label htmlFor="budget" className="block text-xs font-mono font-semibold tracking-wider text-[var(--text)] mb-1.5">
-              Timeline &amp; budget
+              Indicative budget
             </label>
             <select
               id="budget"
               className="w-full bg-[var(--bg)] border border-[var(--text)]/15 px-3.5 py-2.5 text-sm text-[var(--text)] rounded-xs focus-ring"
               {...register('budget')}
+              aria-describedby="budget-note"
             >
               <option value="Not specified">Flexible / Scoping</option>
               <option value="₹8k–₹25k">₹8k–₹25k</option>
@@ -211,13 +211,14 @@ export const ContactForm: React.FC<ContactFormProps> = ({ initialService }) => {
               <option value="₹75k–₹1.5L">₹75k–₹1.5L</option>
               <option value="₹1.5L–₹3.5L">₹1.5L–₹3.5L</option>
             </select>
+            <p id="budget-note" className="mt-1.5 text-xs leading-relaxed text-[var(--text-secondary)]">Indicative range only; final quotes depend on scope and requirements.</p>
           </div>
         </div>
 
         {/* Row 3: Message */}
         <div>
           <label htmlFor="message" className="block text-xs font-mono font-semibold tracking-wider text-[var(--text)] mb-1.5">
-            Project overview <span aria-hidden="true" className="text-[var(--accent)]">*</span><span className="sr-only"> (required)</span>
+            Project overview <span aria-hidden="true" className="text-[var(--accent-bright)]">*</span><span className="sr-only"> (required)</span>
           </label>
           <textarea
             id="message"
@@ -230,7 +231,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({ initialService }) => {
             required
           />
           {errors.message && (
-            <p id="message-error" role="alert" className="text-xs text-[var(--error)] font-sans mt-1">{errors.message.message}</p>
+            <p id="message-error" role="alert" className="form-feedback text-xs text-[var(--error)] font-sans mt-1">{errors.message.message}</p>
           )}
         </div>
 
