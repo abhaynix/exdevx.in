@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowUpRight } from 'lucide-react';
 import { PortfolioProject } from '../../data/projects';
+import { Card } from '../../../components/ui/card';
 
 interface CaseStudyCardProps {
   project: PortfolioProject;
@@ -10,7 +11,7 @@ interface CaseStudyCardProps {
 
 export const CaseStudyCard: React.FC<CaseStudyCardProps> = ({ project, featured = false }) => {
   return (
-    <article className="editorial-card p-6 sm:p-8 flex flex-col justify-between h-full">
+    <Card role="article" className="editorial-card p-6 sm:p-8 flex flex-col justify-between h-full">
       <div>
         <p className="mb-3 text-xs font-medium text-[var(--primary)]">{project.category}</p>
         <h3 className="font-display text-2xl sm:text-3xl font-semibold tracking-tight text-[var(--dark)] mb-2">
@@ -26,7 +27,7 @@ export const CaseStudyCard: React.FC<CaseStudyCardProps> = ({ project, featured 
           {project.caseStudyUrl ? (
             <Link
               to={project.caseStudyUrl}
-              className="inline-flex items-center gap-1.5 text-xs font-mono font-bold uppercase tracking-wider text-[var(--primary)] hover:text-[var(--accent-hover)] group focus-ring py-1"
+              className="inline-flex items-center gap-1.5 text-xs font-mono font-bold tracking-wider text-[var(--primary)] hover:text-[var(--accent-hover)] group focus-ring py-1"
             >
               <span>Read case study</span>
               <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
@@ -37,9 +38,9 @@ export const CaseStudyCard: React.FC<CaseStudyCardProps> = ({ project, featured 
               target="_blank"
               rel="noopener noreferrer"
               aria-label={`View ${project.title} project (opens in a new tab)`}
-              className="inline-flex items-center gap-1.5 text-xs font-mono font-bold uppercase tracking-wider text-[var(--primary)] hover:text-[var(--accent-hover)] group focus-ring py-1"
+              className="inline-flex items-center gap-1.5 text-xs font-mono font-bold tracking-wider text-[var(--primary)] hover:text-[var(--accent-hover)] group focus-ring py-1"
             >
-              <span>View Project</span>
+              <span>View project</span>
               <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
             </a>
           ) : null}
@@ -51,11 +52,11 @@ export const CaseStudyCard: React.FC<CaseStudyCardProps> = ({ project, featured 
               rel="noopener noreferrer"
               className="text-xs font-mono text-[var(--text)]/50 hover:text-[var(--text)] transition-colors focus-ring"
             >
-              Live Demo
+              Live demo
             </a>
           )}
         </div>
       </div>
-    </article>
+    </Card>
   );
 };

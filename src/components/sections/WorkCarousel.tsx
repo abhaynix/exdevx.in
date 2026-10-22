@@ -14,7 +14,7 @@ export function WorkCarousel() {
         <div className="home-work-heading" data-reveal>
           <div>
             <p className="home-eyebrow">Selected work</p>
-            <h2 id="home-work-title">Selected Work</h2>
+            <h2 id="home-work-title">Selected work</h2>
             <p className="home-work-intro">A selection of platforms, products and tools we’ve built.</p>
           </div>
           <Link to="/work" className="home-all-work focus-ring">All projects <ArrowUpRight size={16} aria-hidden="true" /></Link>

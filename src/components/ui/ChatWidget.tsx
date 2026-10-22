@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { MessageSquare, X, Send, Bot, User, Loader2, Sparkles, ArrowUpRight, RotateCcw } from 'lucide-react';
 import { siteConfig } from '../../data/site';
+import { Dialog } from '../../../components/ui/dialog';
 
 interface ChatMessage {
   id: string;
@@ -63,7 +64,7 @@ function FormattedMessage({ text }: { text: string }) {
         if (isBullet) {
           return (
             <div key={lineIdx} className="flex items-start gap-1.5 pl-1">
-              <span className="text-[var(--primary)] font-bold shrink-0 mt-0.5">•</span>
+              <span className="text-[var(--text-secondary)] font-bold shrink-0 mt-0.5">•</span>
               <span>{renderedLine}</span>
             </div>
           );
@@ -163,7 +164,7 @@ export const ChatWidget: React.FC = () => {
 
       const replyContent =
         data.text ||
-        "I'm here to help! Feel free to describe your project or connect with our team at hello@exdevx.in.";
+        "I'm here to help! Feel free to describe your project or connect with our team at hallo@exdevx.in.";
 
       const assistantMsg: ChatMessage = {
         id: `assistant-${Date.now()}`,
@@ -180,7 +181,7 @@ export const ChatWidget: React.FC = () => {
         id: `assistant-${Date.now()}`,
         role: 'assistant',
         content:
-          `I encountered an issue connecting right now. You can reach Abhay Jadhav directly via email at hello@exdevx.in or on WhatsApp at ${siteConfig.contact.whatsapp}.`,
+          `I encountered an issue connecting right now. You can reach Abhay Jadhav directly via email at hallo@exdevx.in or on WhatsApp at ${siteConfig.contact.whatsapp}.`,
         timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
       };
       setMessages((prev) => [...prev, errorMsg]);
@@ -205,50 +206,51 @@ export const ChatWidget: React.FC = () => {
   };
 
   return (
-    <div className="fixed bottom-6 right-6 z-50 print:hidden font-sans">
+    <div className="print:hidden font-sans">
       {/* ── Floating Chat Button ── */}
       {!isOpen && (
         <button
           ref={triggerRef}
           type="button"
           onClick={() => setIsOpen(true)}
-          className="group relative flex items-center gap-2.5 bg-[var(--primary)] text-[var(--bg)] px-3 py-3 sm:px-5 sm:py-3.5 rounded-full shadow-xl hover:bg-[var(--accent-hover)] hover:scale-105 active:scale-95 transition-[transform,background-color,box-shadow] duration-150 focus-ring cursor-pointer"
+          className="group fixed bottom-6 right-6 z-50 flex items-center gap-2.5 rounded-none rounded-tr-lg rounded-bl-lg border border-[var(--border)] bg-[var(--primary)] px-3 py-3 text-[var(--bg)] transition-colors duration-200 hover:bg-[var(--surface-hover)] sm:px-5 sm:py-3.5"
           aria-label="Open ExDevX AI assistant"
           aria-expanded={isOpen}
         >
           <div className="relative">
             <MessageSquare className="w-5 h-5 text-[var(--bg)]" />
-            <span className="absolute -top-1 -right-1 w-2.5 h-2.5 bg-[var(--accent)] rounded-full ring-2 ring-[var(--primary)] animate-pulse" />
+            <span className="chat-status-indicator absolute -top-1 -right-1 size-2.5 rounded-full border border-[var(--primary)] bg-[var(--accent)]" />
           </div>
           <span className="hidden text-xs font-sans font-semibold tracking-wide sm:inline sm:text-sm">
-            Chat with ExDevX
+            AI'x
           </span>
         </button>
       )}
 
       {/* ── Responsive Chat Panel ── */}
       {isOpen && (
-        <div
-          ref={panelRef}
-          role="dialog"
-          aria-modal="false"
-          aria-label="ExDevX AI Assistant"
-          className="fixed bottom-4 sm:bottom-6 right-4 sm:right-6 w-[calc(100vw-2rem)] sm:w-[420px] h-[560px] max-h-[calc(100vh-2rem)] bg-[var(--surface)] border border-[var(--text)]/15 rounded-sm shadow-2xl flex flex-col overflow-hidden animate-in fade-in zoom-in-95 duration-150"
+        <Dialog
+          open={isOpen}
+          onClose={() => setIsOpen(false)}
+          title="ExDevX Assistant"
+          description="Chat with the ExDevX AI engineering consultant."
+          className="fixed bottom-4 right-4 z-50 flex h-[560px] max-h-[calc(100dvh-2rem)] w-[calc(100vw-2rem)] max-w-none flex-col overflow-hidden rounded-sm border border-[var(--text)]/15 bg-[var(--surface)] p-0 shadow-none sm:bottom-6 sm:right-6 sm:w-[420px] [&>h2:first-child]:sr-only"
         >
+          <div ref={panelRef} className="flex min-h-0 flex-1 flex-col overflow-hidden">
           {/* Header */}
-          <div className="bg-[var(--dark)] text-[var(--bg)] px-5 py-3.5 flex items-center justify-between border-b border-[var(--bg)]/10">
+          <div className="bg-[var(--surface-hover)] text-[var(--text)] px-5 py-3.5 flex items-center justify-between border-b border-[var(--text)]/10">
             <div className="flex items-center gap-3">
-              <div className="w-8 h-8 rounded-full bg-[var(--accent)] text-[var(--on-accent)] flex items-center justify-center font-bold font-display text-sm">
-                <Bot className="w-4 h-4 text-[var(--on-accent)]" />
+              <div className="w-8 h-8 rounded-full border border-[var(--border)] text-[var(--text)] flex items-center justify-center font-bold font-display text-sm">
+                <Bot className="w-4 h-4" />
               </div>
               <div>
                 <div className="flex items-center gap-1.5">
-                  <h3 className="font-display font-semibold text-sm text-[var(--bg)]">
+                  <h3 className="font-display font-semibold text-sm text-[var(--text)]">
                     ExDevX Assistant
                   </h3>
-                  <span className="w-1.5 h-1.5 rounded-full bg-[var(--success)] inline-block" />
+                  <span className="size-1.5 rounded-full border border-[var(--success)] inline-block" />
                 </div>
-                <p className="text-[10px] font-mono text-[var(--bg)]/70 uppercase tracking-wider">
+                <p className="text-[10px] font-mono text-[var(--text)]/70 tracking-wider">
                   AI Engineering Consultant · Gemini Powered
                 </p>
               </div>
@@ -259,7 +261,7 @@ export const ChatWidget: React.FC = () => {
                 type="button"
                 onClick={resetChat}
                 title="Restart conversation"
-                className="p-1.5 text-[var(--bg)]/70 hover:text-[var(--bg)] rounded-xs focus-ring-dark transition-colors"
+                className="p-1.5 text-[var(--text)]/70 hover:text-[var(--text)] rounded-xs focus-ring-dark transition-colors"
                 aria-label="Restart conversation"
               >
                 <RotateCcw className="w-3.5 h-3.5" />
@@ -267,7 +269,7 @@ export const ChatWidget: React.FC = () => {
               <button
                 type="button"
                 onClick={() => setIsOpen(false)}
-                className="p-1.5 text-[var(--bg)]/70 hover:text-[var(--bg)] rounded-xs focus-ring-dark transition-colors"
+                className="p-1.5 text-[var(--text)]/70 hover:text-[var(--text)] rounded-xs focus-ring-dark transition-colors"
                 aria-label="Close chat panel"
               >
                 <X className="w-4 h-4" />
@@ -292,8 +294,8 @@ export const ChatWidget: React.FC = () => {
                   <div
                     className={`w-6 h-6 rounded-xs flex items-center justify-center text-xs shrink-0 mt-0.5 ${
                       isUser
-                        ? 'bg-[var(--primary)] text-[var(--bg)]'
-                        : 'bg-[var(--surface)] text-[var(--primary)] border border-[var(--text)]/10 font-bold'
+                        ? 'bg-[var(--surface-hover)] text-[var(--text)] border border-[var(--border)]'
+                        : 'bg-[var(--surface)] text-[var(--text)] border border-[var(--text)]/10 font-bold'
                     }`}
                     aria-hidden="true"
                   >
@@ -304,8 +306,8 @@ export const ChatWidget: React.FC = () => {
                   <div
                     className={`max-w-[85%] rounded-xs p-3.5 text-xs sm:text-sm ${
                       isUser
-                        ? 'bg-[var(--primary)] text-[var(--bg)] shadow-xs'
-                        : 'bg-[var(--surface)] text-[var(--text)] border border-[var(--text)]/10 shadow-xs'
+                        ? 'bg-[var(--surface-hover)] text-[var(--text)] border border-[var(--text)]/10'
+                          : 'bg-[var(--surface)] text-[var(--text)] border border-[var(--text)]/10'
                     }`}
                   >
                     {isUser ? (
@@ -329,8 +331,8 @@ export const ChatWidget: React.FC = () => {
             {/* Suggested Prompts (Shown on first load) */}
             {messages.length === 1 && (
               <div className="pt-2 pb-1 space-y-2">
-                <div className="text-[10px] font-mono uppercase tracking-wider text-[var(--text)]/50 flex items-center gap-1.5">
-                  <Sparkles className="w-3 h-3 text-[var(--accent)]" />
+                <div className="text-[10px] font-mono tracking-wider text-[var(--text)]/50 flex items-center gap-1.5">
+                  <Sparkles className="w-3 h-3 text-[var(--text-secondary)]" />
                   <span>Suggested inquiries</span>
                 </div>
                 <div className="grid grid-cols-1 gap-1.5">
@@ -339,7 +341,7 @@ export const ChatWidget: React.FC = () => {
                       key={prompt}
                       type="button"
                       onClick={() => handlePromptClick(prompt)}
-                      className="text-left px-3 py-2 text-xs font-sans text-[var(--text)] bg-[var(--surface)] hover:bg-[var(--bg)] border border-[var(--text)]/10 hover:border-[var(--primary)] rounded-xs transition-[border-color,background-color] focus-ring cursor-pointer flex items-center justify-between group"
+                      className="text-left px-3 py-2 text-xs font-sans text-[var(--text)] bg-[var(--surface)] hover:bg-[var(--surface-hover)] border border-[var(--text)]/10 hover:border-[var(--border)] rounded-xs transition-[border-color,background-color] focus-ring cursor-pointer flex items-center justify-between group"
                     >
                       <span>{prompt}</span>
                       <ArrowUpRight className="w-3 h-3 text-[var(--primary)] opacity-0 group-hover:opacity-100 transition-opacity shrink-0" />
@@ -392,13 +394,14 @@ export const ChatWidget: React.FC = () => {
                 type="submit"
                 disabled={!inputValue.trim() || isLoading}
                 aria-label="Send message"
-                className="bg-[var(--accent)] text-[var(--on-accent)] font-semibold p-2 sm:px-3 sm:py-2 rounded-xs hover:bg-[var(--accent-hover)] active:scale-95 disabled:opacity-40 disabled:pointer-events-none transition-[background-color,transform] focus-ring cursor-pointer flex items-center justify-center shrink-0"
+                className="rounded-none rounded-tr-md rounded-bl-md border border-[var(--border)] bg-[var(--primary)] p-2 font-semibold text-[var(--bg)] transition-colors hover:bg-[var(--surface-hover)] disabled:pointer-events-none disabled:opacity-40 focus-ring flex shrink-0 items-center justify-center sm:px-3 sm:py-2"
               >
                 <Send className="w-4 h-4" />
               </button>
             </form>
           </div>
-        </div>
+          </div>
+        </Dialog>
       )}
     </div>
   );

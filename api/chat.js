@@ -45,7 +45,7 @@ You are the ExDevX website assistant. Answer clearly, warmly, and briefly using 
 - Project timelines, payment milestones, and source code ownership are agreed in the written proposal or project agreement.
 
 ## CONTACT DETAILS
-- Email: hello@exdevx.in
+- Email: hallo@exdevx.in
 - Phone / WhatsApp: ${WHATSAPP_NUMBER}
 - Consultation: Visitors can send a project inquiry through the Contact page form or message directly on WhatsApp.
 
@@ -111,7 +111,7 @@ export default async function handler(req, res) {
   if (!apiKey) {
     console.warn('[chat] GEMINI_API_KEY is not configured in the server environment');
     return send(res, 200, {
-      text: `Hi! I'm the ExDevX assistant. Live AI chat requires the GEMINI_API_KEY environment variable. You can reach Abhay Jadhav and our engineering team directly at hello@exdevx.in or WhatsApp ${WHATSAPP_NUMBER}!`,
+      text: `Hi! I'm the ExDevX assistant. Live AI chat requires the GEMINI_API_KEY environment variable. You can reach Abhay Jadhav and our engineering team directly at hallo@exdevx.in or WhatsApp ${WHATSAPP_NUMBER}!`,
     });
   }
 
@@ -183,7 +183,7 @@ export default async function handler(req, res) {
     console.error('[chat] Gemini API request failed');
     return send(res, 502, {
       error: 'Upstream AI service error.',
-      text: `I'm having a momentary connection glitch. Feel free to contact our team directly at hello@exdevx.in or via WhatsApp at ${WHATSAPP_NUMBER}.`,
+      text: `I'm having a momentary connection glitch. Feel free to contact our team directly at hallo@exdevx.in or via WhatsApp at ${WHATSAPP_NUMBER}.`,
     });
   }
 }

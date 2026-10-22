@@ -20,7 +20,7 @@ export const ServicesPage: React.FC = () => {
       <section className="pt-16 pb-20 border-b border-[var(--text)]/10 bg-[var(--bg)]">
         <Container>
           <Reveal>
-            <div className="text-xs font-mono uppercase tracking-widest text-[var(--primary)] font-semibold mb-4">
+            <div className="text-xs font-mono tracking-widest text-[var(--primary)] font-semibold mb-4">
               Services
             </div>
             <h1 className="font-display text-4xl sm:text-6xl font-medium tracking-tight text-[var(--dark)] max-w-4xl leading-tight">
@@ -63,7 +63,7 @@ export const ServicesPage: React.FC = () => {
                       </p>
 
                       <div className="p-4 bg-[var(--bg)] border border-[var(--text)]/10 rounded-xs mb-6">
-                        <div className="text-xs font-mono uppercase tracking-wider text-[var(--text)]/50 mb-2">
+                        <div className="text-xs font-mono tracking-wider text-[var(--text)]/50 mb-2">
                           Technologies
                         </div>
                         <div className="flex flex-wrap gap-x-3 gap-y-1 text-xs font-mono text-[var(--text)] font-semibold">
@@ -86,7 +86,7 @@ export const ServicesPage: React.FC = () => {
                   <div className="lg:col-span-7">
                     <Reveal delay={1}>
                       <div className="bg-[var(--surface)] border border-[var(--text)]/10 p-6 sm:p-8 rounded-xs">
-                        <h3 className="text-xs font-mono uppercase tracking-wider text-[var(--primary)] font-bold mb-6 pb-2 border-b border-[var(--text)]/10">
+                        <h3 className="text-xs font-mono tracking-wider text-[var(--primary)] font-bold mb-6 pb-2 border-b border-[var(--text)]/10">
                           What we can build
                         </h3>
 
@@ -116,7 +116,7 @@ export const ServicesPage: React.FC = () => {
         <Container>
           <Reveal>
             <SectionHeading
-              tag="Architectural Standard"
+              tag="Architectural standard"
               title="How we work"
               description="A practical approach to building and maintaining software."
 
@@ -128,7 +128,7 @@ export const ServicesPage: React.FC = () => {
                   <Terminal className="w-4 h-4" />
                 </div>
                 <h3 className="font-display text-xl font-medium text-[var(--dark)] mb-2">
-                  Zero Lock-In
+                  Zero lock-in
                 </h3>
                 <p className="text-xs text-[var(--dark)]/80 leading-relaxed font-sans">
                   We use familiar tools and open standards, with clear handover so your team can continue working with the code.

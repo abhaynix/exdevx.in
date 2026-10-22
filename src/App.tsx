@@ -10,6 +10,7 @@ import { Navbar } from './components/ui/Navbar';
 import { Footer } from './components/ui/Footer';
 import ScrollToTop from './components/ScrollToTop';
 import { CookieConsent } from './components/ui/CookieConsent';
+import { ThemeProvider } from '../components/theme-provider';
 
 // Lazy-loaded route-level splitting
 const HomePage = lazy(() => import('./pages/HomePage'));
@@ -38,35 +39,37 @@ function PageLoader() {
 export function AppInner() {
   const isHome = useLocation().pathname === '/';
   return (
-    <MotionConfig reducedMotion="user">
-      <ScrollToTop />
-      <div className={`min-h-screen flex flex-col bg-[var(--bg)] text-[var(--text)]${isHome ? ' home-theme' : ''}`}>
-        <Navbar />
-        <main id="main-content" className="flex-1">
-          <Suspense fallback={<PageLoader />}>
-            <Routes>
-              <Route path="/" element={<HomePage />} />
-              <Route path="/services" element={<ServicesPage />} />
-              <Route path="/work" element={<WorkPage />} />
-              <Route path="/work/:slug" element={<CaseStudyPage />} />
-              <Route path="/about" element={<AboutPage />} />
-              <Route path="/contact" element={<ContactPage />} />
-              <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
-              <Route path="/terms-and-conditions" element={<TermsPage />} />
-              <Route path="/terms-of-service" element={<Navigate to="/terms-and-conditions" replace />} />
-              <Route path="/cookie-policy" element={<CookiePolicyPage />} />
-              <Route path="/404" element={<NotFoundPage />} />
-              <Route path="*" element={<NotFoundPage />} />
-            </Routes>
+    <ThemeProvider>
+      <MotionConfig reducedMotion="user">
+        <ScrollToTop />
+        <div className={`min-h-screen flex flex-col bg-[var(--bg)] text-[var(--text)]${isHome ? ' home-theme' : ''}`}>
+          <Navbar />
+          <main id="main-content" className="flex-1">
+            <Suspense fallback={<PageLoader />}>
+              <Routes>
+                <Route path="/" element={<HomePage />} />
+                <Route path="/services" element={<ServicesPage />} />
+                <Route path="/work" element={<WorkPage />} />
+                <Route path="/work/:slug" element={<CaseStudyPage />} />
+                <Route path="/about" element={<AboutPage />} />
+                <Route path="/contact" element={<ContactPage />} />
+                <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
+                <Route path="/terms-and-conditions" element={<TermsPage />} />
+                <Route path="/terms-of-service" element={<Navigate to="/terms-and-conditions" replace />} />
+                <Route path="/cookie-policy" element={<CookiePolicyPage />} />
+                <Route path="/404" element={<NotFoundPage />} />
+                <Route path="*" element={<NotFoundPage />} />
+              </Routes>
+            </Suspense>
+          </main>
+          <Footer />
+          <CookieConsent />
+          <Suspense fallback={null}>
+            <ChatWidget />
           </Suspense>
-        </main>
-        <Footer />
-        <CookieConsent />
-        <Suspense fallback={null}>
-          <ChatWidget />
-        </Suspense>
-      </div>
-    </MotionConfig>
+        </div>
+      </MotionConfig>
+    </ThemeProvider>
   );
 }
 

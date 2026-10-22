@@ -20,8 +20,8 @@ export const AboutPage: React.FC = () => {
       <section className="pt-16 pb-20 border-b border-[var(--text)]/10 bg-[var(--bg)]">
         <Container>
           <Reveal>
-            <div className="text-xs font-mono uppercase tracking-widest text-[var(--primary)] font-semibold mb-4">
-              Agency Origins & Ethos
+            <div className="text-xs font-mono tracking-widest text-[var(--primary)] font-semibold mb-4">
+              Agency origins and ethos
             </div>
             <h1 className="font-display text-4xl sm:text-6xl font-medium tracking-tight text-[var(--dark)] max-w-4xl leading-tight">
               Execution over theory. Automation first. Zero fluff.
@@ -40,8 +40,8 @@ export const AboutPage: React.FC = () => {
             <div className="lg:col-span-5">
               <Reveal>
                 <div className="p-8 bg-[var(--bg)] border border-[var(--text)]/10 rounded-xs">
-                  <div className="text-xs font-mono text-[var(--primary)] uppercase tracking-wider font-bold mb-2">
-                    Founder Profile
+                  <div className="text-xs font-mono text-[var(--primary)] tracking-wider font-bold mb-2">
+                    Founder profile
                   </div>
                   <h3 className="font-display text-3xl font-semibold text-[var(--dark)] mb-2">
                     {siteConfig.founder.name}
@@ -61,7 +61,7 @@ export const AboutPage: React.FC = () => {
                       rel="noopener noreferrer"
                       className="text-[var(--primary)] hover:underline inline-flex items-center gap-1 focus-ring"
                     >
-                      GitHub Profile <ArrowUpRight className="w-3 h-3" />
+                      GitHub profile <ArrowUpRight className="w-3 h-3" />
                     </a>
                     <a
                       href={siteConfig.social.linkedin}
@@ -86,7 +86,7 @@ export const AboutPage: React.FC = () => {
                     Most web and software projects fail not because of insufficient frameworks, but because of poor taste, unnecessary layers of abstraction, and a lack of direct engineering accountability.
                   </p>
                   <p>
-                    At ExDevX, clients collaborate directly with systems engineers—never account managers or outsourced junior subcontractors. We scope tightly, eliminate speculative features, write strict TypeScript, and deploy self-healing automated pipelines.
+                    At ExDevX, clients collaborate directly with systems engineers, never account managers or outsourced junior subcontractors. We scope tightly, eliminate speculative features, write strict TypeScript, and deploy self-healing automated pipelines.
                   </p>
                   <p>
                     Our portfolio includes agricultural logistics and institutional web platforms such as KisanPool and ssnlc.in.
@@ -104,7 +104,7 @@ export const AboutPage: React.FC = () => {
         <Container>
           <Reveal>
             <SectionHeading
-              tag="Core Invariants"
+              tag="Core principles"
               title="Three pillars that govern every engagement"
               description="These aren't marketing slogans. They are architectural guidelines applied to every line of code we ship."
 
@@ -112,9 +112,9 @@ export const AboutPage: React.FC = () => {
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               <div className="p-6 bg-[var(--dark)]/5 border border-[var(--text)]/10 rounded-xs">
-                <span className="text-xs font-mono text-[var(--accent)] font-bold block mb-2">01 / PRINCIPLE</span>
+                <span className="text-xs font-mono text-[var(--accent)] font-bold block mb-2">01 / Principle</span>
                 <h3 className="font-display text-2xl font-medium text-[var(--dark)] mb-3">
-                  Execution Over Theory
+                  Execution over theory
                 </h3>
                 <p className="text-xs text-[var(--dark)]/80 leading-relaxed font-sans">
                   We focus on clear scope, working prototypes and useful feedback during development.
@@ -122,7 +122,7 @@ export const AboutPage: React.FC = () => {
               </div>
 
               <div className="p-6 bg-[var(--dark)]/5 border border-[var(--text)]/10 rounded-xs">
-                <span className="text-xs font-mono text-[var(--accent)] font-bold block mb-2">02 / PRINCIPLE</span>
+                <span className="text-xs font-mono text-[var(--accent)] font-bold block mb-2">02 / Principle</span>
                 <h3 className="font-display text-2xl font-medium text-[var(--dark)] mb-3">
                   Automation First
                 </h3>
@@ -132,7 +132,7 @@ export const AboutPage: React.FC = () => {
               </div>
 
               <div className="p-6 bg-[var(--dark)]/5 border border-[var(--text)]/10 rounded-xs">
-                <span className="text-xs font-mono text-[var(--accent)] font-bold block mb-2">03 / PRINCIPLE</span>
+                <span className="text-xs font-mono text-[var(--accent)] font-bold block mb-2">03 / Principle</span>
                 <h3 className="font-display text-2xl font-medium text-[var(--dark)] mb-3">
                   Self-Hosted & Resilient Infra
                 </h3>
@@ -187,7 +187,7 @@ export const AboutPage: React.FC = () => {
                 <div>
                   <span className="text-xs font-mono font-bold text-[var(--primary)]">2024 - Present</span>
                   <h4 className="font-display text-lg font-semibold text-[var(--dark)] mt-0.5">
-                    AI Agent Workflows & Quantitative Automation
+                    AI agent workflows and quantitative automation
                   </h4>
                   <p className="text-xs text-[var(--text)]/80 font-sans mt-1 leading-relaxed">
                     Expanded core practice to include Gemini API reasoning agents, autonomous data ingestion, and agricultural logistics networks (KisanPool).

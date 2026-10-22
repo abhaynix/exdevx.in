@@ -1,12 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { ArrowUpRight } from 'lucide-react';
 import { cn } from '../../lib/cn';
+import { buttonVariants } from '../../../components/ui/button';
 
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: 'primary' | 'outline' | 'outline-on-dark' | 'ghost' | 'ghost-on-dark';
   size?: 'sm' | 'md' | 'lg';
   to?: string;
   href?: string;
+  iconRight?: React.ReactNode;
   children: React.ReactNode;
 }
 
@@ -15,44 +18,35 @@ export const Button: React.FC<ButtonProps> = ({
   size = 'md',
   to,
   href,
+  iconRight,
   className,
   children,
   disabled,
   ...props
 }) => {
-  const baseStyles =
-    'inline-flex items-center justify-center font-sans font-medium transition-[transform,background-color,border-color,box-shadow,color] duration-150 ease-out focus-ring cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed disabled:pointer-events-none disabled:transform-none select-none';
-
-  const sizeStyles = {
-    sm: 'text-xs px-3.5 py-1.5 rounded-sm tracking-wide',
-    md: 'text-sm px-5 py-2.5 rounded-sm tracking-wide',
-    lg: 'text-base px-7 py-3.5 rounded-sm tracking-wide',
-  };
-
-  const variantStyles = {
-    primary:
-      'bg-[var(--accent)] text-[var(--on-accent)] font-semibold hover:bg-[var(--accent-hover)] active:scale-[0.98]',
-    outline:
-      'border border-[var(--control-border)] text-[var(--dark)] bg-transparent hover:bg-[var(--surface-hover)] hover:border-[var(--focus-ring)] active:scale-[0.98]',
-    'outline-on-dark':
-      'border border-[var(--control-border)] text-[var(--dark)] bg-transparent hover:bg-[var(--surface-hover)] hover:border-[var(--focus-ring)] hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98]',
-    ghost:
-      'text-[var(--primary)] bg-transparent hover:underline underline-offset-4',
-    'ghost-on-dark':
-      'text-[var(--dark)] bg-transparent hover:bg-[var(--surface-hover)] active:scale-[0.98]',
-  };
+  const variantMap = {
+    primary: 'solid',
+    outline: 'outline',
+    'outline-on-dark': 'outline',
+    ghost: 'ghost',
+    'ghost-on-dark': 'ghost',
+  } as const;
+  const sizeMap = { sm: 'sm', md: 'md', lg: 'lg' } as const;
 
   const combinedClasses = cn(
-    baseStyles,
-    sizeStyles[size],
-    variantStyles[variant],
+    buttonVariants({ variant: variantMap[variant], size: sizeMap[size] }),
+    'focus-ring',
     className
   );
+  const trailingIcon = iconRight === undefined && variant === 'primary'
+    ? <ArrowUpRight aria-hidden="true" className="size-4" />
+    : iconRight;
+  const content = <>{children}{trailingIcon && <span aria-hidden="true" className="-ml-1 inline-flex">{trailingIcon}</span>}</>;
 
   if (to) {
     return (
-      <Link to={to} className={combinedClasses}>
-        {children}
+      <Link to={to} className={combinedClasses} aria-disabled={disabled || undefined} onClick={disabled ? (event) => event.preventDefault() : undefined}>
+        {content}
       </Link>
     );
   }
@@ -63,17 +57,19 @@ export const Button: React.FC<ButtonProps> = ({
       <a
         href={href}
         className={combinedClasses}
+        aria-disabled={disabled || undefined}
+        onClick={disabled ? (event) => event.preventDefault() : undefined}
         target={isExternal && !href.startsWith('mailto:') ? '_blank' : undefined}
         rel={isExternal && !href.startsWith('mailto:') ? 'noopener noreferrer' : undefined}
       >
-        {children}
+        {content}
       </a>
     );
   }
 
   return (
     <button className={combinedClasses} disabled={disabled} {...props}>
-      {children}
+      {content}
     </button>
   );
 };

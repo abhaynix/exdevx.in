@@ -1,6 +1,5 @@
 import React, { useEffect, useRef } from 'react';
 import { ArrowDown, ArrowRight, ArrowUpRight, Code2, Layers3, Smartphone, Sparkles, Workflow, PenTool, Search } from 'lucide-react';
-import { Helmet } from 'react-helmet-async';
 import { siteConfig } from '../data/site';
 import { servicesData } from '../data/services';
 import { techStackList } from '../data/process';
@@ -9,6 +8,7 @@ import { Container } from '../components/ui/Container';
 import { Section } from '../components/ui/Section';
 import { SectionHeading } from '../components/ui/SectionHeading';
 import { Button } from '../components/ui/Button';
+import { Hero } from '../../components/hero';
 import { ServiceCard } from '../components/ui/ServiceCard';
 import { WorkCarousel } from '../components/sections/WorkCarousel';
 import { ProcessStepper } from '../components/sections/ProcessStepper';
@@ -84,24 +84,20 @@ export const HomePage: React.FC = () => {
 
   return (
     <div ref={scope} className="home-motion-scope">
-      <Helmet><meta name="theme-color" content="#08090c" /></Helmet>
       <SEO
         title="ExDevX | Web, Mobile & AI Development"
         description="ExDevX designs and builds web platforms, mobile apps, automation systems and AI integrations for businesses. Based in Maharashtra, India."
         schema={[getOrganizationSchema(), getWebSiteSchema()]}
       />
 
-      <section className="home-hero" aria-labelledby="home-title">
-        <Container size="wide" className="home-hero-copy">
-          <p className="home-badge" data-hero="eyebrow"><span>Independent digital agency · Maharashtra, India</span></p>
-          <h1 id="home-title" data-hero="title"><span data-hero-line>We build digital</span><span data-hero-line>experiences that move</span><span data-hero-line>businesses forward.</span></h1>
-          <p className="home-hero-description" data-hero="copy">ExDevX turns ambitious ideas into thoughtful websites, applications and digital products built for real work.</p>
-          <div className="home-hero-actions" data-hero="actions">
-            <Button to="/contact" size="md" className="home-primary-button">Start a project <ArrowUpRight aria-hidden="true" size={16} /></Button>
-            <Button href="#work" variant="outline" size="md" className="home-secondary-button">Explore our work <ArrowDown aria-hidden="true" size={15} /></Button>
-          </div>
-
-          <div className="home-hero-visual" data-hero="visual" aria-label="A preview of an ExDev digital product dashboard">
+      <Hero
+        className="home-hero"
+        badge="Independent digital agency · Maharashtra, India"
+        title={<><span data-hero-line>We build digital</span><span data-hero-line>experiences that move</span><span data-hero-line>businesses forward.</span></>}
+        primary={{ label: 'Start a project', href: '/contact' }}
+        secondary={{ label: 'Explore our work', href: '#work' }}
+        media={
+          <div className="home-hero-visual" aria-label="A preview of an ExDev digital product dashboard">
             <div className="home-arc" aria-hidden="true"><span data-hero="glow" /></div>
             <div className="home-dashboard">
               <div className="home-dashboard-top"><span className="home-dashboard-logo">ExDev<span>•</span></span><span>Overview　 Projects　 Analytics　 Settings</span><i>AJ</i></div>
@@ -112,14 +108,16 @@ export const HomePage: React.FC = () => {
                 <div><small>DELIVER</small><strong>Build <em>→ launch</em></strong><span>Make it work in the world</span></div>
               </div>
               <div className="home-dashboard-panels">
-                <div className="home-dashboard-projects"><div className="home-panel-title"><strong>Recent projects</strong><span>View all ↗</span></div>{projectsData.slice(0, 3).map((project, index) => <div className="home-project-row" key={project.slug}><b>{String(index + 1).padStart(2, '0')}</b><span><strong>{project.title}</strong><small>{project.category}</small></span><i className={`home-status home-status-${index}`} /></div>)}</div>
+                <div className="home-dashboard-projects"><div className="home-panel-title"><strong>Recent projects</strong><span>View all ↗</span></div>{projectsData.slice(0, 3).map((project, index) => <div className="home-project-row" key={project.slug}><b>{String(index + 1).padStart(2, '0')}</b><span><strong>{project.title}</strong><small>{project.category}</small></span><span className={`home-status home-status-${index}`}>{['In progress', 'Delivered', 'Live'][index]}</span></div>)}</div>
                 <div className="home-dashboard-chart"><div className="home-panel-title"><strong>Product milestones</strong><span>Illustrative</span></div><div className="home-chart" aria-hidden="true">{[44, 68, 38, 78, 55, 90, 62, 76, 48, 84, 58, 72, 45, 66].map((height, index) => <i key={index} style={{ height: `${height}%` }} />)}</div><div className="home-chart-labels"><span>IDEA</span><span>DESIGN</span><span>BUILD</span><span>LAUNCH</span></div></div>
               </div>
             </div>
           </div>
-          <a className="home-scroll-cue" href="#capabilities"><span>Scroll to explore</span><ArrowDown size={14} aria-hidden="true" /></a>
-        </Container>
-      </section>
+        }
+      >
+        ExDevX turns ambitious ideas into thoughtful websites, applications and digital products built for real work.
+      </Hero>
+      <div className="home-hero-scroll"><a className="home-scroll-cue" href="#capabilities"><span>Scroll to explore</span><ArrowDown size={14} aria-hidden="true" /></a></div>
 
       <section className="home-capabilities" id="capabilities" aria-label="Agency capabilities">
         <Container size="wide">
@@ -152,7 +150,7 @@ export const HomePage: React.FC = () => {
               ['Backend & data', ['Node.js', 'Python', 'FastAPI', 'PostgreSQL']],
               ['Mobile & infrastructure', ['React Native', 'Expo', 'Docker', 'AWS']],
               ['AI & automation', ['Gemini API', 'LLM integrations', 'Workflow automation']],
-            ].map(([category, items]) => <div className="home-stack-group" data-reveal key={category as string}><span>{category as string}</span><p>{(items as string[]).join('　·　')}</p></div>)}
+            ].map(([category, items]) => <div className="home-stack-group" key={category as string}><span>{category as string}</span><p>{(items as string[]).join('　·　')}</p></div>)}
           </div>
           <span className="sr-only">Current capabilities include {techStackList.map(({ name }) => name).join(', ')}.</span>
         </Container>
@@ -166,7 +164,7 @@ export const HomePage: React.FC = () => {
       </section>
 
       <section className="home-contact-cta" aria-labelledby="home-contact-title">
-        <Container size="wide"><div className="home-cta-panel"><span className="home-cta-light" data-reveal aria-hidden="true" /><div data-reveal><p className="home-eyebrow">Have an idea worth building?</p><h2 id="home-contact-title">Let’s turn it into something real.</h2><p>Tell us what you’re thinking. We’ll help shape the next step.</p></div><div data-reveal><Button to="/contact" size="md" className="home-primary-button">Start a project <ArrowUpRight size={16} aria-hidden="true" /></Button></div></div></Container>
+        <Container size="wide"><div className="home-cta-panel"><span className="home-cta-light" data-reveal aria-hidden="true" /><div data-reveal><p className="home-eyebrow">Have an idea worth building?</p><h2 id="home-contact-title">Let’s turn it into something real.</h2><p>Tell us what you’re thinking. We’ll help shape the next step.</p></div><div data-reveal><Button to="/contact" size="md" iconRight={null} className="home-primary-button">Start a project <ArrowUpRight size={16} aria-hidden="true" /></Button></div></div></Container>
       </section>
 
       <Section id="contact" className="home-contact-section">

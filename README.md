@@ -125,10 +125,11 @@ npm run preview
    - **Build Command**: `npm run build`
    - **Output Directory**: `dist`
 4. Add environment variables in Vercel Project Settings:
-   - `VITE_CONTACT_ENDPOINT` *(optional: webhook/API for online form delivery; without it, the form opens a prefilled email draft)*
    - `GEMINI_API_KEY` *(optional: enables live AI chat; without it, chat shows a contact fallback)*
    - `GEMINI_MODEL` *(optional: defaults to `gemini-3.5-flash`)*
 5. Deploy.
+
+The inquiry form opens WhatsApp with a prefilled message; the visitor reviews and sends it there. The form does not email inquiry details.
 
 ### 2. Self-Hosted (Docker & Dokploy)
 

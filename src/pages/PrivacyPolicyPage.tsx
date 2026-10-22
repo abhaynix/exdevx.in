@@ -10,8 +10,8 @@ export const PrivacyPolicyPage: React.FC = () => (
     <SEO title="Privacy Policy | ExDevX" description="Learn what information the ExDevX website processes, why it is used, and how to contact us about privacy." />
     <section className="pt-16 pb-12 border-b border-[var(--text)]/10 bg-[var(--bg)]">
       <Container size="narrow">
-        <div className="text-xs font-mono uppercase tracking-widest text-[var(--primary)] font-bold mb-2">Legal & Governance</div>
-        <h1 className="font-display text-4xl sm:text-5xl font-medium text-[var(--dark)]">Privacy Policy</h1>
+        <div className="text-xs font-mono tracking-widest text-[var(--primary)] font-bold mb-2">Legal and governance</div>
+        <h1 className="font-display text-4xl sm:text-5xl font-medium text-[var(--dark)]">Privacy policy</h1>
         <p className="text-xs font-mono text-[var(--text)]/60 mt-3">Last updated: October 2026 · ExDevX, Maharashtra, India</p>
       </Container>
     </section>
@@ -21,8 +21,8 @@ export const PrivacyPolicyPage: React.FC = () => (
           <p>This notice describes data handling visible in the ExDevX website code. It is not a statement that ExDevX or this website is legally compliant. The legal entity operating the site and its registered address are not identified here.</p>
           <section>
             <h2 className="font-display text-xl font-semibold text-[var(--dark)] mb-3">Information and purposes</h2>
-            <p>The project inquiry form asks for your name, email address, selected service, an optional budget or timeline, and your message. These details are used to respond to the inquiry and discuss a possible engagement. If no form receiver is configured, your browser opens a prefilled email draft addressed to {siteConfig.contact.email}; information is sent only if you choose to send it.</p>
-            <p className="mt-3">If an online contact endpoint is configured for a deployment, the form sends those fields, plus a submission timestamp and site source label, to that endpoint. The endpoint and its storage practices are deployment-specific and are not controlled or verified by this repository. Please avoid including sensitive personal information in an inquiry.</p>
+            <p>The project inquiry form asks for your name, email address, WhatsApp/mobile number, selected service, optional budget or timeline, and project description. The form opens a prefilled WhatsApp conversation with EXDEV X. The form does not email your details. Opening the link transfers the prefilled text to WhatsApp; it is sent to EXDEV X only if you choose to send it there.</p>
+            <p className="mt-3">Please avoid including sensitive personal information in an inquiry.</p>
             <p className="mt-3">The AI chat sends the message you submit and up to 20 earlier messages in that chat to the website's server. When the Gemini integration is enabled, the server sends that conversation to Google's Gemini API to generate a reply. Chat history is held in page memory and is not saved by the website code to browser storage.</p>
           </section>
           <section>

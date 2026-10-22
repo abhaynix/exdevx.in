@@ -33,24 +33,20 @@ export const NotFoundPage: React.FC = () => {
   return (
     <>
       <SEO
-        title="404 — Page Not Found | ExDevX"
+        title="404: page not found | ExDevX"
         description="The page you're looking for doesn't exist or may have moved. Return to ExDevX or contact our team."
         noindex
       />
       <section className="home-theme relative isolate flex min-h-[calc(100svh-9rem)] items-center overflow-hidden py-20 text-center sm:py-28">
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute left-1/2 top-1/2 -z-10 h-[28rem] w-[min(90vw,44rem)] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(ellipse,rgba(255,121,46,0.11),transparent_68%)]"
-        />
         <Container size="narrow" className="w-full">
           <div ref={content}>
-            <p data-404-enter className="font-mono text-xs font-medium uppercase tracking-[0.2em] text-[var(--muted)]">
-              Error_code: 404
+            <p data-404-enter className="font-mono text-xs font-medium tracking-[0.2em] text-[var(--muted)]">
+              Error code: 404
             </p>
-            <p data-404-enter aria-hidden="true" className="mt-4 font-display text-[clamp(7rem,27vw,17rem)] font-semibold leading-[0.78] tracking-[-0.09em] text-[var(--accent)]">
+            <p data-404-enter aria-hidden="true" className="mt-4 font-display text-[clamp(7rem,27vw,17rem)] font-semibold leading-[0.78] tracking-[-0.09em] text-[var(--text)]">
               404
             </p>
-            <h1 id="not-found-title" data-404-enter className="mt-8 font-display text-3xl font-semibold leading-tight tracking-[-0.045em] text-white sm:text-5xl">
+            <h1 id="not-found-title" data-404-enter className="mt-8 font-display text-3xl font-semibold leading-tight tracking-[-0.045em] text-[var(--text)] sm:text-5xl">
               Lost in the digital space.
             </h1>
             <p data-404-enter className="mx-auto mt-4 max-w-xl font-sans text-base leading-relaxed text-[var(--muted)] sm:text-lg">

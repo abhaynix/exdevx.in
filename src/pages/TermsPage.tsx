@@ -9,7 +9,7 @@ export const TermsPage: React.FC = () => (
     <SEO title="Terms and Conditions | ExDevX" description="Terms for using the ExDevX website and information about how project engagements are agreed." />
     <section className="pt-16 pb-12 border-b border-[var(--text)]/10 bg-[var(--bg)]">
       <Container size="narrow">
-        <div className="text-xs font-mono uppercase tracking-widest text-[var(--primary)] font-bold mb-2">Legal & Governance</div>
+        <div className="text-xs font-mono tracking-widest text-[var(--primary)] font-bold mb-2">Legal and governance</div>
         <h1 className="font-display text-4xl sm:text-5xl font-medium text-[var(--dark)]">Terms and Conditions</h1>
         <p className="text-xs font-mono text-[var(--text)]/60 mt-3">Last updated: October 2026 · ExDevX, Maharashtra, India</p>
       </Container>

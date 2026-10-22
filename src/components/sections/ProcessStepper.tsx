@@ -60,8 +60,8 @@ export const ProcessStepper: React.FC = () => {
           </p>
 
           <div className="border-t border-[var(--text)]/10 pt-6">
-            <h4 className="text-xs uppercase tracking-wider text-[var(--text)]/60 mb-3">
-              Phase Deliverables
+            <h4 className="text-xs tracking-wider text-[var(--text)]/60 mb-3">
+                Phase deliverables
             </h4>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
               {processSteps[activeStep].deliverables.map((del) => (

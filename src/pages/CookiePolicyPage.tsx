@@ -8,8 +8,8 @@ export const CookiePolicyPage: React.FC = () => (
     <SEO title="Cookie Policy | ExDevX" description="Cookie and browser storage details for the ExDevX website, including optional analytics preferences." />
     <section className="pt-16 pb-12 border-b border-[var(--text)]/10 bg-[var(--bg)]">
       <Container size="narrow">
-        <div className="text-xs font-mono uppercase tracking-widest text-[var(--primary)] font-bold mb-2">Legal & Governance</div>
-        <h1 className="font-display text-4xl sm:text-5xl font-medium text-[var(--dark)]">Cookie Policy</h1>
+        <div className="text-xs font-mono tracking-widest text-[var(--primary)] font-bold mb-2">Legal and governance</div>
+        <h1 className="font-display text-4xl sm:text-5xl font-medium text-[var(--dark)]">Cookie policy</h1>
         <p className="text-xs font-mono text-[var(--text)]/60 mt-3">Last updated: October 2026</p>
       </Container>
     </section>

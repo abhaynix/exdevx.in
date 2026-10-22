@@ -39,7 +39,7 @@ export const CaseStudyPage: React.FC = () => {
                 className="inline-flex items-center gap-2 text-xs font-mono font-medium text-[var(--primary)] hover:underline focus-ring py-1"
               >
                 <ArrowLeft className="w-3.5 h-3.5" />
-                <span>Back to All Work</span>
+                <span>Back to all work</span>
               </Link>
             </div>
 
@@ -55,13 +55,13 @@ export const CaseStudyPage: React.FC = () => {
               {project.title}
             </h1>
 
-            <p className="text-sm font-mono uppercase tracking-wider text-[var(--text)]/60 max-w-2xl mb-8">
+            <p className="text-sm font-mono tracking-wider text-[var(--text)]/60 max-w-2xl mb-8">
               {project.subtitle}
             </p>
 
             {project.liveUrl && (
               <div className="mt-8">
-                <Button href={project.liveUrl} variant="primary" size="md">
+                <Button href={project.liveUrl} variant="primary" size="md" iconRight={null}>
                 Visit project <ArrowUpRight className="w-4 h-4 ml-1.5" />
                 </Button>
               </div>
@@ -76,8 +76,8 @@ export const CaseStudyPage: React.FC = () => {
           <Reveal>
             <div className="space-y-12">
               <div>
-                <h2 className="text-xs font-mono uppercase tracking-widest text-[var(--primary)] font-bold mb-3">
-                  01. The Core Challenge
+                <h2 className="text-xs font-mono tracking-widest text-[var(--primary)] font-bold mb-3">
+                  01. The core challenge
                 </h2>
                 <h3 className="font-display text-2xl sm:text-3xl font-semibold text-[var(--dark)] mb-4">
                   Overcoming bottlenecks & infrastructural instability
@@ -88,8 +88,8 @@ export const CaseStudyPage: React.FC = () => {
               </div>
 
               <div className="border-t border-[var(--text)]/10 pt-10">
-                <h2 className="text-xs font-mono uppercase tracking-widest text-[var(--primary)] font-bold mb-3">
-                  02. Engineered Solution
+                <h2 className="text-xs font-mono tracking-widest text-[var(--primary)] font-bold mb-3">
+                  02. Engineered solution
                 </h2>
                 <h3 className="font-display text-2xl sm:text-3xl font-semibold text-[var(--dark)] mb-4">
                   Type-safe implementation designed for resilient scale
@@ -107,11 +107,11 @@ export const CaseStudyPage: React.FC = () => {
       <Section tone="surface">
         <Container size="narrow">
           <Reveal>
-            <div className="text-xs font-mono uppercase tracking-widest text-[var(--accent)] font-semibold mb-3">
+            <div className="text-xs font-mono tracking-widest text-[var(--accent)] font-semibold mb-3">
               03. Technical Architecture
             </div>
             <h2 className="font-display text-2xl sm:text-3xl font-medium text-[var(--dark)] mb-6">
-              Engineering Specs & Architectural Invariants
+              Engineering specs and architectural invariants
             </h2>
 
             <div className="space-y-4 mb-10">
@@ -130,8 +130,8 @@ export const CaseStudyPage: React.FC = () => {
 
             {/* Stack Tags */}
             <div className="border-t border-[var(--text)]/10 pt-6">
-              <div className="text-xs font-mono uppercase tracking-wider text-[var(--dark)]/60 mb-3">
-                Technologies Utilized
+              <div className="text-xs font-mono tracking-wider text-[var(--dark)]/60 mb-3">
+                Technologies utilized
               </div>
               <div className="flex flex-wrap gap-2">
                 {project.stack.map((item) => (

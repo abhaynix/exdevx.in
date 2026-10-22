@@ -8,8 +8,8 @@ export const TechStrip: React.FC = () => {
       <Container>
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
           <div className="md:w-1/4">
-            <span className="text-xs font-mono uppercase tracking-widest text-[var(--primary)] font-bold block mb-1">
-              Foundational Stack
+            <span className="text-xs font-mono tracking-widest text-[var(--primary)] font-bold block mb-1">
+              Foundational stack
             </span>
             <p className="text-xs text-[var(--text)]/60 font-sans">
               Type-safe languages, cloud-native runtimes & modern databases.
@@ -20,7 +20,7 @@ export const TechStrip: React.FC = () => {
             {techStackList.map((item, index) => (
               <div key={item.name} className="flex items-center gap-2 text-sm font-mono text-[var(--text)]">
                 <span className="font-semibold text-[var(--dark)]">{item.name}</span>
-                <span className="text-[10px] text-[var(--text-secondary)] uppercase">({item.category})</span>
+                <span className="text-[10px] text-[var(--text-secondary)]">({item.category})</span>
                 {index < techStackList.length - 1 && (
                   <span className="text-[var(--text)]/20 ml-2 hidden sm:inline" aria-hidden="true">
                     /

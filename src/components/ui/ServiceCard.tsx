@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Code2, Database, Globe2, PenTool, Search, Smartphone, Sparkles, Workflow } from 'lucide-react';
 import { ServiceItem } from '../../data/services';
+import { Card } from '../../../components/ui/card';
 
 interface ServiceCardProps {
   service: ServiceItem;
@@ -20,7 +21,7 @@ export const ServiceCard: React.FC<ServiceCardProps> = ({ service, index }) => {
   }[service.id] ?? Globe2;
 
   return (
-    <article className="editorial-card p-6 sm:p-8 flex flex-col justify-between h-full">
+    <Card role="article" className="editorial-card p-6 sm:p-8 flex flex-col justify-between h-full">
       <div>
         <div className="mb-4 flex items-center justify-between text-xs font-medium text-[var(--primary)]">
           Service {String(index + 1).padStart(2, '0')}
@@ -45,12 +46,12 @@ export const ServiceCard: React.FC<ServiceCardProps> = ({ service, index }) => {
       <div>
         <Link
           to={`/services#${service.id}`}
-          className="inline-flex items-center gap-2 text-xs font-mono font-bold tracking-wider uppercase text-[var(--primary)] hover:text-[var(--accent-hover)] group focus-ring py-1"
+          className="inline-flex items-center gap-2 text-xs font-mono font-bold tracking-wider text-[var(--primary)] hover:text-[var(--accent-hover)] group focus-ring py-1"
         >
           <span>View service</span>
           <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
         </Link>
       </div>
-    </article>
+    </Card>
   );
 };
