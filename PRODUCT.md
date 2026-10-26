@@ -22,7 +22,7 @@ web
 ## Operating Context
 
 - The website presents agency capabilities, work examples, and a project inquiry form.
-- The primary contact channel is WhatsApp at `+91 70204 01094`; email at `hallo@exdevx.in` is also available.
+- The primary contact channel is WhatsApp at `+91 70204 01094`; email at `hello@exdevx.in` is also available.
 - The inquiry form collects name, work email, optional WhatsApp number, requested service, estimated budget or timeline, and project overview. It opens a prefilled WhatsApp message; the visitor must choose to send it. It does not automatically send WhatsApp messages or email form details.
 - Published budget ranges are indicative, not fixed packages. Final quotations depend on scope, complexity, integrations, and requirements.
 
@@ -40,7 +40,7 @@ web
 - Brand name: EXDEV X. The current website also spells it ExDevX.
 - Preserve a modern, minimal, premium, developer-focused identity and keep the existing design system consistent across pages.
 - Voice and experience: concise, clear, human, professional, transparent, and collaborative. Avoid marketing jargon, clutter, excessive animation, and generic copy.
-- Public contact details: WhatsApp `+91 70204 01094` is primary; `hallo@exdevx.in` is also available.
+- Public contact details: WhatsApp `+91 70204 01094` is primary; `hello@exdevx.in` is also available.
 
 ## Evidence on Hand
 

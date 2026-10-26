@@ -20,7 +20,7 @@ export const ContactPage: React.FC = () => (
             Let’s build something great.
           </h1>
           <p className="mt-6 text-lg text-[var(--text)]/80 max-w-2xl font-sans leading-relaxed">
-            Tell us about your project. We’ll get back to you through WhatsApp or email.
+            Share a few project details and review the prefilled message in WhatsApp before sending. Prefer email? Use the address below.
           </p>
         </Reveal>
       </Container>

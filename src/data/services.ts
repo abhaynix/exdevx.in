@@ -64,12 +64,17 @@ export const servicesData: ServiceItem[] = [
     techStack: ["Gemini API", "Python", "FastAPI", "LangChain", "pgvector", "Ollama", "TypeScript"],
   },
   {
-    id: "backend-api",
-    title: "Backend & API Engineering",
-    shortDescription: "Reliable APIs, data models and integrations for the products you depend on.",
-    fullDescription: "We build the services behind digital products, connecting interfaces to reliable data and third-party tools.",
-    deliverables: ["REST and GraphQL APIs", "Database design and integration", "Authentication and service connections"],
-    techStack: ["Node.js", "Python", "FastAPI", "PostgreSQL", "MongoDB"],
+    id: "whatsapp-crm-ai",
+    title: "WhatsApp CRM with AI",
+    shortDescription: "Automate customer conversations, manage leads, and streamline your business with AI-powered WhatsApp CRM solutions.",
+    fullDescription: "Automate customer conversations, manage leads, and streamline your business with AI-powered WhatsApp CRM solutions.",
+    deliverables: [
+      "AI-powered WhatsApp chat automation",
+      "Lead management and automated follow-ups",
+      "Customer support and smart replies",
+      "WhatsApp Business API integration",
+    ],
+    techStack: ["WhatsApp Business API", "CRM Integrations", "AI Workflows", "Automated Follow-ups"],
   },
   {
     id: "ui-ux-design",

@@ -22,7 +22,7 @@ export function MenuToggle({ open, className, ...props }: React.ComponentProps<'
 
 /** The bars alone. */
 export function MenuGlyph({ open }: { open: boolean }) {
-  const bar = 'origin-center transition-all duration-300 motion-reduce:transition-none'
+  const bar = 'origin-center transition-transform duration-300 motion-reduce:transition-none'
   return (
     <svg aria-hidden="true" className="pointer-events-none size-4.5 fill-current" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
       <rect

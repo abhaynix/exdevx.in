@@ -22,6 +22,27 @@ export type PortfolioProject = Pick<ProjectCaseStudy, 'slug' | 'title' | 'catego
 };
 
 export const projectsData: ProjectCaseStudy[] = [
+   {
+    slug: "ssnlc-law-college",
+    title: "Law College Website",
+    subtitle: "High-Traffic Institutional Academic Management & Admissions System",
+    category: "Institutional Platform",
+    year: "2023 - 2024",
+    client: "Shri Shivaji New Law College",
+
+    summary: "An institutional website for syllabus information, online applications, notices and faculty resources.",
+    challenge: "The institution needed a way to present academic information and manage online applications and notices.",
+    solution: "Designed and deployed an institutional platform with PDF hall ticket generation, application review, and a notice feed.",
+    architecture: [
+      "Static site generation with incremental ISR revalidation for page delivery",
+      "Role-based administrative portal for faculty notices and exam grade submissions",
+      "Automated cloud document verification pipeline with watermarking",
+      "Responsive layouts for mobile and desktop"
+    ],
+
+    stack: ["Next.js", "TypeScript", "Tailwind CSS", "Node.js", "PostgreSQL", "AWS S3"],
+    liveUrl: "https://ssnlc.in"
+  },
   {
     slug: "kisanpool",
     title: "KisanPool",
@@ -41,27 +62,6 @@ export const projectsData: ProjectCaseStudy[] = [
 
     stack: ["React", "TypeScript", "Node.js", "PostgreSQL", "Tailwind CSS", "Redis"],
     liveUrl: "https://kisanpool.in"
-  },
-  {
-    slug: "ssnlc-law-college",
-    title: "ssnlc.in Law College Platform",
-    subtitle: "High-Traffic Institutional Academic Management & Admissions System",
-    category: "Institutional Platform",
-    year: "2023 - 2024",
-    client: "Shri Shivaji New Law College",
-
-    summary: "An institutional website for syllabus information, online applications, notices and faculty resources.",
-    challenge: "The institution needed a way to present academic information and manage online applications and notices.",
-    solution: "Designed and deployed an institutional platform with PDF hall ticket generation, application review, and a notice feed.",
-    architecture: [
-      "Static site generation with incremental ISR revalidation for page delivery",
-      "Role-based administrative portal for faculty notices and exam grade submissions",
-      "Automated cloud document verification pipeline with watermarking",
-      "Responsive layouts for mobile and desktop"
-    ],
-
-    stack: ["Next.js", "TypeScript", "Tailwind CSS", "Node.js", "PostgreSQL", "AWS S3"],
-    liveUrl: "https://ssnlc.in"
   },
   {
     slug: "perpwise-ai",

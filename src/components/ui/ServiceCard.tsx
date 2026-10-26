@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Code2, Database, Globe2, PenTool, Search, Smartphone, Sparkles, Workflow } from 'lucide-react';
+import { ArrowRight, Code2, Globe2, MessageCircle, PenTool, Search, Smartphone, Sparkles, Workflow } from 'lucide-react';
 import { ServiceItem } from '../../data/services';
 import { Card } from '../../../components/ui/card';
 
@@ -14,7 +14,7 @@ export const ServiceCard: React.FC<ServiceCardProps> = ({ service }) => {
     'mobile-apps': Smartphone,
     'automation-systems': Workflow,
     'ai-integrations': Sparkles,
-    'backend-api': Database,
+    'whatsapp-crm-ai': MessageCircle,
     'ui-ux-design': PenTool,
     'seo-digital-marketing': Search,
   }[service.id] ?? Globe2;
@@ -35,7 +35,7 @@ export const ServiceCard: React.FC<ServiceCardProps> = ({ service }) => {
         </p>
 
         <ul className="mb-6 space-y-2 border-t border-[var(--text)]/10 pt-4">
-          {service.deliverables.slice(0, 3).map((item) => (
+          {service.deliverables.slice(0, service.id === 'whatsapp-crm-ai' ? 4 : 3).map((item) => (
             <li key={item} className="text-sm text-[var(--text)]/85">{item}</li>
           ))}
         </ul>
@@ -46,7 +46,7 @@ export const ServiceCard: React.FC<ServiceCardProps> = ({ service }) => {
           to={`/services#${service.id}`}
           className="inline-flex items-center gap-2 text-xs font-mono font-bold tracking-wider text-[var(--primary)] hover:text-[var(--accent-hover)] group focus-ring py-1"
         >
-          <span>View service</span>
+          <span>View Service</span>
           <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
         </Link>
       </div>

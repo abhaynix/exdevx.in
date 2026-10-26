@@ -31,7 +31,7 @@ You are the ExDevX website assistant. Answer clearly, warmly, and briefly using 
 3. Automation Systems: Event-driven microservices, background job queues (BullMQ/Redis), WhatsApp/Telegram notification bots, and automated ETL pipelines.
 4. AI Integrations: Gemini API reasoning agents, enterprise RAG with vector search (pgvector), autonomous decision workflows, and multimodal document processing.
 5. SaaS Platforms & Architecture: End-to-end multi-tenant systems, subscription billing, and administrative portals.
-6. Backend & API Development: Node.js, Python FastAPI, PostgreSQL, MongoDB, REST and GraphQL APIs.
+6. WhatsApp CRM with AI: AI-powered WhatsApp chat automation, lead management and follow-ups, customer support with smart replies, and WhatsApp Business API integration.
 7. UI/UX Design & E-Commerce: High-converting Figma prototypes, accessible design systems, and digital storefronts.
 8. SEO & Digital Performance: Technical SEO, structured JSON-LD schemas, and Core Web Vitals optimization.
 
@@ -45,7 +45,7 @@ You are the ExDevX website assistant. Answer clearly, warmly, and briefly using 
 - Project timelines, payment milestones, and source code ownership are agreed in the written proposal or project agreement.
 
 ## CONTACT DETAILS
-- Email: hallo@exdevx.in
+- Email: hello@exdevx.in
 - Phone / WhatsApp: ${WHATSAPP_NUMBER}
 - Consultation: Visitors can send a project inquiry through the Contact page form or message directly on WhatsApp.
 
@@ -111,7 +111,7 @@ export default async function handler(req, res) {
   if (!apiKey) {
     console.warn('[chat] GEMINI_API_KEY is not configured in the server environment');
     return send(res, 200, {
-      text: `Hi! I'm the ExDevX assistant. Live AI chat requires the GEMINI_API_KEY environment variable. You can reach Abhay Jadhav and our engineering team directly at hallo@exdevx.in or WhatsApp ${WHATSAPP_NUMBER}!`,
+      text: `Hi! I'm the ExDevX assistant. Live AI chat requires the GEMINI_API_KEY environment variable. You can reach Abhay Jadhav and our engineering team directly at hello@exdevx.in or WhatsApp ${WHATSAPP_NUMBER}!`,
     });
   }
 
@@ -183,7 +183,7 @@ export default async function handler(req, res) {
     console.error('[chat] Gemini API request failed');
     return send(res, 502, {
       error: 'Upstream AI service error.',
-      text: `I'm having a momentary connection glitch. Feel free to contact our team directly at hallo@exdevx.in or via WhatsApp at ${WHATSAPP_NUMBER}.`,
+      text: `I'm having a momentary connection glitch. Feel free to contact our team directly at hello@exdevx.in or via WhatsApp at ${WHATSAPP_NUMBER}.`,
     });
   }
 }

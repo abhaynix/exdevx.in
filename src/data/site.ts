@@ -45,7 +45,7 @@ export const siteConfig: SiteConfig = {
     country: "India"
   },
   contact: {
-    email: "hallo@exdevx.in",
+    email: "hello@exdevx.in",
     phone: "+91 70204 01094",
     whatsapp: "+917020401094",
     whatsappFormatted: "https://wa.me/917020401094?text=Hi%20ExDevX%20team%2C%20I%20would%20like%20to%20discuss%20a%20project."

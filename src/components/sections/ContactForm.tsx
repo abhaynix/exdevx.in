@@ -69,16 +69,13 @@ export const ContactForm: React.FC<ContactFormProps> = ({ initialService, headin
   };
 
   return (
-    <div className="card-chai bg-[var(--surface)] p-6 sm:p-10 rounded-xs">
-      <div className="mb-6">
-        <Heading className="font-display text-2xl font-semibold text-[var(--primary)] mb-2">
+    <div className="card-chai bg-[var(--surface)] p-5 sm:p-8 rounded-lg">
+      <div className="mb-7 border-b border-[var(--text)]/10 pb-5">
+        <Heading className="font-display text-2xl sm:text-3xl font-semibold leading-tight tracking-tight text-[var(--dark)] mb-2">
           Project inquiry
         </Heading>
-        <p className="text-xs font-mono text-[var(--text)]/60 tracking-wider">
+        <p className="text-sm font-sans text-[var(--text-secondary)] leading-relaxed">
           Name · contact details · service · project overview
-        </p>
-        <p className="mt-3 text-xs leading-relaxed text-[var(--text)]/70">
-          Your inquiry opens in WhatsApp for you to review and send. No form details are emailed automatically. See our <Link to="/privacy-policy" className="text-[var(--primary)] underline underline-offset-2">Privacy Policy</Link>.
         </p>
       </div>
 
@@ -107,7 +104,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({ initialService, headin
         )}
       </div>
 
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-5" noValidate>
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-6" noValidate>
         {/* Anti-spam honeypot (hidden from screen readers & users) */}
         <div className="hidden" aria-hidden="true">
           <label htmlFor="website_url_honeypot">Leave blank</label>
@@ -123,14 +120,14 @@ export const ContactForm: React.FC<ContactFormProps> = ({ initialService, headin
         {/* Row 1: Name and Email */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
-            <label htmlFor="name" className="block text-xs font-mono font-semibold tracking-wider text-[var(--text)] mb-1.5">
+            <label htmlFor="name" className="block text-sm font-sans font-semibold text-[var(--text)] mb-2">
               Your name <span aria-hidden="true" className="text-[var(--accent-bright)]">*</span><span className="sr-only"> (required)</span>
             </label>
             <input
               id="name"
               type="text"
               placeholder="e.g. Abhay Jadhav"
-              className="w-full bg-[var(--bg)] border border-[var(--control-border)] px-3.5 py-2.5 text-sm text-[var(--text)] rounded-xs focus-ring"
+              className="w-full min-h-11 bg-[var(--surface)] border border-[var(--control-border)] px-4 py-2.5 text-sm text-[var(--text)] rounded-md transition-colors placeholder:text-[var(--text-secondary)] focus:border-[var(--focus-ring)] focus-ring"
               {...register('name')}
               aria-invalid={errors.name ? 'true' : 'false'}
               aria-describedby={errors.name ? 'name-error' : undefined}
@@ -142,14 +139,14 @@ export const ContactForm: React.FC<ContactFormProps> = ({ initialService, headin
           </div>
 
           <div>
-            <label htmlFor="email" className="block text-xs font-mono font-semibold tracking-wider text-[var(--text)] mb-1.5">
+            <label htmlFor="email" className="block text-sm font-sans font-semibold text-[var(--text)] mb-2">
               Work email <span aria-hidden="true" className="text-[var(--accent-bright)]">*</span><span className="sr-only"> (required)</span>
             </label>
             <input
               id="email"
               type="email"
               placeholder="e.g. abhay@exdevx.in"
-              className="w-full bg-[var(--bg)] border border-[var(--control-border)] px-3.5 py-2.5 text-sm text-[var(--text)] rounded-xs focus-ring"
+              className="w-full min-h-11 bg-[var(--surface)] border border-[var(--control-border)] px-4 py-2.5 text-sm text-[var(--text)] rounded-md transition-colors placeholder:text-[var(--text-secondary)] focus:border-[var(--focus-ring)] focus-ring"
               {...register('email')}
               aria-invalid={errors.email ? 'true' : 'false'}
               aria-describedby={errors.email ? 'email-error' : undefined}
@@ -162,20 +159,22 @@ export const ContactForm: React.FC<ContactFormProps> = ({ initialService, headin
         </div>
 
         <div>
-          <label htmlFor="phone" className="block text-xs font-mono font-semibold tracking-wider text-[var(--text)] mb-1.5">WhatsApp number</label>
-          <input id="phone" type="tel" inputMode="tel" autoComplete="tel" placeholder="+91 70204 01094" className="w-full bg-[var(--bg)] border border-[var(--control-border)] px-3.5 py-2.5 text-sm text-[var(--text)] rounded-xs focus-ring" {...register('phone', { setValueAs: (value: string) => value.replace(/[\s()-]/g, '') })} aria-invalid={errors.phone ? 'true' : 'false'} aria-describedby={errors.phone ? 'phone-error' : undefined} />
+          <label htmlFor="phone" className="block text-sm font-sans font-semibold text-[var(--text)] mb-2">
+            WhatsApp number <span className="font-normal text-[var(--text-secondary)]">(Important)</span>
+          </label>
+          <input id="phone" type="tel" inputMode="tel" autoComplete="tel" placeholder="+91 70204 01094" className="w-full min-h-11 bg-[var(--surface)] border border-[var(--control-border)] px-4 py-2.5 text-sm text-[var(--text)] rounded-md transition-colors placeholder:text-[var(--text-secondary)] focus:border-[var(--focus-ring)] focus-ring" {...register('phone', { setValueAs: (value: string) => value.replace(/[\s()-]/g, '') })} aria-invalid={errors.phone ? 'true' : 'false'} aria-describedby={errors.phone ? 'phone-error' : undefined} />
           {errors.phone && <p id="phone-error" role="alert" className="form-feedback text-xs text-[var(--error)] font-sans mt-1">{errors.phone.message}</p>}
         </div>
 
         {/* Row 2: Service & Budget */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
-            <label htmlFor="service" className="block text-xs font-mono font-semibold tracking-wider text-[var(--text)] mb-1.5">
+            <label htmlFor="service" className="block text-sm font-sans font-semibold text-[var(--text)] mb-2">
               Service <span aria-hidden="true" className="text-[var(--accent-bright)]">*</span><span className="sr-only"> (required)</span>
             </label>
             <select
               id="service"
-              className="w-full bg-[var(--bg)] border border-[var(--control-border)] px-3.5 py-2.5 text-sm text-[var(--text)] rounded-xs focus-ring"
+              className="w-full min-h-11 bg-[var(--surface)] border border-[var(--control-border)] px-4 py-2.5 text-sm text-[var(--text)] rounded-md transition-colors focus:border-[var(--focus-ring)] focus-ring"
               {...register('service')}
               aria-invalid={errors.service ? 'true' : 'false'}
               aria-describedby={errors.service ? 'service-error' : undefined}
@@ -196,12 +195,12 @@ export const ContactForm: React.FC<ContactFormProps> = ({ initialService, headin
           </div>
 
           <div>
-            <label htmlFor="budget" className="block text-xs font-mono font-semibold tracking-wider text-[var(--text)] mb-1.5">
+            <label htmlFor="budget" className="block text-sm font-sans font-semibold text-[var(--text)] mb-2">
               Indicative budget
             </label>
             <select
               id="budget"
-              className="w-full bg-[var(--bg)] border border-[var(--text)]/15 px-3.5 py-2.5 text-sm text-[var(--text)] rounded-xs focus-ring"
+              className="w-full min-h-11 bg-[var(--surface)] border border-[var(--control-border)] px-4 py-2.5 text-sm text-[var(--text)] rounded-md transition-colors focus:border-[var(--focus-ring)] focus-ring"
               {...register('budget')}
               aria-describedby="budget-note"
             >
@@ -211,20 +210,19 @@ export const ContactForm: React.FC<ContactFormProps> = ({ initialService, headin
               <option value="₹75k–₹1.5L">₹75k–₹1.5L</option>
               <option value="₹1.5L–₹3.5L">₹1.5L–₹3.5L</option>
             </select>
-            <p id="budget-note" className="mt-1.5 text-xs leading-relaxed text-[var(--text-secondary)]">Indicative range only; final quotes depend on scope and requirements.</p>
-          </div>
+            </div>
         </div>
 
         {/* Row 3: Message */}
         <div>
-          <label htmlFor="message" className="block text-xs font-mono font-semibold tracking-wider text-[var(--text)] mb-1.5">
+          <label htmlFor="message" className="block text-sm font-sans font-semibold text-[var(--text)] mb-2">
             Project overview <span aria-hidden="true" className="text-[var(--accent-bright)]">*</span><span className="sr-only"> (required)</span>
           </label>
           <textarea
             id="message"
             rows={4}
             placeholder="Tell us about the product challenge, technical expectations, or current bottlenecks…"
-            className="w-full bg-[var(--bg)] border border-[var(--control-border)] px-3.5 py-2.5 text-sm text-[var(--text)] rounded-xs focus-ring resize-y"
+            className="w-full min-h-32 bg-[var(--surface)] border border-[var(--control-border)] px-4 py-3 text-sm leading-relaxed text-[var(--text)] rounded-md transition-colors placeholder:text-[var(--text-secondary)] focus:border-[var(--focus-ring)] focus-ring resize-y"
             {...register('message')}
             aria-invalid={errors.message ? 'true' : 'false'}
             aria-describedby={errors.message ? 'message-error' : undefined}
@@ -236,13 +234,14 @@ export const ContactForm: React.FC<ContactFormProps> = ({ initialService, headin
         </div>
 
         {/* Submit Button & Fast Tracks */}
-        <div className="pt-2 flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-t border-[var(--text)]/10">
+        <div className="pt-6 flex flex-col items-start gap-4 border-t border-[var(--text)]/10">
           <Button
             type="submit"
             variant="primary"
             size="md"
             disabled={submissionStatus === 'loading'}
-            className="w-full sm:w-auto"
+            iconRight={null}
+            className="min-h-11 w-full sm:w-auto !bg-[var(--accent-primary)] !text-[var(--on-accent)] transition-[background-color,filter,transform] hover:!bg-[var(--accent-hover)] dark:!bg-[#a27b3e] dark:!text-[#101114] dark:hover:!bg-[#b18a51] hover:brightness-110"
           >
             {submissionStatus === 'loading' ? (
               <span className="flex items-center gap-2">
@@ -253,7 +252,10 @@ export const ContactForm: React.FC<ContactFormProps> = ({ initialService, headin
               'Continue with WhatsApp →'
             )}
           </Button>
-
+          <p className="max-w-prose text-sm leading-relaxed text-[var(--text-secondary)]">
+            Your inquiry opens in WhatsApp for you to review and send. No form details are emailed automatically. See our{' '}
+            <Link to="/privacy-policy" className="font-medium text-[var(--primary)] underline underline-offset-2 focus-ring rounded-sm">Privacy Policy</Link>.
+          </p>
         </div>
       </form>
     </div>

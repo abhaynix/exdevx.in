@@ -164,7 +164,7 @@ export const ChatWidget: React.FC = () => {
 
       const replyContent =
         data.text ||
-        "I'm here to help! Feel free to describe your project or connect with our team at hallo@exdevx.in.";
+        "I'm here to help! Feel free to describe your project or connect with our team at hello@exdevx.in.";
 
       const assistantMsg: ChatMessage = {
         id: `assistant-${Date.now()}`,
@@ -181,7 +181,7 @@ export const ChatWidget: React.FC = () => {
         id: `assistant-${Date.now()}`,
         role: 'assistant',
         content:
-          `I encountered an issue connecting right now. You can reach Abhay Jadhav directly via email at hallo@exdevx.in or on WhatsApp at ${siteConfig.contact.whatsapp}.`,
+          `I encountered an issue connecting right now. You can reach Abhay Jadhav directly via email at hello@exdevx.in or on WhatsApp at ${siteConfig.contact.whatsapp}.`,
         timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
       };
       setMessages((prev) => [...prev, errorMsg]);
@@ -276,7 +276,7 @@ export const ChatWidget: React.FC = () => {
           </div>
 
           {/* Conversation Thread */}
-          <div className="flex-1 overflow-y-auto space-y-3 bg-[var(--bg)]/40 p-4">
+          <div className="flex-1 overflow-y-auto overscroll-contain space-y-3 bg-[var(--bg)]/40 p-4">
             {messages.map((msg) => {
               const isUser = msg.role === 'user';
               return (

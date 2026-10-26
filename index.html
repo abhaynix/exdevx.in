@@ -10,44 +10,11 @@
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <meta name="theme-color" content="#f7f5f0" />
-    <script>
-      try {
-        const theme = localStorage.getItem('chaiui-theme');
-        document.documentElement.classList.toggle('dark', theme !== 'light');
-        document.documentElement.style.colorScheme = theme === 'light' ? 'light' : 'dark';
-        document.querySelectorAll('meta[name="theme-color"]').forEach((meta) => {
-          meta.content = theme === 'light' ? '#f7f5f0' : '#08090c';
-        });
-      } catch {
-        document.documentElement.classList.add('dark');
-      }
-    </script>
+    <script src="/theme-init.js"></script>
     <!--ssr-head-->
   </head>
 
   <body>
-    <!-- Accessible no-JS fallback with crawlable entity signals -->
-    <noscript>
-      <div style="font-family:sans-serif;padding:2rem;max-width:800px;margin:0 auto;">
-        <p><strong>ExDevX: Web &amp; App Development Agency in Pune, Maharashtra, India</strong></p>
-        <p>ExDevX builds web applications, mobile apps, automation systems and AI integrations for businesses in Maharashtra, India.</p>
-        <h2>Our Services</h2>
-        <ul>
-          <li>Web Development (React, Next.js, Vue.js)</li>
-          <li>Mobile App Development (React Native, Flutter)</li>
-          <li>AI Integration (OpenAI, LangChain)</li>
-          <li>SaaS Platform Development</li>
-          <li>Backend &amp; API Development (Node.js, PostgreSQL)</li>
-          <li>UI/UX Design (Figma)</li>
-        </ul>
-        <h2>Contact</h2>
-        <p>Email: <a href="mailto:hello@exdevx.in">hello@exdevx.in</a></p>
-        <p>GitHub: <a href="https://github.com/AbhiDevepl">github.com/AbhiDevepl</a></p>
-        <p>LinkedIn: <a href="https://www.linkedin.com/in/abhay-jadhav-56a623309/">Abhay Jadhav on LinkedIn</a></p>
-        <p>Location: Pune, Maharashtra, India</p>
-      </div>
-    </noscript>
-
     <div id="root"><!--ssr-outlet--></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

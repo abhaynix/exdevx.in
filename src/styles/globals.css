@@ -95,9 +95,9 @@
 .home-hero-description { max-width: 600px; margin: 22px auto 0; color: var(--text-secondary); font-size: clamp(1rem, 1.5vw, 1.125rem); line-height: var(--leading-body); text-wrap: pretty; }
 .home-hero-actions { display: flex; justify-content: center; flex-wrap: wrap; gap: 11px; margin-top: 25px; }
 .home-hero-actions a, .home-cta-panel > a { min-height: 44px; gap: 8px; padding: 12px 18px; text-transform: none; letter-spacing: 0; }
-.home-primary-button { background: var(--primary); color: var(--primary-foreground); font-weight: 700; }
+.home-primary-button { background: var(--primary); color: var(--primary-foreground); font-weight: 700; transition: transform .15s ease-out, opacity .15s ease-out; }
 .home-primary-button:hover { transform: translateY(-2px); opacity: 1; }
-.home-primary-button:active { transform: translateY(1px) scale(.99); }
+.home-primary-button:active { transform: translateY(1px) scale(.96); }
 .home-primary-button svg { transition: transform .2s ease; }
 .home-primary-button:hover svg { transform: translate(2px, -2px); }
 .home-secondary-button { border-color: var(--control-border); color: var(--text); background: transparent; }
