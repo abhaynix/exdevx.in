@@ -1,17 +1,26 @@
+/*
+ * ExDevX tokens. One source of truth.
+ * Dark is the brand: #08090C ground, #C5C7CC text. Every neutral below is
+ * tinted toward that cool blue-black (hue ~250) so none lands on a stock
+ * Tailwind gray/zinc/slate/neutral shade. Bronze #A27B3E is the single accent.
+ */
 :root {
-  --background: #f7f5f0;
-  --background-secondary: #fffefa;
-  --surface-hover: #efede7;
-  --text-primary: #262522;
-  --text-secondary: #68665f;
-  --accent-primary: #72521f;
-  --accent: #a27b3e;
-  --accent-hover: #88652e;
-  --accent-bright: var(--accent-hover);
-  --on-accent: #fffefa;
-  --border: rgba(89, 69, 39, .14);
-  --control-border: #aaa59a;
-  --focus-ring: #88652e;
+  --radius: 0.625rem;
+
+  /* Light theme: cool paper, same tint, darker bronze for text contrast. */
+  --background: #f1f2f4;
+  --background-secondary: #fafafb;
+  --surface-hover: #e6e8ec;
+  --text-primary: #14161b;
+  --text-secondary: #5a5f6a;
+  --accent-primary: #14161b;
+  --accent: #7a5a25;
+  --accent-hover: #664a1c;
+  --accent-bright: #664a1c;
+  --on-accent: #fafafb;
+  --border: rgba(20, 22, 27, .14);
+  --control-border: #8a8f9a;
+  --focus-ring: #664a1c;
   --success: #4ade80;
   --success-bg: rgba(74, 222, 128, .1);
   --success-border: rgba(74, 222, 128, .4);
@@ -24,15 +33,16 @@
   --bg: var(--background);
   --surface: var(--background-secondary);
   --text: var(--text-primary);
-  --primary: var(--accent-primary);
-  --dark: #262522;
+  --primary: #14161b;
+  --dark: #14161b;
   --muted: var(--text-secondary);
 
-  --font-display: "Manrope Variable", "Manrope", sans-serif;
-  --font-sans: "Onest Variable", "Onest", sans-serif;
-  --font-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
+  /* One family. Onest carries body and headlines; Geist Mono stays for code. */
+  --font-display: "Onest Variable", "Onest", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Onest Variable", "Onest", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "Geist Mono Variable", "Geist Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
 
-  --type-hero: clamp(2.5rem, 5.6vw, 4.5rem);
+  --type-hero: clamp(2.5rem, 5.2vw, 4.5rem);
   --type-section: clamp(2rem, 4vw, 3.25rem);
   --type-card: clamp(1.25rem, 2vw, 1.5rem);
   --type-body: clamp(0.9375rem, 1vw, 1.0625rem);
@@ -43,71 +53,65 @@
   --leading-display: 1.08;
   --leading-body: 1.65;
   --tracking-display: -0.045em;
-  --tracking-label: 0.1em;
 
-  --background: #f7f5f0;
-  --foreground: #262522;
-  --card: #fffefa;
-  --card-foreground: #262522;
-  --popover: #fffefa;
-  --popover-foreground: #262522;
-  --primary: #262522;
-  --primary-foreground: #fffefa;
-  --secondary: #efede7;
-  --secondary-foreground: #262522;
-  --muted: #efede7;
-  --muted-foreground: #68665f;
-  --accent-foreground: #262522;
+  --foreground: #14161b;
+  --card: #fafafb;
+  --card-foreground: #14161b;
+  --popover: #fafafb;
+  --popover-foreground: #14161b;
+  --primary-foreground: #fafafb;
+  --secondary: #e6e8ec;
+  --secondary-foreground: #14161b;
+  --muted-foreground: #5a5f6a;
+  --accent-foreground: #14161b;
   --destructive: #b42318;
-  --input: rgba(89, 69, 39, .2);
-  --ring: #88652e;
+  --input: rgba(20, 22, 27, .2);
+  --ring: #664a1c;
   --brand: #a27b3e;
-  --highlight: #72521f;
-  --card-edge: rgba(120, 83, 33, .16);
-  --card-edge-hover: rgba(120, 83, 33, .3);
-  --card-fill: rgba(255, 254, 250, .78);
+  --highlight: #664a1c;
+  --card-edge: rgba(20, 22, 27, .14);
+  --card-edge-hover: rgba(20, 22, 27, .3);
+  --card-fill: #fafafb;
 }
 
 .dark {
   --background: #08090c;
-  --background-secondary: #0d1015;
-  --surface-hover: #171a20;
-  --text-primary: #f2f2f3;
-  --text-secondary: #9a9da6;
-  --accent-primary: #f2eee4;
-  --accent: #f2eee4;
-  --accent-hover: #fffefa;
-  --accent-bright: var(--accent-hover);
-  --on-accent: #101114;
-  --border: rgba(255, 255, 255, .09);
-  --control-border: #646872;
-  --focus-ring: #f2eee4;
+  --background-secondary: #0e1015;
+  --surface-hover: #151821;
+  --text-primary: #c5c7cc;
+  --text-secondary: #8e929c;
+  --accent-primary: #e4e6ea;
+  --accent: #a27b3e;
+  --accent-hover: #d8b77d;
+  --accent-bright: #c9a367;
+  --on-accent: #08090c;
+  --border: rgba(197, 199, 204, .12);
+  --control-border: #5b606b;
+  --focus-ring: #c9a367;
+
   --bg: var(--background);
   --surface: var(--background-secondary);
   --text: var(--text-primary);
-  --primary: #f2eee4;
-  --dark: #f5f5f6;
+  --primary: #e4e6ea;
+  --dark: #edeef1;
   --muted: var(--text-secondary);
 
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
-  --brand: oklch(75% 0.183 55.934);
-  --highlight: oklch(0.954 0.038 75.164);
-  --card-edge: rgb(255 247 237 / 0.15);
-  --card-edge-hover: rgb(255 247 237 / 0.3);
-  --card-fill: rgb(0 0 0 / 0.1);
+  --foreground: #c5c7cc;
+  --card: #0e1015;
+  --card-foreground: #c5c7cc;
+  --popover: #0e1015;
+  --popover-foreground: #c5c7cc;
+  --primary-foreground: #08090c;
+  --secondary: #151821;
+  --secondary-foreground: #c5c7cc;
+  --muted-foreground: #8e929c;
+  --accent-foreground: #08090c;
+  --destructive: #f0707a;
+  --input: rgba(197, 199, 204, .16);
+  --ring: #c9a367;
+  --brand: #a27b3e;
+  --highlight: #c9a367;
+  --card-edge: rgba(197, 199, 204, .12);
+  --card-edge-hover: rgba(197, 199, 204, .28);
+  --card-fill: #0e1015;
 }

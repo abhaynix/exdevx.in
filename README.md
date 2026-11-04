@@ -34,8 +34,8 @@ The approved site palette uses near-black surfaces, near-white text, and ExDevX 
 4. **Contrast**: `--text-secondary` is used for supporting copy, and `--control-border` distinguishes inputs and secondary controls.
 
 ### Typography
-- **Display**: Manrope Variable.
-- **UI & Body**: Inter Variable.
+- **Display**: Onest Variable.
+- **UI & Body**: Onest Variable.
 - **Technical & Mono**: System monospace stack.
 
 ---

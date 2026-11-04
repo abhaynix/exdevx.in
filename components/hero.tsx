@@ -1,9 +1,7 @@
-import { ArrowUpRight, ChevronsDown } from 'lucide-react'
 import * as React from 'react'
 import { Link } from 'react-router-dom'
 
 import { cn } from '@/lib/utils'
-import { AnimatedBadge } from '@/components/animated-badge'
 import { buttonVariants } from '@/components/ui/button'
 
 type Action = { label: string; href: string; external?: boolean }
@@ -19,14 +17,8 @@ function ActionLink({ action, className, children }: { action: Action; className
 }
 
 /**
- * chaicode.com's hero (landing/hero.tsx): a badge, a big tight headline, a
- * lead with one highlighted phrase, the solid and outline pair, and one
- * piece of media whose edges fade out. One central element only: the media
- * slot takes a single image or card, never a cluster of floating ones.
- * Without media the hero centres itself.
- *
- * It sizes itself by container queries, not the viewport, so it also lays
- * out right in a sidebar layout or a narrow column.
+ * Split hero: copy on the left, one real product on the right. Text-only
+ * buttons (no decorative arrows), no badge animation, no masked media.
  */
 export function Hero({
   badge,
@@ -39,41 +31,27 @@ export function Hero({
 }: {
   badge?: React.ReactNode
   title: React.ReactNode
-  /** The lead. Put one <Highlight> in it. */
   children?: React.ReactNode
   primary?: Action
   secondary?: Action
   media?: React.ReactNode
   className?: string
 }) {
-  const centred = !media
   return (
-    <section className={cn('@container w-full', className)}>
-      <div data-hero="content" className={cn('flex flex-col gap-4 @3xl:gap-8', !centred && '@3xl:flex-row', centred && 'items-center text-center')}>
-        <div className={cn('my-auto flex flex-col gap-y-2.5 @xl:gap-y-4', centred ? 'items-center' : '@3xl:w-3/4')}>
-          {badge && <div data-hero="eyebrow"><AnimatedBadge className="mb-4 @xl:mb-6">{badge}</AnimatedBadge></div>}
-          <h1 data-hero="title" className="relative z-10 max-w-6xl text-[42px] leading-11 font-semibold tracking-tight text-black @3xl:text-6xl @3xl:leading-none @5xl:text-7xl dark:text-white">
-            {title}
-          </h1>
-          {children && <p data-hero="copy" className="relative z-10 mt-4 max-w-3xl text-base text-neutral-700 @xl:mt-6 @3xl:text-xl dark:text-neutral-300">{children}</p>}
+    <section className={cn('w-full', className)}>
+      <div data-hero="content" className="home-hero-inner">
+        <div>
+          {badge && <p data-hero="eyebrow" className="home-hero-kicker">{badge}</p>}
+          <h1 data-hero="title">{title}</h1>
+          {children && <p data-hero="copy" className="home-hero-lead">{children}</p>}
           {(primary || secondary) && (
-            <div data-hero="actions" className={cn('mt-6 flex flex-wrap items-center gap-4', centred && 'justify-center')}>
-              {primary && (
-                <ActionLink action={primary} className={buttonVariants({ variant: 'solid' })}>
-                  {primary.label}
-                  <ArrowUpRight className="-ml-1" aria-hidden="true" />
-                </ActionLink>
-              )}
-              {secondary && (
-                <ActionLink action={secondary} className={buttonVariants({ variant: 'outline' })}>
-                  {secondary.label}
-                  <ChevronsDown className="-ml-1" aria-hidden="true" />
-                </ActionLink>
-              )}
+            <div data-hero="actions" className="home-hero-actions">
+              {primary && <ActionLink action={primary} className={buttonVariants({ variant: 'solid' })}>{primary.label}</ActionLink>}
+              {secondary && <ActionLink action={secondary} className={buttonVariants({ variant: 'outline' })}>{secondary.label}</ActionLink>}
             </div>
           )}
         </div>
-        {media && <div data-hero="visual" className="relative [mask-image:radial-gradient(60%_60%,#000_70%,transparent)] @3xl:w-2/4">{media}</div>}
+        {media && <div data-hero="visual">{media}</div>}
       </div>
     </section>
   )
