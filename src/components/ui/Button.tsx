@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowUpRight } from 'lucide-react';
 import { cn } from '../../lib/cn';
 import { buttonVariants } from '../../../components/ui/button';
 
@@ -38,9 +37,7 @@ export const Button: React.FC<ButtonProps> = ({
     'focus-ring',
     className
   );
-  const trailingIcon = iconRight === undefined && variant === 'primary'
-    ? <ArrowUpRight aria-hidden="true" className="size-4" />
-    : iconRight;
+  const trailingIcon = iconRight;
   const content = <>{children}{trailingIcon && <span aria-hidden="true" className="-ml-1 inline-flex">{trailingIcon}</span>}</>;
 
   if (to) {

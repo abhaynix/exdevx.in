@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import { ArrowDown, ArrowRight, ArrowUpRight, Code2, Layers3, Smartphone, Sparkles, Workflow, PenTool, Search } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { siteConfig } from '../data/site';
 import { servicesData } from '../data/services';
 import { techStackList } from '../data/process';
@@ -8,8 +8,7 @@ import { Section } from '../components/ui/Section';
 import { SectionHeading } from '../components/ui/SectionHeading';
 import { Button } from '../components/ui/Button';
 import { Hero } from '../../components/hero';
-import { ServiceCard } from '../components/ui/ServiceCard';
-import { WorkCarousel } from '../components/sections/WorkCarousel';
+import { WorkList } from '../components/sections/WorkList';
 import { ProcessStepper } from '../components/sections/ProcessStepper';
 import { ContactForm } from '../components/sections/ContactForm';
 import { SEO } from '../components/ui/SEO';
@@ -17,14 +16,7 @@ import { getOrganizationSchema, getWebSiteSchema } from '../lib/seo';
 import { gsap, registerGsapPlugins } from '../lib/gsap';
 
 const homeServices = servicesData.filter(({ id }) => id !== 'automation-systems');
-const capabilities = [
-  { label: 'Web platforms', icon: Code2 },
-  { label: 'Mobile apps', icon: Smartphone },
-  { label: 'Product design', icon: PenTool },
-  { label: 'Backend systems', icon: Layers3 },
-  { label: 'AI integration', icon: Sparkles },
-  { label: 'Automation', icon: Workflow },
-];
+const capabilities = ['Web platforms', 'Mobile apps', 'Product design', 'Backend systems', 'AI integration', 'Automation'];
 
 export const HomePage: React.FC = () => {
   const scope = useRef<HTMLDivElement>(null);
@@ -36,11 +28,11 @@ export const HomePage: React.FC = () => {
     const context = gsap.context(() => {
       const intro = gsap.timeline({ defaults: { ease: 'power3.out' } });
       intro
-        .from('[data-hero="eyebrow"]', { opacity: 0, y: 10, scale: 0.98, duration: 0.35 }, '-=0.15')
-        .from('[data-hero-line]', { opacity: 0, y: 24, duration: 0.48, stagger: 0.07 }, '-=0.12')
+        .from('[data-hero="eyebrow"]', { opacity: 0, y: 10, duration: 0.35 }, '-=0.15')
+        .from('[data-hero="title"]', { opacity: 0, y: 20, duration: 0.48 }, '-=0.12')
         .from('[data-hero="copy"]', { opacity: 0, y: 14, duration: 0.38 }, '-=0.2')
         .from('[data-hero="actions"] > *', { opacity: 0, y: 10, duration: 0.32, stagger: 0.07 }, '-=0.18')
-        .from('[data-hero="visual"]', { opacity: 0, y: 24, scale: 0.985, duration: 0.55 }, '-=0.1');
+        .from('[data-hero="visual"]', { opacity: 0, y: 20, duration: 0.55 }, '-=0.1');
 
       gsap.utils.toArray<HTMLElement>('[data-reveal]').forEach((element) => {
         gsap.from(element, {
@@ -87,48 +79,52 @@ export const HomePage: React.FC = () => {
       <Hero
         className="home-hero"
         badge="Independent digital agency · Maharashtra, India"
-        title={<><span data-hero-line>We build digital</span><span data-hero-line>experiences that move</span><span data-hero-line>businesses forward.</span></>}
+        title="We build digital experiences that move businesses forward."
         primary={{ label: 'Start a project', href: '/contact' }}
         secondary={{ label: 'Explore our work', href: '#work' }}
         media={
-          <div data-hero="visual" className="home-hero-visual" aria-label="A preview of an ExDev digital product dashboard">
-            <div className="home-arc" aria-hidden="true"><span data-hero="glow" /></div>
-            <div className="home-dashboard">
-              <div className="home-dashboard-top"><span className="home-dashboard-logo">ExDevX</span><span>Project collaboration</span></div>
-              <div className="home-dashboard-heading"><div><small>ILLUSTRATIVE WORKFLOW</small><h2>How we work together</h2></div></div>
-              <div className="home-dashboard-metrics">
-                <div><small>DISCOVER</small><strong>Scope</strong><span>Understand the need</span></div>
-                <div><small>DESIGN</small><strong>Shape</strong><span>Plan the experience</span></div>
-                <div><small>DELIVER</small><strong>Build <em>→ launch</em></strong><span>Make it work in the world</span></div>
-              </div>
-              <div className="home-dashboard-panels">
-                <div className="home-dashboard-projects"><div className="home-panel-title"><strong>Clear project stages</strong><span>Illustrative</span></div>{[['01', 'Discover', 'Goals, users and constraints'], ['02', 'Design', 'Scope and shape the solution'], ['03', 'Deliver', 'Build, review and launch']].map(([number, stage, detail]) => <div className="home-project-row" key={stage}><b>{number}</b><span><strong>{stage}</strong><small>{detail}</small></span></div>)}</div>
-              </div>
-            </div>
-          </div>
+          <figure data-hero="visual" className="home-shot">
+            <div className="home-shot-bar">configshell.antideploy.com</div>
+            <img
+              src="/work/configshell.png"
+              width={1440}
+              height={900}
+              alt="The ConfigShell website: pick a Linux distribution, browse applications and build a selection to install."
+              fetchPriority="high"
+              decoding="async"
+            />
+            <figcaption><span>ConfigShell, a live ExDevX developer tool.</span><a href="https://configshell.antideploy.com/" target="_blank" rel="noopener noreferrer">Open the site<span className="sr-only"> (opens in a new tab)</span></a></figcaption>
+          </figure>
         }
       >
         ExDevX turns ambitious ideas into thoughtful websites, applications and digital products built for real work.
       </Hero>
-      <div className="home-hero-scroll"><a className="home-scroll-cue" href="#capabilities"><span>Scroll to explore</span><ArrowDown size={14} aria-hidden="true" /></a></div>
-
       <section className="home-capabilities" id="capabilities" aria-label="Agency capabilities">
         <Container size="wide">
-          <div className="home-capabilities-label"><span>Designing. Building. Shipping.</span><p>One team from the first sketch to the live product.</p></div>
-          <ul>{capabilities.map(({ label, icon: Icon }) => <li key={label}><Icon size={16} aria-hidden="true" /><span>{label}</span></li>)}</ul>
+          <p>One team designs, builds and deploys your product, from the first sketch to the live release.</p>
+          <ul>{capabilities.map((label) => <li key={label}>{label}</li>)}</ul>
         </Container>
       </section>
 
       <Section id="services" tone="surface" className="home-section">
         <Container size="wide">
           <div data-reveal><SectionHeading title="Everything you need to build what’s next." description="Clear thinking, careful engineering and a product experience made for the people who use it." /></div>
-          <div className="home-services-grid" data-reveal-group>
-            {homeServices.map((service) => <div key={service.id}><ServiceCard service={service} /></div>)}
-          </div>
+          <ol className="home-list" data-reveal-group>
+            {homeServices.map((service, index) => (
+              <li className="home-row" key={service.id}>
+                <span className="home-row-num" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
+                <div>
+                  <h3><Link to={`/services#${service.id}`} className="focus-ring">{service.title}</Link></h3>
+                  <p className="home-row-desc">{service.shortDescription}</p>
+                </div>
+                <ul className="home-row-meta" aria-label={`${service.title} deliverables`}>{service.deliverables.slice(0, 3).map((item) => <li key={item}>{item}</li>)}</ul>
+              </li>
+            ))}
+          </ol>
         </Container>
       </Section>
 
-      <WorkCarousel />
+      <WorkList />
 
       <Section id="process" tone="surface" className="home-section">
         <Container size="wide"><div data-reveal><ProcessStepper /></div></Container>
@@ -151,12 +147,12 @@ export const HomePage: React.FC = () => {
 
       <section className="home-about" aria-labelledby="home-about-title">
         <Container size="wide">
-          <div className="home-about-layout" data-reveal><h2 id="home-about-title">Built with care. Delivered with clarity.</h2><div><p>We design, engineer and deliver practical digital products with a focus on quality, clear communication and maintainable systems.</p><p>From discovery through deployment, we work closely with you to make the product useful, dependable and ready for what comes next.</p><Button to="/about" variant="ghost" size="sm">Meet ExDevX <ArrowRight size={15} aria-hidden="true" /></Button></div></div>
+          <div className="home-about-layout" data-reveal><h2 id="home-about-title">Built with care. Delivered with clarity.</h2><div><p>We design, engineer and deliver practical digital products with a focus on quality, clear communication and maintainable systems.</p><p>From discovery through deployment, we work closely with you to make the product useful, dependable and ready for what comes next.</p><Button to="/about" variant="ghost" size="sm">Meet ExDevX</Button></div></div>
         </Container>
       </section>
 
       <section className="home-contact-cta" aria-labelledby="home-contact-title">
-        <Container size="wide"><div className="home-cta-panel"><span className="home-cta-light" data-reveal aria-hidden="true" /><div data-reveal><h2 id="home-contact-title">Let’s turn it into something real.</h2><p>Tell us what you’re thinking. We’ll help shape the next step.</p></div><div data-reveal><Button to="/contact" size="md" iconRight={null} className="home-primary-button">Start a project <ArrowUpRight size={16} aria-hidden="true" /></Button></div></div></Container>
+        <Container size="wide"><div className="home-cta-panel"><div data-reveal><h2 id="home-contact-title">Let’s turn it into something real.</h2><p>Tell us what you’re thinking. We’ll help shape the next step.</p></div><div data-reveal><Button to="/contact" size="md">Start a project</Button></div></div></Container>
       </section>
 
       <Section id="contact" className="home-contact-section">
@@ -164,8 +160,8 @@ export const HomePage: React.FC = () => {
           <div className="grid grid-cols-1 items-start gap-12 lg:grid-cols-12">
             <div className="lg:col-span-5" data-reveal>
               <p className="mb-3 text-sm font-medium text-[var(--accent-bright)]">Contact</p>
-              <h2 className="font-display text-3xl font-semibold leading-tight tracking-tight text-white sm:text-4xl">Tell us what you’re building.</h2>
-              <p className="mt-4 max-w-md leading-relaxed text-white/70">Send a few details about your project, or reach us directly at <a className="text-[var(--accent-bright)] underline underline-offset-4" href={`mailto:${siteConfig.contact.email}`}>{siteConfig.contact.email}</a>.</p>
+              <h2 className="font-display text-3xl font-semibold leading-tight tracking-tight text-[var(--dark)] sm:text-4xl">Tell us what you’re building.</h2>
+              <p className="mt-4 max-w-md leading-relaxed text-[var(--text)]">Send a few details about your project, or reach us directly at <a className="text-[var(--accent-bright)] underline underline-offset-4" href={`mailto:${siteConfig.contact.email}`}>{siteConfig.contact.email}</a>.</p>
               <a className="mt-3 inline-block text-[var(--accent-bright)] underline underline-offset-4" href={siteConfig.contact.whatsappFormatted} target="_blank" rel="noopener noreferrer">Message us on WhatsApp</a>
             </div>
             <div className="lg:col-span-7" data-reveal><ContactForm /></div>

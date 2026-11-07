@@ -1,6 +1,5 @@
 import { Slot } from '@radix-ui/react-slot'
 import { cva, type VariantProps } from 'class-variance-authority'
-import { ArrowUpRight } from 'lucide-react'
 import * as React from 'react'
 
 import { cn } from '@/lib/utils'
@@ -11,7 +10,7 @@ import { cn } from '@/lib/utils'
  * - `soft` is the default: the shadcn primary, light grey on dark. It is the
  *   button on cards ("View details", "Start").
  * - `solid` is the white one with asymmetric corners. Use it once per screen,
- *   for the main action. It carries ArrowUpRight unless `iconRight={null}`.
+ *   for the main action. Pass `iconRight` only when the icon carries meaning.
  * - `outline` mirrors the corners and sits beside `solid`.
  * - `danger` is only for the confirm button of a destructive action.
  *
@@ -23,13 +22,13 @@ const buttonVariants = cva(
     variants: {
       variant: {
         soft: 'rounded-md bg-primary font-semibold text-primary-foreground hover:bg-primary/90',
-        solid: 'btn-asym bg-neutral-900 text-white hover:bg-black dark:bg-white dark:text-black dark:hover:bg-neutral-200',
+        solid: 'btn-asym bg-primary text-primary-foreground hover:bg-primary/90',
         outline:
-          'btn-asym-mirror border border-neutral-200 bg-transparent text-foreground hover:bg-neutral-100 dark:border-white/10 dark:hover:bg-black/90',
+          'btn-asym-mirror border border-border bg-transparent text-foreground hover:bg-surface-hover',
         muted:
-          'rounded-md bg-[#d4d4d866] font-montserrat text-[#52525b] hover:bg-[#d4d4d8] dark:bg-[#71717a33] dark:text-[#d4d4d8] dark:hover:bg-black/70',
+          'rounded-md bg-secondary text-secondary-foreground hover:bg-surface-hover',
         ghost: 'rounded-md text-foreground hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50',
-        danger: 'rounded-md bg-red-600 font-semibold text-white hover:bg-red-600/90 dark:bg-red-500 dark:hover:bg-red-500/90',
+        danger: 'rounded-md bg-destructive font-semibold text-background hover:bg-destructive/90',
       },
       size: {
         sm: 'h-8 gap-1.5 px-3',
@@ -48,13 +47,13 @@ const buttonVariants = cva(
 type ButtonProps = React.ComponentProps<'button'> &
   VariantProps<typeof buttonVariants> & {
     asChild?: boolean
-    /** An icon after the label, tucked in with -ml-1. `solid` defaults to ArrowUpRight; pass null to drop it. */
+    /** An icon after the label, tucked in with -ml-1. */
     iconRight?: React.ReactNode
   }
 
 function Button({ className, variant, size, asChild = false, iconRight, children, ...props }: ButtonProps) {
   const Comp = asChild ? Slot : 'button'
-  const icon = iconRight === undefined && variant === 'solid' && size !== 'icon' ? <ArrowUpRight /> : iconRight
+  const icon = iconRight
   const iconElement = !asChild && icon ? (
     <span aria-hidden="true" className="-ml-1 inline-flex">{icon}</span>
   ) : null

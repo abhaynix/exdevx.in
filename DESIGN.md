@@ -14,7 +14,7 @@ colors:
   night-muted: "#9a9da6"
 typography:
   display:
-    fontFamily: "Manrope Variable, Manrope, sans-serif"
+    fontFamily: "Onest Variable, Onest, sans-serif"
     fontSize: "clamp(2rem, 4vw, 3.25rem)"
     fontWeight: 600
     lineHeight: 1.08
@@ -70,15 +70,15 @@ The light palette uses warm paper, ink, muted ink, and bronze. The dark palette 
 
 ## Typography
 
-Use Manrope for display headings, Onest for body and interface text, and Geist Mono for compact metadata or technical labels. Keep display tracking tight but readable, headings balanced, and paragraph measure near 65–75 characters. Avoid using mono as decoration or reducing explanatory text to microcopy.
+Use Onest for display headings and body text, and Geist Mono for compact metadata or technical labels. Keep display tracking tight but readable, headings balanced, and paragraph measure near 65–75 characters. Avoid using mono as decoration or reducing explanatory text to microcopy.
 
 ## Layout
 
-Use the existing `Container` sizes and keep wide content within 1280px. Sections use generous, consistent vertical spacing, with tighter gaps inside related groups. At tablet and mobile widths, stack content before it becomes cramped, keep actions comfortably tappable, and simplify nonessential visual detail. The portfolio carousel remains horizontally scrollable and supports keyboard arrow navigation.
+Use the existing `Container` sizes and keep wide content within 1280px. Sections use generous, consistent vertical spacing, with tighter gaps inside related groups. At tablet and mobile widths, stack content before it becomes cramped, keep actions comfortably tappable, and simplify nonessential visual detail. Services and selected work are ruled lists, not card grids.
 
 ## Elevation & Depth
 
-Prefer tonal surface changes and subtle one-pixel borders over shadows. Reserve backdrop blur for the sticky navigation after scroll. Avoid ambient glow as a substitute for hierarchy.
+Prefer tonal surface changes and subtle one-pixel borders over shadows. Backdrop blur is reserved for the sticky navigation after scroll; cards and panels are solid. Avoid ambient glow as a substitute for hierarchy.
 
 ## Shapes
 

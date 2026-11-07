@@ -7,7 +7,9 @@
  */
 import { GoogleGenAI } from '@google/genai';
 
-const DEFAULT_MODEL = 'gemini-3.5-flash';
+// Tried in order. GEMINI_MODEL (if set) goes first. Retired or unknown model ids
+// fall through to the next entry instead of failing the whole chat request.
+const FALLBACK_MODELS = ['gemini-3.8-flash', 'gemini-3.6-flash', 'gemini-3.5-flash-lite'];
 const MAX_BODY_BYTES = 100_000;
 const MAX_MESSAGE_LENGTH = 2_000;
 const MAX_HISTORY_MESSAGES = 20;
@@ -140,50 +142,56 @@ export default async function handler(req, res) {
     return send(res, 400, { error: 'Conversation history is invalid or too large.' });
   }
 
-  const modelName = process.env.GEMINI_MODEL || DEFAULT_MODEL;
+  const models = [...new Set([process.env.GEMINI_MODEL?.trim(), ...FALLBACK_MODELS].filter(Boolean))];
 
-  try {
-    const ai = new GoogleGenAI({
-      apiKey,
-      httpOptions: {
-        headers: {
-          'User-Agent': 'aistudio-build',
+  const ai = new GoogleGenAI({
+    apiKey,
+    httpOptions: {
+      headers: {
+        'User-Agent': 'aistudio-build',
+      },
+    },
+  });
+
+  // Role mapping: 'user' -> 'user', 'assistant' -> 'model'
+  const contents = [
+    ...history
+      .filter((m) => m && typeof m.content === 'string' && m.content.trim().length > 0)
+      .map((m) => ({
+        role: m.role === 'user' ? 'user' : 'model',
+        parts: [{ text: m.content.trim() }],
+      })),
+    {
+      role: 'user',
+      parts: [{ text: userMessage }],
+    },
+  ];
+
+  let lastError;
+  for (const model of models) {
+    try {
+      const response = await ai.models.generateContent({
+        model,
+        contents,
+        config: {
+          systemInstruction: SYSTEM_INSTRUCTION,
+          temperature: 0.5,
         },
-      },
-    });
+      });
 
-    // Build multi-turn content history for @google/genai
-    // Role mapping: 'user' -> 'user', 'assistant' -> 'model'
-    const contents = [
-      ...history
-        .filter((m) => m && typeof m.content === 'string' && m.content.trim().length > 0)
-        .map((m) => ({
-          role: m.role === 'user' ? 'user' : 'model',
-          parts: [{ text: m.content.trim() }],
-        })),
-      {
-        role: 'user',
-        parts: [{ text: userMessage }],
-      },
-    ];
-
-    const response = await ai.models.generateContent({
-      model: modelName,
-      contents,
-      config: {
-        systemInstruction: SYSTEM_INSTRUCTION,
-        temperature: 0.5,
-      },
-    });
-
-    const replyText = response.text?.trim() || "I'm here to help! Could you please tell me more about your project requirements?";
-
-    return send(res, 200, { text: replyText });
-  } catch (err) {
-    console.error('[chat] Gemini API request failed');
-    return send(res, 502, {
-      error: 'Upstream AI service error.',
-      text: `I'm having a momentary connection glitch. Feel free to contact our team directly at hello@exdevx.in or via WhatsApp at ${WHATSAPP_NUMBER}.`,
-    });
+      const replyText = response.text?.trim() || "I'm here to help! Could you please tell me more about your project requirements?";
+      return send(res, 200, { text: replyText });
+    } catch (err) {
+      lastError = err;
+      // Never log the key or request body: status, model and a trimmed message only.
+      console.error(`[chat] Gemini request failed model=${model} status=${err?.status ?? 'n/a'} message=${String(err?.message ?? err).replace(/key=[^&\s"]+/gi, 'key=***').slice(0, 300)}`);
+      const modelProblem = err?.status === 404 || /not found|no longer available|not supported|deprecated/i.test(String(err?.message ?? ''));
+      if (!modelProblem) break; // bad key, quota, outage: another model will not help
+    }
   }
+
+  return send(res, 502, {
+    error: 'Upstream AI service error.',
+    text: `I'm having a momentary connection glitch. Feel free to contact our team directly at hello@exdevx.in or via WhatsApp at ${WHATSAPP_NUMBER}.`,
+  });
 }

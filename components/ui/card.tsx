@@ -4,7 +4,7 @@ import { cn } from '@/lib/utils'
 
 /**
  * The listing card from chaicode.com (routes/udemy UdemyCourseCard): a warm
- * hairline, a faint fill with a touch of blur, and no shadow. It sits a
+ * hairline, a solid fill, and no shadow or blur. It sits a
  * little dimmed on wide screens and comes to full on hover; the media zooms
  * 3% over 300ms.
  */
@@ -43,7 +43,7 @@ function CardTitle({ className, ...props }: React.ComponentProps<'h3'>) {
   return (
     <h3
       data-slot="card-title"
-      className={cn('font-montserrat text-base leading-snug font-semibold text-gray-900 dark:text-gray-50', className)}
+      className={cn('font-display text-base leading-snug font-semibold text-foreground', className)}
       {...props}
     />
   )
@@ -53,7 +53,7 @@ function CardText({ className, ...props }: React.ComponentProps<'p'>) {
   return (
     <p
       data-slot="card-text"
-      className={cn('line-clamp-2 text-xs leading-relaxed text-gray-600 dark:text-gray-400', className)}
+      className={cn('line-clamp-2 text-xs leading-relaxed text-muted-foreground', className)}
       {...props}
     />
   )

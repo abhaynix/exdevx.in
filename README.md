@@ -34,8 +34,8 @@ The approved site palette uses near-black surfaces, near-white text, and ExDevX 
 4. **Contrast**: `--text-secondary` is used for supporting copy, and `--control-border` distinguishes inputs and secondary controls.
 
 ### Typography
-- **Display**: Manrope Variable.
-- **UI & Body**: Inter Variable.
+- **Display**: Onest Variable.
+- **UI & Body**: Onest Variable.
 - **Technical & Mono**: System monospace stack.
 
 ---
@@ -126,7 +126,7 @@ npm run preview
    - **Output Directory**: `dist`
 4. Add environment variables in Vercel Project Settings:
    - `GEMINI_API_KEY` *(optional: enables live AI chat; without it, chat shows a contact fallback)*
-   - `GEMINI_MODEL` *(optional: defaults to `gemini-3.5-flash`)*
+   - `GEMINI_MODEL` *(optional: defaults to `gemini-3.8-flash`)*
 5. Deploy.
 
 The inquiry form opens WhatsApp with a prefilled message; the visitor reviews and sends it there. The form does not email inquiry details.
