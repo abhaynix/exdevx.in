@@ -9,7 +9,7 @@ export default defineConfig(({mode}) => {
   // Dev middleware runs in Node (never shipped to the browser), so the key
   // stays server-side. loadEnv doesn't touch process.env, so set it here.
   process.env.GEMINI_API_KEY = env.GEMINI_API_KEY || process.env.GEMINI_API_KEY;
-  process.env.GEMINI_MODEL = env.GEMINI_MODEL || process.env.GEMINI_MODEL || 'gemini-3.5-flash';
+  process.env.GEMINI_MODEL = env.GEMINI_MODEL || process.env.GEMINI_MODEL || 'gemini-3.8-flash';
   return {
     plugins: [
       react(),

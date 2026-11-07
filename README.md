@@ -126,7 +126,7 @@ npm run preview
    - **Output Directory**: `dist`
 4. Add environment variables in Vercel Project Settings:
    - `GEMINI_API_KEY` *(optional: enables live AI chat; without it, chat shows a contact fallback)*
-   - `GEMINI_MODEL` *(optional: defaults to `gemini-3.5-flash`)*
+   - `GEMINI_MODEL` *(optional: defaults to `gemini-3.8-flash`)*
 5. Deploy.
 
 The inquiry form opens WhatsApp with a prefilled message; the visitor reviews and sends it there. The form does not email inquiry details.
