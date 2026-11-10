@@ -6,14 +6,16 @@ import { SectionHeading } from '../components/ui/SectionHeading';
 import { Button } from '../components/ui/Button';
 import { Reveal } from '../components/ui/Reveal';
 import { SEO } from '../components/ui/SEO';
+import { getServicesSchema } from '../lib/seo';
 import { CheckCircle2, ArrowRight, Server, Shield, Zap, Terminal } from 'lucide-react';
 
 export const ServicesPage: React.FC = () => {
   return (
     <>
       <SEO
-        title="Services & Capabilities | ExDevX"
-        description="Comprehensive engineering capabilities across Web Applications, React Native Mobile, Background Automations, and Gemini AI Integrations."
+        title="Engineering Services & Capabilities | ExDevX"
+        description="Explore ExDevX software engineering services: custom web platforms, React Native mobile apps, backend automations, and production AI integrations in India."
+        schema={getServicesSchema()}
       />
 
       {/* Hero Header */}

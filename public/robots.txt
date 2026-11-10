@@ -1,11 +1,10 @@
-# ExDevX — robots.txt
+# ExDevX - robots.txt
 # https://exdevx.in
 
 # Allow all crawlers (search engines + AI retrieval bots)
 User-agent: *
 Allow: /
 Disallow: /api/
-Disallow: /admin/
 
 # Explicitly allow beneficial AI retrieval agents
 User-agent: GPTBot
@@ -31,9 +30,6 @@ Allow: /
 
 # Block non-beneficial training scrapers
 User-agent: CCBot
-Disallow: /
-
-User-agent: Common Crawl
 Disallow: /
 
 # Sitemap

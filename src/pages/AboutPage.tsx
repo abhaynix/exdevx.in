@@ -6,6 +6,7 @@ import { SectionHeading } from '../components/ui/SectionHeading';
 import { Button } from '../components/ui/Button';
 import { Reveal } from '../components/ui/Reveal';
 import { SEO } from '../components/ui/SEO';
+import { getBreadcrumbSchema } from '../lib/seo';
 import { Terminal, Shield, Zap, CheckCircle2, ArrowUpRight } from 'lucide-react';
 
 export const AboutPage: React.FC = () => {
@@ -14,6 +15,10 @@ export const AboutPage: React.FC = () => {
       <SEO
         title="About ExDevX | Engineering Agency Founded in 2022"
         description="Learn about ExDevX, founded in 2022 by Abhay Jadhav in Maharashtra, India. Our values: execution over theory, automation first, and self-hosted infrastructure."
+        schema={getBreadcrumbSchema([
+          { name: 'Home', url: 'https://exdevx.in' },
+          { name: 'About', url: 'https://exdevx.in/about' },
+        ])}
       />
 
       {/* Hero Header */}

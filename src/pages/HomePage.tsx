@@ -71,8 +71,8 @@ export const HomePage: React.FC = () => {
   return (
     <div ref={scope} className="home-motion-scope">
       <SEO
-        title="ExDevX | Web, Mobile & AI Development"
-        description="ExDevX designs and builds web platforms, mobile apps, automation systems and AI integrations for businesses. Based in Maharashtra, India."
+        title="ExDevX | Web, Mobile & AI Development Agency in Pune"
+        description="ExDevX designs and builds high-leverage web platforms, mobile apps, automation systems and AI integrations for growing businesses. Based in Pune, Maharashtra."
         schema={[getOrganizationSchema(), getWebSiteSchema()]}
       />
 

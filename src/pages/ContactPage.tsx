@@ -10,8 +10,21 @@ import { ArrowUpRight, Mail, MessageSquare } from 'lucide-react';
 export const ContactPage: React.FC = () => (
   <>
     <SEO
-      title="Contact ExDevX"
-      description={`Tell us about your project. Contact ExDevX through WhatsApp or email at ${siteConfig.contact.email}.`}
+      title="Contact ExDevX | Start a Web, Mobile or AI Project"
+      description="Tell us about your project requirements. Contact ExDevX for custom web platforms, mobile apps, and AI integrations via WhatsApp or direct email."
+      schema={{
+        '@context': 'https://schema.org',
+        '@type': 'ContactPage',
+        name: 'Contact ExDevX',
+        url: 'https://exdevx.in/contact',
+        description: 'Contact ExDevX to discuss web, mobile, and AI development projects.',
+        mainEntity: {
+          '@type': 'Organization',
+          name: 'ExDevX',
+          url: 'https://exdevx.in',
+          email: siteConfig.contact.email,
+        },
+      }}
     />
     <section className="pt-16 pb-20 border-b border-[var(--text)]/10 bg-[var(--bg)]">
       <Container>

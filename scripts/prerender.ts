@@ -73,8 +73,47 @@ if (template.includes('googletagmanager.com/gtag/js') || template.includes('/gta
   throw new Error('Google Analytics must remain gated behind cookie consent.');
 }
 
+function liftHeadTags(appHtml: string, existingHead: string = ''): { html: string; head: string } {
+  const headElements: string[] = [];
+  if (existingHead && existingHead.trim()) {
+    headElements.push(existingHead.trim());
+  }
+
+  let cleanedHtml = appHtml;
+
+  // Extract <title>...</title>
+  cleanedHtml = cleanedHtml.replace(/<title\b[^>]*>[\s\S]*?<\/title>/gi, (match) => {
+    headElements.push(match);
+    return '';
+  });
+
+  // Extract <meta ... /> or <meta ...>
+  cleanedHtml = cleanedHtml.replace(/<meta\b[^>]*\/?>/gi, (match) => {
+    headElements.push(match);
+    return '';
+  });
+
+  // Extract <link rel="canonical" ... /> or <link rel="preload" ... />
+  cleanedHtml = cleanedHtml.replace(/<link\b[^>]*rel=["'](canonical|preload)["'][^>]*\/?>/gi, (match) => {
+    headElements.push(match);
+    return '';
+  });
+
+  // Extract JSON-LD scripts
+  cleanedHtml = cleanedHtml.replace(/<script\b[^>]*type=["']application\/ld\+json["'][^>]*>[\s\S]*?<\/script>/gi, (match) => {
+    headElements.push(match);
+    return '';
+  });
+
+  return {
+    html: cleanedHtml,
+    head: headElements.filter(Boolean).join('\n    '),
+  };
+}
+
 for (const { url, file } of routes) {
-  const { html: appHtml, head } = await render(url);
+  const { html: rawAppHtml, head: rawHead } = await render(url);
+  const { html: appHtml, head } = liftHeadTags(rawAppHtml, rawHead);
 
   const fullHtml = template.replace('<!--ssr-outlet-->', appHtml).replace('<!--ssr-head-->', head);
 
@@ -91,10 +130,11 @@ const legacyTermsPath = path.join(root, 'dist/terms-of-service/index.html');
 mkdirSync(path.dirname(legacyTermsPath), { recursive: true });
 writeFileSync(legacyTermsPath, '<!doctype html><html lang="en-IN"><head><meta charset="utf-8"><meta name="robots" content="noindex,follow"><link rel="canonical" href="https://exdevx.in/terms-and-conditions"><meta http-equiv="refresh" content="0;url=/terms-and-conditions"><title>Terms and Conditions | ExDevX</title></head><body><p>Terms have moved to <a href="/terms-and-conditions">Terms and Conditions</a>.</p></body></html>');
 
+const today = new Date().toISOString().split('T')[0];
 const sitemap = [
   '<?xml version="1.0" encoding="UTF-8"?>',
   '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
-  ...routes.filter(({ url }) => url !== '/404').map(({ url }) => `  <url><loc>https://exdevx.in${url}</loc></url>`),
+  ...routes.filter(({ url }) => url !== '/404').map(({ url }) => `  <url>\n    <loc>https://exdevx.in${url}</loc>\n    <lastmod>${today}</lastmod>\n  </url>`),
   '</urlset>',
 ].join('\n');
 for (const { slug } of projectsData) {

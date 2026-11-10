@@ -7,13 +7,18 @@ import { CaseStudyCard } from '../components/ui/CaseStudyCard';
 import { Button } from '../components/ui/Button';
 import { Reveal } from '../components/ui/Reveal';
 import { SEO } from '../components/ui/SEO';
+import { getBreadcrumbSchema } from '../lib/seo';
 
 export const WorkPage: React.FC = () => {
   return (
     <>
       <SEO
-        title="Selected Work & Case Studies | ExDevX"
+        title="Selected Work & Case Studies | ExDevX Engineering"
         description="Explore production case studies by ExDevX across agri-tech logistics, high-traffic institutional education, bespoke design engineering, and quantitative AI systems."
+        schema={getBreadcrumbSchema([
+          { name: 'Home', url: 'https://exdevx.in' },
+          { name: 'Work', url: 'https://exdevx.in/work' },
+        ])}
       />
 
       {/* Header */}

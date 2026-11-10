@@ -6,6 +6,7 @@ import { Section } from '../components/ui/Section';
 import { Button } from '../components/ui/Button';
 import { Reveal } from '../components/ui/Reveal';
 import { SEO } from '../components/ui/SEO';
+import { getBreadcrumbSchema, getCaseStudySchema } from '../lib/seo';
 import NotFoundPage from './NotFoundPage';
 import { ArrowLeft, ArrowUpRight, CheckCircle2, Layers, Cpu, Check } from 'lucide-react';
 
@@ -24,9 +25,17 @@ export const CaseStudyPage: React.FC = () => {
   return (
     <>
       <SEO
-        title={`${project.title} Case Study | ExDevX`}
-        description={project.summary}
+        title={`${project.title} Case Study | ExDevX Engineering`}
+        description={`${project.summary} Engineered by ExDevX with ${project.stack.slice(0, 3).join(', ')}.`}
         ogType="article"
+        schema={[
+          getCaseStudySchema(project),
+          getBreadcrumbSchema([
+            { name: 'Home', url: 'https://exdevx.in' },
+            { name: 'Work', url: 'https://exdevx.in/work' },
+            { name: project.title, url: `https://exdevx.in/work/${project.slug}` },
+          ]),
+        ]}
       />
 
       {/* Case Study Header */}
@@ -153,12 +162,12 @@ export const CaseStudyPage: React.FC = () => {
         <Container>
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6">
             <div>
-              <span className="text-xs font-mono uppercase tracking-wider text-[var(--text)]/60">
-                Next Case Study
+              <span className="text-xs font-mono tracking-wider text-[var(--text)]/60">
+                Next case study
               </span>
-              <h4 className="font-display text-2xl font-semibold text-[var(--primary)] mt-1">
+              <h3 className="font-display text-2xl font-semibold text-[var(--primary)] mt-1">
                 {nextProject.title}
-              </h4>
+              </h3>
             </div>
 
             <Button to={`/work/${nextProject.slug}`} variant="outline" size="md">

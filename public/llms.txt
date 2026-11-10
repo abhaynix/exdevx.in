@@ -1,0 +1,22 @@
+# ExDevX
+
+> Independent digital engineering studio based in Maharashtra, India. We design and build web platforms, mobile apps, automation systems, and production AI integrations.
+
+## Core Capabilities
+- Web Platforms: Modern, accessible web applications and marketing platforms built with TypeScript, React, Next.js, and Node.js.
+- Mobile Applications: Cross-platform iOS and Android apps engineered with React Native, Expo, and native modules.
+- Automation Systems: Workflow automations, scraping engines, background workers, and headless integration pipelines.
+- AI Integration: Production AI applications powered by Google Gemini, LLM agents, and structured schema outputs.
+
+## Key Projects & Case Studies
+- ConfigShell (https://configshell.antideploy.com/): Interactive Linux distribution package and environment configuration generator.
+- Shri Shivaji New Law College (https://ssnlc.in): High-traffic academic portal and admissions system.
+- KisanPool (https://kisanpool.in): Agricultural produce pooling and price discovery platform.
+- PerpWise AI (https://perpwise.ai): Real-time derivatives analytics engine with risk scoring.
+
+## Primary Links
+- Website: https://exdevx.in
+- Services: https://exdevx.in/services
+- Selected Work: https://exdevx.in/work
+- GitHub: https://github.com/abhaynix
+- Contact: https://exdevx.in/contact (contact@exdevx.in)

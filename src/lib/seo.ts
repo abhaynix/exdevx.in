@@ -33,7 +33,7 @@ export function getOrganizationSchema(): SchemaOrgOrganization {
       '@type': 'Person',
       name: 'Abhay Jadhav',
       sameAs: [
-        'https://github.com/AbhiDevepl',
+        'https://github.com/abhaynix',
         'https://www.linkedin.com/in/abhay-jadhav-56a623309/'
       ]
     },
@@ -44,7 +44,7 @@ export function getOrganizationSchema(): SchemaOrgOrganization {
       addressCountry: 'India'
     },
     sameAs: [
-      'https://github.com/AbhiDevepl',
+      'https://github.com/abhaynix',
       'https://www.linkedin.com/in/abhay-jadhav-56a623309/',
       'https://www.instagram.com/dev.abhayyy/'
     ]
@@ -62,5 +62,65 @@ export function getWebSiteSchema() {
       '@type': 'Organization',
       name: 'ExDevX'
     }
+  };
+}
+
+export function getBreadcrumbSchema(items: { name: string; url: string }[]) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: items.map((item, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      name: item.name,
+      item: item.url
+    }))
+  };
+}
+
+export function getCaseStudySchema(project: {
+  title: string;
+  subtitle: string;
+  summary: string;
+  slug: string;
+  category: string;
+}) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'CreativeWork',
+    name: `${project.title} | Case Study`,
+    headline: project.subtitle,
+    description: project.summary,
+    url: `https://exdevx.in/work/${project.slug}`,
+    genre: project.category,
+    author: {
+      '@type': 'Organization',
+      name: 'ExDevX',
+      url: 'https://exdevx.in'
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: 'ExDevX',
+      url: 'https://exdevx.in'
+    }
+  };
+}
+
+export function getServicesSchema() {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name: 'Web, Mobile & AI Engineering Services',
+    serviceType: 'Software Development',
+    provider: {
+      '@type': 'Organization',
+      name: 'ExDevX',
+      url: 'https://exdevx.in'
+    },
+    areaServed: {
+      '@type': 'AdministrativeArea',
+      name: 'India'
+    },
+    description: 'Custom web platforms, mobile applications, automation workflows, and AI integrations.'
   };
 }
