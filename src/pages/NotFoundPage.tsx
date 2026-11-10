@@ -46,7 +46,7 @@ export const NotFoundPage: React.FC = () => {
             <p data-404-enter aria-hidden="true" className="mt-4 font-display text-[clamp(7rem,27vw,17rem)] font-semibold leading-[0.78] tracking-[-0.09em] text-[var(--text)]">
               404
             </p>
-            <h1 id="not-found-title" data-404-enter className="mt-8 font-display text-3xl font-semibold leading-tight tracking-[-0.045em] text-[var(--text)] sm:text-5xl">
+            <h1 id="not-found-title" data-404-enter className="mt-8 font-display text-3xl font-semibold leading-tight tracking-tight text-[var(--text)] sm:text-5xl">
               Lost in the digital space.
             </h1>
             <p data-404-enter className="mx-auto mt-4 max-w-xl font-sans text-base leading-relaxed text-[var(--muted)] sm:text-lg">

@@ -66,8 +66,8 @@ export const servicesData: ServiceItem[] = [
   {
     id: "whatsapp-crm-ai",
     title: "WhatsApp CRM with AI",
-    shortDescription: "Automate customer conversations, manage leads, and streamline your business with AI-powered WhatsApp CRM solutions.",
-    fullDescription: "Automate customer conversations, manage leads, and streamline your business with AI-powered WhatsApp CRM solutions.",
+    shortDescription: "Automate customer conversations, capture leads, and trigger follow-ups with customized WhatsApp AI workflows.",
+    fullDescription: "Automate customer conversations, capture leads, and trigger follow-ups with customized WhatsApp AI workflows.",
     deliverables: [
       "AI-powered WhatsApp chat automation",
       "Lead management and automated follow-ups",

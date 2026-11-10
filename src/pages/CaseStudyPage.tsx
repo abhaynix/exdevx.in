@@ -64,7 +64,7 @@ export const CaseStudyPage: React.FC = () => {
               {project.title}
             </h1>
 
-            <p className="text-sm font-mono tracking-wider text-[var(--text)]/60 max-w-2xl mb-8">
+            <p className="text-sm font-mono tracking-wider text-[var(--text-secondary)] max-w-2xl mb-8">
               {project.subtitle}
             </p>
 
@@ -85,7 +85,7 @@ export const CaseStudyPage: React.FC = () => {
           <Reveal>
             <div className="space-y-12">
               <div>
-                <h2 className="text-xs font-mono tracking-widest text-[var(--primary)] font-bold mb-3">
+                <h2 className="text-xs font-mono tracking-wide text-[var(--primary)] font-bold mb-3">
                   01. The core challenge
                 </h2>
                 <h3 className="font-display text-2xl sm:text-3xl font-semibold text-[var(--dark)] mb-4">
@@ -97,7 +97,7 @@ export const CaseStudyPage: React.FC = () => {
               </div>
 
               <div className="border-t border-[var(--text)]/10 pt-10">
-                <h2 className="text-xs font-mono tracking-widest text-[var(--primary)] font-bold mb-3">
+                <h2 className="text-xs font-mono tracking-wide text-[var(--primary)] font-bold mb-3">
                   02. Engineered solution
                 </h2>
                 <h3 className="font-display text-2xl sm:text-3xl font-semibold text-[var(--dark)] mb-4">
@@ -116,8 +116,8 @@ export const CaseStudyPage: React.FC = () => {
       <Section tone="surface">
         <Container size="narrow">
           <Reveal>
-            <div className="text-xs font-mono tracking-widest text-[var(--accent)] font-semibold mb-3">
-              03. Technical Architecture
+            <div className="text-xs font-mono tracking-wide text-[var(--accent)] font-semibold mb-3">
+              03. Technical architecture
             </div>
             <h2 className="font-display text-2xl sm:text-3xl font-medium text-[var(--dark)] mb-6">
               Engineering specs and architectural invariants
@@ -162,7 +162,7 @@ export const CaseStudyPage: React.FC = () => {
         <Container>
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6">
             <div>
-              <span className="text-xs font-mono tracking-wider text-[var(--text)]/60">
+              <span className="text-xs font-mono tracking-wider text-[var(--text-secondary)]">
                 Next case study
               </span>
               <h3 className="font-display text-2xl font-semibold text-[var(--primary)] mt-1">

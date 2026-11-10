@@ -12,7 +12,10 @@ const targets = [
 ];
 
 mkdirSync('public/work', { recursive: true });
-const browser = await chromium.launch();
+const browser = await chromium.launch({
+  executablePath: '/usr/bin/google-chrome',
+  args: ['--no-sandbox', '--disable-setuid-sandbox'],
+});
 const page = await browser.newPage({ viewport: { width: 1440, height: 900 }, deviceScaleFactor: 1 });
 for (const [name, url] of targets) {
   try {

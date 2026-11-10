@@ -8,10 +8,10 @@ export const TechStrip: React.FC = () => {
       <Container>
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
           <div className="md:w-1/4">
-            <span className="text-xs font-mono tracking-widest text-[var(--primary)] font-bold block mb-1">
+            <span className="text-xs font-mono tracking-wide text-[var(--primary)] font-bold block mb-1">
               Foundational stack
             </span>
-            <p className="text-xs text-[var(--text)]/60 font-sans">
+            <p className="text-xs text-[var(--text-secondary)] font-sans">
               Type-safe languages, cloud-native runtimes & modern databases.
             </p>
           </div>

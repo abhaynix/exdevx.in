@@ -109,10 +109,9 @@ export const HomePage: React.FC = () => {
       <Section id="services" tone="surface" className="home-section">
         <Container size="wide">
           <div data-reveal><SectionHeading title="Everything you need to build what’s next." description="Clear thinking, careful engineering and a product experience made for the people who use it." /></div>
-          <ol className="home-list" data-reveal-group>
-            {homeServices.map((service, index) => (
+          <ul className="home-list" data-reveal-group>
+            {homeServices.map((service) => (
               <li className="home-row" key={service.id}>
-                <span className="home-row-num" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
                 <div>
                   <h3><Link to={`/services#${service.id}`} className="focus-ring">{service.title}</Link></h3>
                   <p className="home-row-desc">{service.shortDescription}</p>
@@ -120,7 +119,7 @@ export const HomePage: React.FC = () => {
                 <ul className="home-row-meta" aria-label={`${service.title} deliverables`}>{service.deliverables.slice(0, 3).map((item) => <li key={item}>{item}</li>)}</ul>
               </li>
             ))}
-          </ol>
+          </ul>
         </Container>
       </Section>
 

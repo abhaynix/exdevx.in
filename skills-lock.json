@@ -1,91 +1,97 @@
 {
-  "version": 1,
+  "version": 2,
   "skills": {
     "animate": {
       "source": "emilkowalski/skills",
       "sourceType": "github",
       "skillPath": "skills/animate/SKILL.md",
-      "computedHash": "609e30351bf518b21a8cfe87cd1111554855527075d6563605bafe61963252f7"
+      "computedHash": "bfde0abcfed2a276df349e285c985b04d908a4e546cf7ad575ea64d31da40dca"
     },
     "animate-expo": {
       "source": "emilkowalski/skills",
       "sourceType": "github",
       "skillPath": "skills/animate-expo/SKILL.md",
-      "computedHash": "c9eaf6603b97ca61b05c7561e1045b2f58b6d84cdf8d67565bff23a9ff94ce8a"
+      "computedHash": "c06aa66638cf05bf74930096d54ff25e2a31dea3341403e692acfcfacb1108a0"
     },
     "animation-vocabulary": {
       "source": "emilkowalski/skills",
       "sourceType": "github",
       "skillPath": "skills/animation-vocabulary/SKILL.md",
-      "computedHash": "39319fc9a33c15be08666b3685f58666f042ff36bb902b7814c0834a5ba99df4"
+      "computedHash": "9c7f01918f4bacf2378c8644155f3cfc875244afba6047feac7e1bda8b65eefd"
+    },
+    "anti-ui-slop": {
+      "source": "discountry/ritmex-skills",
+      "sourceType": "github",
+      "skillPath": "skills/anti-ui-slop/SKILL.md",
+      "computedHash": "954595e30770577c60c19aad61dee7865c6dddd15c29e182326466a1f49236de"
     },
     "apple-design": {
       "source": "emilkowalski/skills",
       "sourceType": "github",
       "skillPath": "skills/apple-design/SKILL.md",
-      "computedHash": "8b94db67cb9edaad5f1501010804caa610131f1d2dfda0a27664b2e858deade3"
+      "computedHash": "4752d2d4207173cf812960e8c1308103aab1786a4919e571d6722653f56b9696"
     },
     "ask-sonner": {
       "source": "emilkowalski/skills",
       "sourceType": "github",
       "skillPath": "skills/ask-sonner/SKILL.md",
-      "computedHash": "23f724e97247b2003ccc479f3a9b3af8e4191a0e133b94ee6b73f8405349687f"
+      "computedHash": "ac3576ffcc547ec05e99a7602035ef919d0ab8c2ccae4cdb0fa5541031d8435d"
     },
     "chaiui": {
       "source": "ui.chaicode.com",
       "sourceUrl": "https://ui.chaicode.com",
       "sourceType": "well-known",
-      "computedHash": "3257f541564437e090d209c21b63489b8a3ae609c10a08a88edfb9c54cdab47a",
+      "computedHash": "d53bba62d9cc38b8249f00bd1aabeca200decbe928da9dfd7cf6023a285c5a52",
       "wellKnownDigest": "sha256:8d150c65ffb0423802b06271e72bff52a86270dde8ce3d10a2d730ddfb5efcee"
     },
     "chaiui-review": {
       "source": "ui.chaicode.com",
       "sourceUrl": "https://ui.chaicode.com",
       "sourceType": "well-known",
-      "computedHash": "47e97634b300b32c97c27f51dd60037b677acca37d3e41650a25011440502fde",
+      "computedHash": "a1fa71974741ff50ad93b4282752b6fb13a6da0f0353e7298b59df07708621ef",
       "wellKnownDigest": "sha256:e9ccb5a90d1b853560799347dd391373fbbe992acc9fee674bae525acb9816f7"
     },
     "emil-design-eng": {
       "source": "emilkowalski/skills",
       "sourceType": "github",
       "skillPath": "skills/emil-design-eng/SKILL.md",
-      "computedHash": "41b0a4dc1a27164fe297845a6c6850a39e9242c42c9be999967fcee9df2c5974"
+      "computedHash": "d80dbb053bf35f3ef9f3ffe493054b76d93f4ae5e2c85a97ee1222677471a622"
     },
     "find-animation-opportunities": {
       "source": "emilkowalski/skills",
       "sourceType": "github",
       "skillPath": "skills/find-animation-opportunities/SKILL.md",
-      "computedHash": "8fb8492eb8fbed1313cb430b5831d925d9b8964ca24f3c41a6244cbd1fd98732"
+      "computedHash": "e62e151525e9269ab118aeeff57cc121aa2923091ff75a85c523a35a01fad20c"
     },
     "improve-animations": {
       "source": "emilkowalski/skills",
       "sourceType": "github",
       "skillPath": "skills/improve-animations/SKILL.md",
-      "computedHash": "eeb219a407e325b687af88db25771cc3018e3148245604112f5ac6990b6fd79c"
+      "computedHash": "d1fd903616de3877eb28102be78a19f0585f09e073d719dae2485960317e8c87"
     },
     "pick-ui-library": {
       "source": "emilkowalski/skills",
       "sourceType": "github",
       "skillPath": "skills/pick-ui-library/SKILL.md",
-      "computedHash": "f8d4d2cf4677bf54b14f35f62a741add93541bfcb67863315a40164365161b49"
+      "computedHash": "cbfae520514ad32123b55dc8e7fd28ab909ee1ace522744b4e4d447238e04cd9"
     },
     "prototype": {
       "source": "emilkowalski/skills",
       "sourceType": "github",
       "skillPath": "skills/prototype/SKILL.md",
-      "computedHash": "f246d1f47566481d9207e1aa574bdee5454257d862919a6591283e9af2f57eab"
+      "computedHash": "77681eb9f09521896cf4246247857fd28a8fabdb89de7f865d281e05ba299196"
     },
     "review-animations": {
       "source": "emilkowalski/skills",
       "sourceType": "github",
       "skillPath": "skills/review-animations/SKILL.md",
-      "computedHash": "b9f669af5ae280c19a592a94611520335a81de25c88f225bf60ae4b2d66c8c7c"
+      "computedHash": "afcbbacb346bc1ac4e0098ed90cfe53df4b95abcde752fb4865adc815b6c0636"
     },
     "write-swift": {
       "source": "emilkowalski/skills",
       "sourceType": "github",
       "skillPath": "skills/write-swift/SKILL.md",
-      "computedHash": "ccbb74cac81765fcf2912ceba8d188fddbd75393ecb808aa1a4f6f58d9c2c828"
+      "computedHash": "3f73dcb8946e73c22bdc1fdcbaed2799ef82af88dc34f09807cd71629dec93fa"
     }
   }
 }

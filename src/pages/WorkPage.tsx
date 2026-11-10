@@ -25,7 +25,7 @@ export const WorkPage: React.FC = () => {
       <section className="pt-16 pb-20 border-b border-[var(--text)]/10 bg-[var(--bg)]">
         <Container>
           <Reveal>
-            <div className="text-xs font-mono tracking-widest text-[var(--primary)] font-semibold mb-4">
+            <div className="text-xs font-mono tracking-wide text-[var(--primary)] font-semibold mb-4">
               Selected work
             </div>
             <h1 className="font-display text-4xl sm:text-6xl font-medium tracking-tight text-[var(--dark)] max-w-4xl leading-tight">
@@ -57,7 +57,7 @@ export const WorkPage: React.FC = () => {
           <Reveal>
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
               <div className="lg:col-span-8">
-                <div className="text-xs font-mono tracking-widest text-[var(--accent-primary)] font-semibold mb-2">
+                <div className="text-xs font-mono tracking-wide text-[var(--accent-primary)] font-semibold mb-2">
                   Code ownership
                 </div>
                 <h2 className="font-display text-2xl sm:text-3xl font-medium text-[var(--dark)] mb-3">

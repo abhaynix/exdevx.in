@@ -22,7 +22,7 @@ export const ServicesPage: React.FC = () => {
       <section className="pt-16 pb-20 border-b border-[var(--text)]/10 bg-[var(--bg)]">
         <Container>
           <Reveal>
-            <div className="text-xs font-mono tracking-widest text-[var(--primary)] font-semibold mb-4">
+            <div className="text-xs font-mono tracking-wide text-[var(--primary)] font-semibold mb-4">
               Services
             </div>
             <h1 className="font-display text-4xl sm:text-6xl font-medium tracking-tight text-[var(--dark)] max-w-4xl leading-tight">
@@ -126,7 +126,7 @@ export const ServicesPage: React.FC = () => {
                   <Terminal aria-hidden="true" className="h-5 w-5 text-[var(--accent-primary)]" />
                   Zero lock-in
                 </h3>
-                <p className="text-xs text-[var(--dark)]/80 leading-relaxed font-sans">
+                <p className="text-sm text-[var(--dark)]/80 leading-relaxed font-sans">
                   We use familiar tools and open standards, with clear handover so your team can continue working with the code.
                 </p>
               </div>
@@ -136,7 +136,7 @@ export const ServicesPage: React.FC = () => {
                   <Zap aria-hidden="true" className="h-5 w-5 text-[var(--accent-primary)]" />
                   Performance
                 </h3>
-                <p className="text-xs text-[var(--dark)]/80 leading-relaxed font-sans">
+                <p className="text-sm text-[var(--dark)]/80 leading-relaxed font-sans">
                   We consider loading speed, responsive behavior and accessibility as part of implementation.
                 </p>
               </div>
@@ -144,9 +144,9 @@ export const ServicesPage: React.FC = () => {
               <div className="p-6 bg-[var(--dark)]/5 border border-[var(--text)]/10 rounded-xs">
                 <h3 className="flex items-center gap-3 font-display text-xl font-medium text-[var(--dark)] mb-2">
                   <Shield aria-hidden="true" className="h-5 w-5 text-[var(--accent-primary)]" />
-                  Deterministic AI Output
+                  Deterministic AI output
                 </h3>
-                <p className="text-xs text-[var(--dark)]/80 leading-relaxed font-sans">
+                <p className="text-sm text-[var(--dark)]/80 leading-relaxed font-sans">
                   We constrain LLMs via strict Pydantic and JSON schemas, assertive fallbacks, and bounded agent memory. We design AI integrations around the needs and constraints of each use case.
                 </p>
               </div>

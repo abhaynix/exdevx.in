@@ -29,7 +29,7 @@ export const AboutPage: React.FC = () => {
               Agency origins and ethos
             </div>
             <h1 className="font-display text-4xl sm:text-6xl font-medium tracking-tight text-[var(--dark)] max-w-4xl leading-tight">
-              Execution over theory. Automation first. Zero fluff.
+              Working software, automated pipelines, and direct engineering accountability.
             </h1>
             <p className="mt-6 text-lg text-[var(--text)]/80 max-w-2xl font-sans leading-relaxed">
               Founded in 2022 in Maharashtra, India by engineer Abhay Jadhav, ExDevX was built to escape bureaucratic software development cycles and ship pristine, high-leverage products.
@@ -51,7 +51,7 @@ export const AboutPage: React.FC = () => {
                   <h2 className="font-display text-3xl font-semibold text-[var(--dark)] mb-2">
                     {siteConfig.founder.name}
                   </h2>
-                  <div className="text-xs font-mono text-[var(--text)]/60 mb-6">
+                  <div className="text-xs font-mono text-[var(--text-secondary)] mb-6">
                     {siteConfig.founder.role} · Based in Maharashtra, India
                   </div>
 
@@ -119,9 +119,9 @@ export const AboutPage: React.FC = () => {
               <div className="p-6 bg-[var(--dark)]/5 border border-[var(--text)]/10 rounded-xs">
                 <span className="text-xs font-mono text-[var(--accent-primary)] font-bold block mb-2">Principle</span>
                 <h3 className="font-display text-2xl font-medium text-[var(--dark)] mb-3">
-                  Execution over theory
+                  Working software first
                 </h3>
-                <p className="text-xs text-[var(--dark)]/80 leading-relaxed font-sans">
+                <p className="text-sm text-[var(--dark)]/80 leading-relaxed font-sans">
                   We focus on clear scope, working prototypes and useful feedback during development.
                 </p>
               </div>
@@ -129,9 +129,9 @@ export const AboutPage: React.FC = () => {
               <div className="p-6 bg-[var(--dark)]/5 border border-[var(--text)]/10 rounded-xs">
                 <span className="text-xs font-mono text-[var(--accent-primary)] font-bold block mb-2">Principle</span>
                 <h3 className="font-display text-2xl font-medium text-[var(--dark)] mb-3">
-                  Automation First
+                  Automation first
                 </h3>
-                <p className="text-xs text-[var(--dark)]/80 leading-relaxed font-sans">
+                <p className="text-sm text-[var(--dark)]/80 leading-relaxed font-sans">
                   If an operational task repeats more than twice, it gets codified into an automated worker, cron schedule, or LLM agent. Humans should make decisions; machines should run the loops.
                 </p>
               </div>
@@ -139,9 +139,9 @@ export const AboutPage: React.FC = () => {
               <div className="p-6 bg-[var(--dark)]/5 border border-[var(--text)]/10 rounded-xs">
                 <span className="text-xs font-mono text-[var(--accent-primary)] font-bold block mb-2">Principle</span>
                 <h3 className="font-display text-2xl font-medium text-[var(--dark)] mb-3">
-                  Self-Hosted & Resilient Infra
+                  Self-hosted and resilient infrastructure
                 </h3>
-                <p className="text-xs text-[var(--dark)]/80 leading-relaxed font-sans">
+                <p className="text-sm text-[var(--dark)]/80 leading-relaxed font-sans">
                   We architect systems that can run anywhere: Docker, Dokploy, VPS, AWS, or bare metal. No lock-in traps or unpredictable runaway billings.
                 </p>
               </div>

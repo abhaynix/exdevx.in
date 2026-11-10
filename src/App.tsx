@@ -34,7 +34,7 @@ function PageLoader() {
 }
 
 /**
- * AppInner — Router-agnostic shell used by client BrowserRouter and SSR prerender
+ * AppInner: Router-agnostic shell used by client BrowserRouter and SSR prerender
  */
 export function AppInner() {
   const isHome = useLocation().pathname === '/';

@@ -10,7 +10,7 @@ export const PrivacyPolicyPage: React.FC = () => (
     <SEO title="Privacy Policy | ExDevX" description="Learn what information the ExDevX website processes, why it is used, and how to contact us about privacy." />
     <section className="pt-16 pb-12 border-b border-[var(--text)]/10 bg-[var(--bg)]">
       <Container size="narrow">
-        <div className="text-xs font-mono tracking-widest text-[var(--primary)] font-bold mb-2">Legal and governance</div>
+        <div className="text-xs font-mono tracking-wide text-[var(--primary)] font-bold mb-2">Legal and governance</div>
         <h1 className="font-display text-4xl sm:text-5xl font-medium text-[var(--dark)]">Privacy policy</h1>
         <p className="text-xs font-mono text-[var(--text)]/60 mt-3">Last updated: October 2026 · ExDevX, Maharashtra, India</p>
       </Container>
